@@ -41,7 +41,7 @@ function run([name, script, args]) {
   return new Promise(res => {
     const t0 = Date.now();
     const a = [join(H, script), HTML, ...args.map(x => x.replace("OUT_DIR", OUT))];
-    const p = spawn(NODE, a, { cwd: H });
+    const p = spawn(NODE, a, { cwd: OUT });
     let out = "";
     p.stdout.on("data", d => (out += d));
     p.stderr.on("data", d => (out += d));
