@@ -1,9 +1,9 @@
-const { chromium } = require('/opt/npm-tools/node_modules/playwright');
+const { chromium } = require('playwright');
 (async () => {
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' }).catch(async()=>chromium.launch());
+  const b = await chromium.launch().catch(async()=>chromium.launch());
   const p = await b.newPage({ viewport: { width: 1600, height: 900 } });
   const errs=[]; p.on('pageerror', e => errs.push(String(e)));
-  await p.goto('file:///home/claude/argon_f1_2026_simulator_v11.html');
+  await p.goto(require('url').pathToFileURL(require('path').resolve(process.env.SIM_HTML || __dirname + '/../../v11/opus_argon_f1_2026_simulator_v11.html')).href);
   const track = process.argv[2] || 'barcelona';
   if (track !== 'barcelona') await p.evaluate(t => { const sel=document.getElementById('trackSelect'); sel.value=t; sel.dispatchEvent(new Event('change')); }, track);
   await p.waitForTimeout(15000);

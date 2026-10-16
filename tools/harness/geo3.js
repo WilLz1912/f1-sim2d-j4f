@@ -1,5 +1,5 @@
 const fs=require("fs"),vm=require("vm");
-let code=fs.readFileSync("/home/claude/argon_f1_2026_simulator_v9.html","utf8").match(/<script>([\s\S]*)<\/script>/)[1];
+let code=fs.readFileSync(process.argv[2]||__dirname+"/../../history/v9_before_core.html","utf8").match(/<script>([\s\S]*)<\/script>/)[1];
 code=code.split("const canvas = document.getElementById")[0];
 const ctx={Math,console,Set,Float64Array};vm.createContext(ctx);vm.runInContext(code,ctx);
 vm.runInContext(fs.readFileSync("geo.js","utf8").split("vm.runInContext(`")[1].split("`,ctx);")[0],ctx);

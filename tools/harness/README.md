@@ -2,8 +2,13 @@
 
 Đây là các script Node chạy giả lập không giao diện. Mỗi script đọc phần `<script>` của file HTML
 V11 và chạy trong `vm`, với `Math.random` thay bằng mulberry32 theo seed. Cần Node 18 trở lên.
-Các script chụp màn hình (`shot*.js`, `prof.js`) cần Playwright và Chromium. Các script này có
-đường dẫn cố định `/home/claude/...` và `/opt/...` từ máy làm việc cũ, cần sửa lại trước khi chạy.
+Các script chụp màn hình (`shot*.js`, `prof.js`) cần Playwright và Chromium
+(`npm i -D playwright && npx playwright install chromium`). Mặc định chúng mở file V11 trong `v11/`
+(`shot_old.js` mở `history/v11_old_geometry.html`); đổi file bằng biến môi trường `SIM_HTML`.
+`geo*.js` là công cụ V9, mặc định đọc `history/v9_before_core.html`, hoặc nhận đường dẫn ở tham số đầu.
+
+Golden: `npm run golden` sinh lại toàn bộ vào `golden/v11/`; `npm run golden:check` chạy lại và so
+với bản đã lưu (bỏ qua thời gian chạy thực).
 
 Ví dụ: `node race2.js ../../v11/opus_argon_f1_2026_simulator_v11.html barcelona 33 out.json`
 

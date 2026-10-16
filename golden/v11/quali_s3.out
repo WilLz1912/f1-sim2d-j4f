@@ -1,0 +1,8 @@
+after load session RACE QUALI true true
+after startWeekend Q1 false
+after 5 steps Q1
+t 0 Q1
+t 1234.25 Q2
+t 2256.95 Q3
+t 3143.0833333333335 QEND
+grid RUS 74.517 | HAM 74.900 | LEC 74.950 | ANT 75.017 | PIA 75.233 | VER 75.350 | GAS 75.517 | COL 75.750 | NOR 75.783 | LIN 75.800
