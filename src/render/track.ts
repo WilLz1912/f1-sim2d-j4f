@@ -19,7 +19,7 @@ export interface View { x: number; y: number; z: number }   // world point at sc
 export interface TeamLook { code3: string; body: string }
 
 const COL = {
-  bg: "#0b0f14", ground: "#0f2419", building: "#1b2230", buildingEdge: "#2b3546", grandstand: "#25304a", paddock: "#1e2530",
+  bg: "#0b0f14", ground: "#0f2419", building: "#1b2230", buildingEdge: "#2b3546", grandstand: "#25304a", seats: "#34446a", paddock: "#1e2530",
   grass: "#17482c", grassStripe: "#194d2f", tree: "#0e3a22", treeRim: "#14502f",
   asphalt: "#4a525e", paint: "#2c8a62", gravel: "#d2a65e", gravelDot: "#b88c47",
   track: "#2a2e35", groove: "rgba(10,12,16,0.35)", edge: "#f4f6f8", kerbR: "#e23a3a", kerbW: "#f4f6f8",
@@ -174,6 +174,7 @@ export class TrackRenderer {
       ctx.fillStyle = COL.paddock; ctx.fill(p.paddock);
       ctx.fillStyle = "rgba(0,0,0,0.4)"; ctx.save(); ctx.translate(1.5, -1.5); ctx.fill(p.buildings); ctx.fill(p.grandstands); ctx.restore();
       ctx.fillStyle = COL.building; ctx.fill(p.buildings); ctx.fillStyle = COL.grandstand; ctx.fill(p.grandstands);
+      if (v.z > 0.8) this.drawSeatRows(ctx, px);
       ctx.strokeStyle = COL.buildingEdge; ctx.lineWidth = Math.max(0.3, px); ctx.stroke(p.buildings); ctx.stroke(p.grandstands);
       ctx.fillStyle = "#3a4558"; ctx.fill(p.tower); ctx.strokeStyle = "#e5e7eb"; ctx.stroke(p.tower);
     }
@@ -203,6 +204,24 @@ export class TrackRenderer {
     this.drawLines(ctx, v, !!opt.lines);
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     this.drawCornerBadges(ctx, v);
+  }
+
+  /** Seat rows on each grandstand, parallel to its longest side (rows every 0.9 m, as in real stands). */
+  private drawSeatRows(ctx: CanvasRenderingContext2D, px: number) {
+    for (const s of this.T.structures) {
+      if (s.kind !== "grandstand" || s.pts.length < 3) continue;
+      let best = 0, ang = 0;
+      for (let k = 0; k + 1 < s.pts.length; k++) {
+        const dx = s.pts[k + 1][0] - s.pts[k][0], dy = s.pts[k + 1][1] - s.pts[k][1], l = Math.hypot(dx, dy);
+        if (l > best) { best = l; ang = Math.atan2(dy, dx); }
+      }
+      const cx = s.pts.reduce((a, q) => a + q[0], 0) / s.pts.length, cy = s.pts.reduce((a, q) => a + q[1], 0) / s.pts.length;
+      const clip = new Path2D(); s.pts.forEach(([x, y], k) => (k ? clip.lineTo(x, y) : clip.moveTo(x, y))); clip.closePath();
+      ctx.save(); ctx.clip(clip); ctx.translate(cx, cy); ctx.rotate(ang);
+      ctx.strokeStyle = COL.seats; ctx.lineWidth = Math.max(0.35, px);
+      ctx.beginPath(); for (let y = -60; y <= 60; y += 0.9) { ctx.moveTo(-200, y); ctx.lineTo(200, y); } ctx.stroke();
+      ctx.restore();
+    }
   }
 
   private drawPitDetail(ctx: CanvasRenderingContext2D, v: View) {
