@@ -1,0 +1,12 @@
+const fs=require("fs"),vm=require("vm");
+const [path,track]=process.argv.slice(2);
+let code=fs.readFileSync(path,"utf8").match(/<script>([\s\S]*)<\/script>/)[1];
+const fe=()=>({textContent:"",innerHTML:"",value:"",className:"",dataset:{},style:{},children:[0,1,2,3,4,5,6].map(()=>({style:{},dataset:{}})),classList:{add(){},remove(){},toggle(){}},addEventListener(){},appendChild(){},prepend(){},removeChild(){},getContext(){return new Proxy({},{get:()=>()=>({addColorStop(){}}),set:()=>true})}});
+const els={};const ctx={Math,console,document:{getElementById:i=>els[i]||(els[i]=fe()),createElement:fe,querySelectorAll:()=>[]},window:{innerWidth:1600,innerHeight:900,addEventListener(){}},performance:{now:()=>0},requestAnimationFrame(){},setTimeout(){},clearTimeout(){},Set,Float64Array};
+vm.createContext(ctx);vm.runInContext(code+'\n;globalThis.__g=()=>({spline,CORNERS,cars});',ctx);
+const t0=Date.now();
+vm.runInContext(`logMsg=()=>{};showToast=()=>{};activeTrackKey="${track}";initRace();`,ctx);
+console.log("initRace incl. test drives:",(Date.now()-t0),"ms  cars:",ctx.__g().cars.length);
+const g=ctx.__g(),M=g.spline.length;
+console.log("Góc  s     | Δt [V, Muộn, U] (s)     | v ra cua km/h [Chuẩn,V,Muộn,U] | v nhỏ nhất [Chuẩn,V,Muộn,U] | đoạn thẳng sau (m) | line nhanh nhất");
+g.CORNERS.forEach((C,i)=>console.log(`T${i+1}`.padEnd(4),(C.iA/M).toFixed(3),"|",C.cost.slice(1).map(x=>x.dt.toFixed(2).padStart(5)).join(" "),"|",C.cost.map(x=>(x.vExit*3.6).toFixed(0).padStart(4)).join(""),"|",C.cost.map(x=>(x.vMin*3.6).toFixed(0).padStart(4)).join(""),"|",C.straightAfterM.toFixed(0).padStart(5),"|",["Chuẩn","V","Muộn","U"][C.best]));

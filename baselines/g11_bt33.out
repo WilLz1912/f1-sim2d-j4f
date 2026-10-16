@@ -1,0 +1,10 @@
+barcelona seed=33 laps=66: attack attempts=647  REAL passes (healthy, side-by-side)=59  other order swaps=207
+  healthy car-seconds spent within 1s of a healthy car ahead: 6718 s
+  attempt results: {"PASSED":210,"no pass":437}
+  end reasons: {"target-changed":86,"abort-not-alongside-before-braking":488,"yield-no-corner-rights":22,"dropped-back":50,"none":1}
+  reached alongside: 80  used late-braking: 52  defender was defending at start: 81
+  gap at attack start (m) p10/p50/p90: 10.4/28.1/45.8   closest approach p10/p50/p90: -4672.2/10.9/24.7   car length 5.6 m
+  closing speed at start (m/s) p10/p50/p90: -4.6/0.4/13.6
+  real passes: L2 ALB>ALO@0.165  L2 SAI>HUL@0.231  L2 SAI>LIN@0.236  L2 HUL>LIN@0.244  L3 GAS>BEA@0.037  L3 SAI>ALO@0.157  L3 HUL>ALO@0.370  L4 BOR>STR@0.674  L4 LIN>ALO@0.000  L4 BOT>STR@0.934  L14 NOR>LEC@0.945  L15 BEA>GAS@0.244  L15 RUS>GAS@0.252  L16 VER>LEC@0.025  L16 BEA>COL@1.000  L16 GAS>RUS@0.606  L17 NOR>OCO@0.114  L17 ALB>LAW@0.037  L17 HAD>SAI@0.210  L18 HAM>PIA@0.369
+  line picks: {"chạy một mình (Chuẩn)":13813,"phòng thủ (V)":224,"tấn công trong (V)":8760,"tấn công ngoài (U)":7329,"cắt ngược (Muộn)":567,"chuẩn bị vượt (Muộn)":180}
+  yo-yo re-passes within 2 laps: 6   laps with >=1 real pass: 26/66

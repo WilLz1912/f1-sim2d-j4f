@@ -1,0 +1,19 @@
+simT 0 lap 1
+simT 594 lap 6
+simT 1194 lap 14
+simT 1794 lap 21
+simT 2394 lap 28
+simT 2994 lap 36
+simT 3594 lap 43
+simT 4194 lap 50
+simT 4794 lap 58
+simT 5394 lap 66
+barcelona seed=33 wall=406s simT=5653s over=true lap=66
+SC: 0 [laps ] | VSC: 3 [27,41,61] | RED: 0
+Penalties: 0 [laps ] | investigations: 0 | contacts(light/wing): 4/5 | punctures: 1
+DNF: HUL(hits the barrier at 81 km/h); ALO(power unit failure (smoke!)); LEC(hits the barrier at 134 km/h); HAM(suspension broken after contact with BOR)
+Stops: ANT:2SM RUS:3SM NOR:2SM HAD:2SHM COL:2MH ALB:1MH PIA:2MS GAS:2MH VER:3SM OCO:2MH LIN:2MH BEA:3MHS LAW:2MH SAI:1MH STR:2HM BOT:2HM PER:2HSM BOR:2HM
+Top: 1.ANT WINNER | 2.RUS +48.2s | 3.NOR +60.5s | 4.HAD +75.9s | 5.COL +1 LAP | 6.ALB +1 LAP | 7.PIA +1 LAP | 8.GAS +1 LAP | 9.VER +1 LAP | 10.OCO +1 LAP
+OVERTAKES (green, same lap, not pit-related): 46 | cars within 1s of car ahead: 10% of the time
+Median clean green lap (s) [avg sec/lap in dirty air]: ANT 79.75[0] | RUS 80.08[0] | HAM 80.67[0] | LEC 80.72[0] | VER 80.75[1] | NOR 80.77[1] | HAD 80.88[0] | COL 80.95[0] | PIA 81.00[2] | SAI 81.18[0] | BEA 81.27[1] | LIN 81.30[1] | OCO 81.42[0] | GAS 81.60[1] | LAW 81.65[1] | STR 81.67[0] | ALB 81.82[1] | HUL 82.23[1] | BOR 82.87[2] | BOT 82.90[2] | PER 83.10[1] | ALO 83.17[1]
+Pit speeding: 0 unsafe: 0 giveBack: 0 handsBack: 0 missedPit: 0 beached: 0 spins: 0

@@ -1,0 +1,19 @@
+simT 0 lap 1
+simT 594 lap 6
+simT 1194 lap 13
+simT 1794 lap 20
+simT 2394 lap 27
+simT 2994 lap 34
+simT 3594 lap 41
+simT 4194 lap 48
+simT 4794 lap 55
+simT 5394 lap 62
+barcelona seed=32 wall=744s simT=5954s over=true lap=66
+SC: 0 [laps ] | VSC: 0 [] | RED: 0
+Penalties: 0 [laps ] | investigations: 0 | contacts(light/wing): 11/10 | punctures: 1
+DNF: 
+Stops: RUS:2SM ANT:2MS LEC:2SM NOR:2SM HAD:2SM HAM:2MS VER:2MS LAW:2SMH OCO:2MH COL:2MH PER:1HM GAS:2SMH PIA:2SM ALB:2MS BEA:2MH BOT:2HM BOR:2HM HUL:2MH ALO:3HM STR:2HM LIN:3MHS SAI:1HM
+Top: 1.RUS WINNER | 2.ANT +1.3s | 3.LEC +9.9s | 4.NOR +13.6s | 5.HAD +53.9s | 6.HAM +55.6s | 7.VER +64.6s | 8.LAW +1 LAP | 9.OCO +1 LAP | 10.COL +1 LAP
+OVERTAKES (green, same lap, not pit-related): 73 | cars within 1s of car ahead: 8% of the time
+Median clean green lap (s) [avg sec/lap in dirty air]: LEC 83.88[0] | RUS 83.97[0] | NOR 84.28[0] | ANT 84.38[1] | HAM 84.68[1] | HAD 84.70[0] | VER 84.88[1] | OCO 85.28[0] | LAW 85.32[1] | PIA 86.02[2] | GAS 86.03[1] | COL 86.03[1] | BEA 86.08[1] | ALB 86.20[1] | ALO 86.55[2] | HUL 86.65[1] | PER 86.75[1] | BOT 86.80[1] | BOR 86.97[1] | LIN 87.28[3] | STR 87.47[2] | SAI 89.72[5]
+Pit speeding: 0 unsafe: 0 giveBack: 0 handsBack: 0 missedPit: 0 beached: 0 spins: 0
