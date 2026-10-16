@@ -109,12 +109,12 @@
     "src": "team/wiki + press"
    },
    "livery": {
-    "primary": "#111316",
-    "secondary": "#BFC5CC",
-    "wing": "#111316",
+    "primary": "#0C0C0E",
+    "secondary": "#D9DBE2",
+    "wing": "#0C0C0E",
     "accent": "#00D7B6",
     "desc": "black with silver star-stripe sidepods, Petronas teal pinstripes",
-    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
+    "src": "colours measured from 2026 race photo (Wikimedia Commons, FIA F1 Austria 2026; k-means, nearest cluster)"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -180,13 +180,13 @@
     "src": "team/wiki + press"
    },
    "livery": {
-    "primary": "#DC0000",
-    "secondary": "#F2F2F2",
-    "tertiary": "#121212",
-    "wing": "#DC0000",
-    "accent": "#F2F2F2",
+    "primary": "#C10B0D",
+    "secondary": "#E3DDE2",
+    "tertiary": "#121013",
+    "wing": "#C10B0D",
+    "accent": "#E3DDE2",
     "desc": "red, white around cockpit and airbox (HP), black rear",
-    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
+    "src": "colours measured from 2026 race photo (Wikimedia Commons, FIA F1 Austria 2026; k-means, nearest cluster)"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -252,12 +252,12 @@
     "src": "not confirmed in sources found"
    },
    "livery": {
-    "primary": "#FF8000",
-    "secondary": "#1B1C1E",
-    "wing": "#1B1C1E",
-    "accent": "#FF8000",
+    "primary": "#E6791B",
+    "secondary": "#29272A",
+    "wing": "#29272A",
+    "accent": "#E6791B",
     "desc": "papaya front and sidepod tops, anthracite rear body",
-    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
+    "src": "colours measured from 2026 race photo (Wikimedia Commons, FIA F1 Austria 2026; k-means, nearest cluster)"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -323,13 +323,13 @@
     "src": "team/wiki vs press"
    },
    "livery": {
-    "primary": "#1B2550",
-    "secondary": "#D8102C",
+    "primary": "#15193D",
+    "secondary": "#E2261A",
     "tertiary": "#FFC906",
-    "wing": "#1B2550",
-    "accent": "#D8102C",
+    "wing": "#15193D",
+    "accent": "#E2261A",
     "desc": "matte navy, red bulls and yellow sun, red/yellow nose",
-    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
+    "src": "colours measured from 2026 race photo (Wikimedia Commons, FIA F1 Austria 2026; k-means, nearest cluster)"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -395,12 +395,12 @@
     "src": "team/wiki + press"
    },
    "livery": {
-    "primary": "#2F86D6",
-    "secondary": "#0A2752",
-    "wing": "#0A2752",
-    "accent": "#FFFFFF",
+    "primary": "#0D6FB7",
+    "secondary": "#223150",
+    "wing": "#223150",
+    "accent": "#DAE1E6",
     "desc": "mid blue top, navy lower and rear, white Atlassian marks",
-    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
+    "src": "colours measured from 2026 race photo (Wikimedia Commons, FIA F1 Austria 2026; k-means, nearest cluster)"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -466,13 +466,13 @@
     "src": "press"
    },
    "livery": {
-    "primary": "#F4F5F7",
-    "secondary": "#1B2A60",
-    "tertiary": "#D8102C",
-    "wing": "#1B2A60",
+    "primary": "#DFE0E3",
+    "secondary": "#1A1D42",
+    "tertiary": "#DC300B",
+    "wing": "#1A1D42",
     "accent": "#FFC906",
     "desc": "white, navy lower sidepods and rear, Red Bull logo",
-    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
+    "src": "colours measured from 2026 race photo (Wikimedia Commons, FIA F1 Austria 2026; k-means, nearest cluster)"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -538,12 +538,12 @@
     "src": "press"
    },
    "livery": {
-    "primary": "#0C5C4C",
+    "primary": "#0D6065",
     "secondary": "#C8E000",
-    "wing": "#0C5C4C",
+    "wing": "#0D6065",
     "accent": "#C8E000",
     "desc": "racing green, lime pinstripes",
-    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
+    "src": "colours measured from 2026 race photo (Wikimedia Commons, FIA F1 Austria 2026; k-means, nearest cluster)"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -609,13 +609,13 @@
     "src": "press"
    },
    "livery": {
-    "primary": "#F4F4F4",
-    "secondary": "#D9001B",
-    "tertiary": "#151515",
-    "wing": "#151515",
-    "accent": "#D9001B",
+    "primary": "#DFE2E6",
+    "secondary": "#B60A1A",
+    "tertiary": "#17171B",
+    "wing": "#17171B",
+    "accent": "#B60A1A",
     "desc": "white, big red GR on engine cover, black lower edges",
-    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
+    "src": "colours measured from 2026 race photo (Wikimedia Commons, FIA F1 Austria 2026; k-means, nearest cluster)"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -681,13 +681,13 @@
     "src": "team/wiki + press"
    },
    "livery": {
-    "primary": "#A9AEB4",
-    "secondary": "#E8261C",
-    "tertiary": "#141414",
-    "wing": "#141414",
-    "accent": "#E8261C",
+    "primary": "#A7A5A4",
+    "secondary": "#DE0B0F",
+    "tertiary": "#100E11",
+    "wing": "#100E11",
+    "accent": "#DE0B0F",
     "desc": "titanium silver, lava-red rear sidepods, black engine cover",
-    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
+    "src": "colours measured from 2026 race photo (Wikimedia Commons, FIA F1 Austria 2026; k-means, nearest cluster)"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -753,12 +753,12 @@
     "src": "team/wiki vs press"
    },
    "livery": {
-    "primary": "#FF8CC6",
+    "primary": "#E784B9",
     "secondary": "#1E5BC6",
     "wing": "#1E5BC6",
-    "accent": "#FFFFFF",
+    "accent": "#C0C9D2",
     "desc": "pink front and sidepods, blue engine cover and rear, white BWT",
-    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
+    "src": "colours measured from 2026 race photo (Wikimedia Commons, FIA F1 Austria 2026; k-means, nearest cluster)"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -824,12 +824,12 @@
     "src": "press"
    },
    "livery": {
-    "primary": "#E6E7EA",
-    "secondary": "#0F1013",
-    "wing": "#0F1013",
-    "accent": "#C9CCD1",
+    "primary": "#DDDFE6",
+    "secondary": "#121114",
+    "wing": "#121114",
+    "accent": "#C4C5CC",
     "desc": "two-sided: grayish-white left flank, black right flank",
-    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
+    "src": "colours measured from 2026 race photo (Wikimedia Commons, FIA F1 Austria 2026; k-means, nearest cluster)"
    },
    "physics": {
     "cog_height_m": 0.28,

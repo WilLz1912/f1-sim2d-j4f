@@ -32,7 +32,7 @@ reach = np.isin(lab_, keep_)
 reach = binary_closing(reach, iterations=4)
 T0 = Affine(sf["res_m"], 0, sf["x0"], 0, -sf["res_m"], sf["y1"])
 domain = unary_union([shape(g) for g, v in shapes(reach.astype(np.uint8), mask=reach, transform=T0) if v == 1])
-domain = domain.buffer(3).buffer(-6).buffer(3).simplify(0.2)          # rounded outlines
+domain = domain.buffer(6).buffer(-12).buffer(6).simplify(0.2)        # rounded outlines, no wiggles under ~12 m
 domain = unary_union([g for g in getattr(domain, "geoms", [domain]) if g.area > 2000])
 
 T = Affine(sf["res_m"], 0, sf["x0"], 0, -sf["res_m"], sf["y1"])

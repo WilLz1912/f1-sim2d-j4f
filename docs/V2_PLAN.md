@@ -29,15 +29,26 @@ phân tích). Người dùng chỉ đọc Python/SQL, nên thông số đặt tr
 - Đã thử khớp downforce/lực cản từng đội bằng mô hình tĩnh từ tốc độ min ở góc: kết quả vô lý (ClA ~12 m2), vì
   góc nhanh không ở giới hạn bám. Đã bỏ. Khớp thật phải dùng mô phỏng cả vòng ở M2.
 
-## Chưa chắc / ước tính (cần dữ liệu tốt hơn)
+## Nguồn của từng thành phần (18/10, sau khi rà soát)
 
-- Tháp Race Control: vị trí ước tính (đầu pit building phía lối ra).
-- Màu livery/mũ là xấp xỉ từ mô tả chữ, không phải mã màu chính thức.
-- Vạch đích nằm giữa lưới (ô 12–13): khớp FIA (vạch xuất phát cách vạch đích 126 m) và FIA lap distance
-  (đỉnh T13 lệch 15 m), nên giữ. Ô pole đọc trên ảnh (±5 m).
-- Vùng Straight Mode: FIA nêu tên 4 vùng, khoảng cách là ước tính.
-- Rào chắn: dò từ ảnh, chỗ góc trong còn vòng lạ.
-- Vị trí ngang của ô pit trong làn làm việc, độ sâu garage.
-- Phần lớn kích thước xe không được công bố (wheelbase để 3400, dài 5480); khí động và trọng tâm là ước tính,
-  sẽ khớp theo dữ liệu thật ở M2.
-- Chú ý: F1 Live Timing (FastF1) đã khoá (401) từ 2026; dùng OpenF1.
+| Thành phần | Nguồn |
+|---|---|
+| Tâm đường | OSM, khớp 22 vòng thật OpenF1 (lệch trung vị 1.8 m) |
+| Mép đường | Ảnh ICGC 25 cm; đoạn ô xuất phát và dưới cầu (cầu theo OSM) nội suy; kiểm chéo TUM (sai ±1 m) |
+| Kerb | Ảnh ICGC (dải sọc đỏ trắng), mỗi kerb một độ rộng |
+| Run-off, sỏi, cỏ, cây | Ảnh ICGC + OSM (sỏi, toà nhà); chỉ giữ nhựa/sơn nối với mép đường |
+| Rào chắn | Biên của vùng đất trống nối với mặt đường (giới hạn bởi cây, công trình, tường), làm mượt 6 m |
+| Góc cua, phân đoạn marshal, đèn cờ, pit loss | Dữ liệu mạch đua của hệ thống tính giờ F1 (MultiViewer API) |
+| Vạch đích, sector, speed trap, I1, I2 | OpenF1 (thời gian sector và tốc độ của 22 vòng) |
+| Vạch xuất phát | FIA (cách vạch đích 126 m) + ảnh |
+| Overtake detection/activation, pit 368 m | FIA (Power Unit Information, Race Director notes) |
+| Vùng Straight Mode | FIA (tên vùng) + OpenF1 (đoạn cả 22 xe đạp hết ga) |
+| Racing line | OpenF1 (trung vị 22 vòng) |
+| Pit lane, garage | OSM (đường), ảnh (tường, làn, mặt garage), FIA (thứ tự garage) |
+| Xe: khối lượng, trục, dài | Đội công bố; đội không công bố thì lấy theo các đội có công bố (ghi rõ trong file) |
+| Livery | Đo màu từ ảnh đua thật 2026 (Wikimedia Commons) |
+| T-cam | Motorsport.com spotter's guide 2026 |
+| Mũ bảo hiểm | Mô tả thiết kế 2026 (Total Motorsport) |
+
+Còn lại chưa có nguồn: kích thước chi tiết khí động và trọng tâm của từng xe (khớp ở bước vật lý từ dữ liệu
+thật), vị trí tháp Race Control (đã bỏ khỏi bản đồ).

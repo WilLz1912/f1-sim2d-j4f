@@ -9,3 +9,4 @@ __pycache__/
 Thumbs.db
 data/imagery/*.jpg
 data/fastf1/
+data/cars/photos/
