@@ -1,0 +1,59 @@
+Williams FW48
+{{Short description|2026 Formula One car}}
+{{Racing car
+| car_name = Williams FW48
+| image = FIA F1 Austria 2026 Nr. 23 Albon (1).jpg
+| caption = Williams FW48 driven by [[Alexander Albon]] at the [[2026 Austrian Grand Prix]]
+| category = [[Formula One]]
+| designer = {{ubl
+  |[[Pat Fry]] {{small|(Chief Technical Officer)}} 
+  |[[Matt Harman]] {{small|(Technical Director, Engineering)}}
+  |[[Angelos Tsiaparas]] {{small|(Chief Engineer)}}
+  |Steve Winstanley {{small|(Chief Engineer - Composites and Structures)}}
+  |Fabrice Moncade {{small|(Chief Engineer - Vehicle Dynamics & Computer Science)}}
+  |Jonathan Carter {{small|(Deputy Chief Designer)}}
+  |[[Richard Frith (engineer)|Richard Frith]] {{small|(Head of Performance Systems)}}
+  |[[Adam Kenyon]] {{small|(Head of Aerodynamics)}}
+  |Juan Molina {{small|(Chief Aerodynamicist)}}
+  }}
+| predecessor = [[Williams FW47]]
+| successor = Williams FW50
+| Chassis = Carbon-fibre monocoque, laminated from carbon epoxy and honeycomb
+| Front suspension = Double wishbone, pull-rod activated springs and anti-roll bar
+| Rear suspension = Multi-link, push-rod activated springs and anti-roll bar
+| Length = {{convert|NNNN|mm|in|1|abbr=on}}
+| Width = {{convert|NNNN|mm|in|1|abbr=on}}
+| Height = {{convert|NNNN|mm|in|1|abbr=on}}
+| track = {{convert|NNNN|mm|in|1|abbr=on}}
+| Wheelbase = {{convert|NNNN|mm|in|1|abbr=on}}
+| Engine name = [[Mercedes AMG High Performance Powertrains|Mercedes-AMG M17]]
+| Capacity = {{convert|NNNN|cc|cuin|1|abbr=on}}
+| Configuration = 
+| Engine position = 
+| Gearbox name = Mercedes-AMG
+| Gears = 8 forward + 1 reverse gear
+| Type = seamless sequential semi-automatic shift plus reverse gear, gear selection electro-hydraulically actuated
+| Battery = Lithium-ion battery
+| Power = {{convert|NNN|hp|kW PS|0|abbr=on}}
+| Weight = 772.4 kg (including driver, excluding fuel)
+| fuel = [[Gulf Oil|Gulf]]
+| lubricants = [[Gulf Oil|Gulf]]
+| Tyres = [[Pirelli]] P Zero (dry)<br />[[Pirelli]] Cinturato (wet)
+| Caption = 
+| Image_size = 
+| Constructor = [[Williams Racing|Williams F1 Team]]
+| Technical ref = 
+| Electric motor = [[Kinetic energy recovery system|Kinetic]] and [[Exhaust heat recovery system|thermal]] energy recovery systems
+| Brakes = 
+| Steering = 
+| Team = [[Williams Racing|Atlassian Williams F1 Team]]
+| Drivers = {{ubl|23. {{flagicon|THA}} [[Alexander Albon]]|55. {{flagicon|ESP}} [[Carlos Sainz Jr.]]}}
+| Debut = [[2026 Australian Grand Prix]]
+| Last_event = {{Latest F1GP}}
+| Races = {{sum|{{F1cstat|WIL|entries}}|-851}}
+| Wins = {{sum|{{F1cstat|WIL|wins}}|-114}}
+| Podiums = {{sum|{{F1cstat|WIL|podiums}}|-315}}
+| Poles = {{sum|{{F1cstat|WIL|poles}}|-128}}
+| Fastest laps = {{sum|{{F1cstat|WIL|fastestlaps}}|-134}}
+}}
+The '''Williams FW48''' is a [[Formula One car|Formula One racing car]] designed and constructed by [[Williams Racing|Atlassian Williams F1 Team]] to compete in the [[2026 Formula One World Championship]]. The car is currently being driven by [[Alexander Albon]] and [[Carlos Sainz Jr.]], both in their fifth and second seasons with the team respectively. A B-Spec version of the FW48 debuted at the [[2026 Azerbaijan Grand Prix]]. Team Principal [[James Vowles]] confirmed that the B-Spec version of the FW48 will be carried over into the [[2027 Formula One World Championship|2027 season]]. On October 15, 2026 it was revealed that the 2027 car will be named the FW50 celebrating Williams 50th Anniversary.

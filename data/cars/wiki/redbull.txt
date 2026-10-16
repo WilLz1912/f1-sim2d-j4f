@@ -1,0 +1,57 @@
+Red Bull Racing RB22
+{{Short description|2026 Formula One car}}
+{{Use dmy dates|date=April 2025}}
+{{Racing car
+| name = Red Bull Racing RB22
+| image = FIA F1 Austria 2026 Nr. 3 Verstappen (1).jpg
+| caption = [[Max Verstappen]] driving the RB22 at the [[2026 Austrian Grand Prix]]
+| Image_size = 270px
+| Constructor = [[Red Bull Racing]]
+| category = [[Formula One]]
+| designer = {{Ubl
+  | [[Pierre Waché]] {{smaller|(Technical Director)}}
+  | [[Ben Waterhouse]] {{smaller|(Head of Performance Engineering)}}
+  | [[Paul Monaghan (engineer)|Paul Monaghan]] {{smaller|(Chief Engineer, Car Engineering)}}
+  | [[Craig Skinner (engineer)|Craig Skinner]] {{smaller|(Chief Designer)}}
+  | Jerome Lafarge {{smaller|(Chief Designer, Composites and Structures)}}
+  | Edward Aveling {{smaller|(Chief Designer, Mechanical and Systems)}}
+  | Alistair Brizell {{smaller|(Head of Vehicle Performance)}}
+  | [[Enrico Balbo]] {{smaller|(Head of Aerodynamics)}}
+  | Craig Dear {{smaller|(Head of Aerodynamics Development)}}
+  | [[Ben Hodgkinson]] {{smaller|(Technical Director - Power Unit)}}
+  }}
+| predecessor = [[Red Bull Racing RB21|Red Bull RB21]]
+| successor = 
+| Team = [[Red Bull Racing|Oracle Red Bull Racing]]
+| chassis = 
+| height = {{convert|NNNN|mm|in|1|abbr=on}}
+| track = {{convert|NNNN|mm|in|1|abbr=on}}
+| wheelbase = {{convert|NNNN|mm|in|1|abbr=on}}
+| engine name = [[Red Bull Ford DM01]]
+| capacity = {{convert|NNNN|cc|cuin|1|abbr=on}}
+| configuration = <hr>{{convert|1.6|L|cuin|0|abbr=on|lk=on}}
+[[Gasoline direct injection|direct injection]] [[V6 engine|V6]] [[Turbocharger|turbocharged]] engine limited to 15,000 [[Revolutions per minute|rpm]] in a [[Rear mid-engine, rear-wheel-drive layout|rear mid-mounted, rear-wheel-drive layout]]
+| electric motor = 
+| battery = 
+| Power = {{convert|NNN|hp|kW PS|0|abbr=on}}
+| Weight = 770 kg (including driver, coolant and oil)
+| fuel = [[Esso]] / [[Mobil]] Synergy
+| lubricants = [[Mobil 1]]
+| tyres = [[Pirelli]] P Zero (Dry)<br />[[Pirelli]] Cinturato (Wet)
+| front suspension = Multi-link pull-rod actuated dampers and anti-roll bar
+| rear suspension = Double wishbone push-rod springs, dampers, and anti-roll bar
+| length = {{convert|NNNN|mm|in|1|abbr=on}}
+| width = {{convert|NNNN|mm|in|1|abbr=on}}
+| Drivers = {{ubl|{{0}}3. {{flagicon|NED}} [[Max Verstappen]]|{{0}}6. {{flagicon|FRA}} [[Isack Hadjar]]|30. {{flagicon|NZL}} [[Liam Lawson]]}}
+| Debut = [[2026 Australian Grand Prix]]
+| First_win = [[2026 Bahrain Grand Prix]]
+| Last_win = [[2026 Singapore Grand Prix]]
+| Last_event = {{Latest F1GP}}
+| Races = {{sum|{{F1cstat|RBR|entries}}|-418}}
+| Wins = {{sum|{{F1cstat|RBR|wins}}|-130}}
+| Podiums = {{sum|{{F1cstat|RBR|podiums}}|-297}}
+| Poles = {{sum|{{F1cstat|RBR|poles}}|-111}}
+| Fastest_laps = {{sum|{{F1cstat|RBR|fastestlaps}}|-102}}
+}}
+
+The '''Red Bull Racing RB22''' is a [[Formula One car]] designed and built by [[Red Bull Racing]] to compete in the [[2026 Formula One World Championship]]. It is currently being driven by four-time World Champion [[Max Verstappen]] and [[Isack Hadjar]], in his first season with Red Bull after his debut season with [[Racing Bulls]] the [[2025 Formula One World Championship|previous year]]. The RB22 is the first Red Bull Racing car to be powered by a [[Red Bull Powertrains|Ford-branded power unit]], and marks Ford's return to the sport after the sale of the Jaguar team to [[Red Bull GmbH]] at the end of the [[2004 Formula One World Championship|2004]] season.<ref>{{Cite web |date=3 February 2023 |title=Ford announces F1 return in 2026 with Red Bull |url=https://www.espn.com/f1/story/_/id/35581477/ford-announces-return-formula-one-2026-red-bull |access-date=5 February 2023 |website=ESPN.com |language=en |archive-date=5 February 2023 |archive-url=https://web.archive.org/web/20230205021315/https://www.espn.com/f1/story/_/id/35581477/ford-announces-return-formula-one-2026-red-bull |url-status=live }}</ref> Technical Director [[Pierre Waché]] oversees the chassis development for the RB22 with Technical Director [[Ben Hodgkinson]] of Red Bull Ford Powertrains overseeing the engine development.

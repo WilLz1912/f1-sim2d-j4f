@@ -1,0 +1,1040 @@
+{
+ "season": 2026,
+ "regs": {
+  "min_mass_kg": {
+   "v": 768,
+   "src": "fia",
+   "note": "car + driver, no fuel, nominal tyre mass included"
+  },
+  "max_wheelbase_mm": {
+   "v": 3400,
+   "src": "fia"
+  },
+  "max_width_mm": {
+   "v": 1900,
+   "src": "fia"
+  },
+  "max_height_mm": {
+   "v": 950,
+   "src": "estimate",
+   "note": "~same as 2022-25"
+  },
+  "wheel_rim_in": {
+   "v": 18,
+   "src": "fia"
+  },
+  "tyre_front": {
+   "width_mm": 280,
+   "diameter_mm": 705,
+   "src": "press (-25 mm width, -15 mm diameter vs 2025); one source says 275 mm"
+  },
+  "tyre_rear": {
+   "width_mm": 375,
+   "diameter_mm": 710,
+   "src": "press (-30 mm width, -10 mm diameter vs 2025)"
+  },
+  "mguk_max_kw": {
+   "v": 350,
+   "src": "fia"
+  },
+  "mguk_taper": {
+   "normal": [
+    290,
+    355
+   ],
+   "overtake": [
+    337,
+    355
+   ],
+   "src": "formula1.com (kept from V11 calibration): full 350 kW up to first km/h value, linear to 0 at second"
+  },
+  "ice_kw": {
+   "v": 400,
+   "src": "estimate (2026 ICE ~400 kW widely reported)"
+  },
+  "es_usable_mj": {
+   "v": 4.0,
+   "src": "v11 / estimate"
+  },
+  "recharge_per_lap_mj": {
+   "race": 8.5,
+   "race_overtake": 9.0,
+   "quali": 7.0,
+   "src": "fia (Barcelona 2026 PU information)"
+  },
+  "gears": {
+   "v": 8,
+   "src": "fia"
+  },
+  "fuel_start_kg": {
+   "v": 70,
+   "src": "estimate"
+  },
+  "aero": {
+   "downforce_vs_2025": -0.3,
+   "drag_vs_2025": -0.55,
+   "modes": [
+    "Z (corner)",
+    "X (straight)"
+   ],
+   "src": "fia (announcement)"
+  }
+ },
+ "teams": {
+  "mercedes": {
+   "car": "Mercedes W17",
+   "entrant": "Mercedes-AMG Petronas F1 Team",
+   "code3": "MER",
+   "pu": "Mercedes",
+   "gearbox": "Mercedes",
+   "mass_kg": {
+    "v": 772,
+    "src": "team/wiki (incl. driver, coolant, oil)"
+   },
+   "wheelbase_mm": {
+    "v": 3400,
+    "src": "team/wiki"
+   },
+   "length_mm": {
+    "v": 5505,
+    "src": "team/wiki"
+   },
+   "width_mm": {
+    "v": 1900,
+    "src": "fia (max, all teams at the limit)"
+   },
+   "suspension": {
+    "front": "pushrod",
+    "rear": "pushrod",
+    "src": "team/wiki + press"
+   },
+   "livery": {
+    "body": "#1F242B",
+    "sidepod": "#00F5D4",
+    "wing": "#C8D0D8",
+    "halo": "#111111",
+    "src": "v11 (Argon)"
+   },
+   "physics": {
+    "cog_height_m": 0.28,
+    "front_weight_frac": 0.45,
+    "yaw_inertia_kgm2": 1000,
+    "track_front_mm": 1620,
+    "track_rear_mm": 1525,
+    "aero_Z": {
+     "ClA_m2": 3.6,
+     "CdA_m2": 1.05,
+     "front_frac": 0.42
+    },
+    "aero_X": {
+     "ClA_m2": 1.6,
+     "CdA_m2": 0.62,
+     "front_frac": 0.45
+    },
+    "src": "estimate - to be fitted per team in M2 from speed traps and corner minimum speeds"
+   },
+   "barcelona_2026_q": {
+    "best_driver": "RUS",
+    "lap": 74.679,
+    "s1": 21.849,
+    "s2": 30.115,
+    "s3": 22.715,
+    "st": 332,
+    "vmax": 341,
+    "min_T1": 150,
+    "min_T3": 194,
+    "min_T5": 103,
+    "min_T9": 243,
+    "min_T10": 112,
+    "min_T12": 120,
+    "min_T14": 253,
+    "src": "openf1"
+   }
+  },
+  "ferrari": {
+   "car": "Ferrari SF-26",
+   "entrant": "Scuderia Ferrari HP",
+   "code3": "FER",
+   "pu": "Ferrari",
+   "gearbox": "Ferrari",
+   "mass_kg": {
+    "v": 770,
+    "src": "team/wiki (incl. driver, coolant, oil)"
+   },
+   "wheelbase_mm": {
+    "v": 3400,
+    "src": "estimate"
+   },
+   "length_mm": {
+    "v": 5480,
+    "src": "estimate"
+   },
+   "width_mm": {
+    "v": 1900,
+    "src": "fia (max, all teams at the limit)"
+   },
+   "suspension": {
+    "front": "pushrod",
+    "rear": "pushrod",
+    "src": "team/wiki + press"
+   },
+   "livery": {
+    "body": "#E80020",
+    "sidepod": "#B80018",
+    "wing": "#FFFFFF",
+    "halo": "#111111",
+    "src": "v11 (Argon)"
+   },
+   "physics": {
+    "cog_height_m": 0.28,
+    "front_weight_frac": 0.45,
+    "yaw_inertia_kgm2": 1000,
+    "track_front_mm": 1620,
+    "track_rear_mm": 1525,
+    "aero_Z": {
+     "ClA_m2": 3.6,
+     "CdA_m2": 1.05,
+     "front_frac": 0.42
+    },
+    "aero_X": {
+     "ClA_m2": 1.6,
+     "CdA_m2": 0.62,
+     "front_frac": 0.45
+    },
+    "src": "estimate - to be fitted per team in M2 from speed traps and corner minimum speeds"
+   },
+   "barcelona_2026_q": {
+    "best_driver": "HAM",
+    "lap": 74.743,
+    "s1": 21.886,
+    "s2": 30.008,
+    "s3": 22.849,
+    "st": 333,
+    "vmax": 342,
+    "min_T1": 152,
+    "min_T3": 181,
+    "min_T5": 101,
+    "min_T9": 245,
+    "min_T10": 108,
+    "min_T12": 120,
+    "min_T14": 250,
+    "src": "openf1"
+   }
+  },
+  "mclaren": {
+   "car": "McLaren MCL40",
+   "entrant": "McLaren F1 Team",
+   "code3": "MCL",
+   "pu": "Mercedes",
+   "gearbox": "McLaren",
+   "mass_kg": {
+    "v": 770,
+    "src": "estimate (not published)"
+   },
+   "wheelbase_mm": {
+    "v": 3400,
+    "src": "estimate"
+   },
+   "length_mm": {
+    "v": 5480,
+    "src": "estimate"
+   },
+   "width_mm": {
+    "v": 1900,
+    "src": "fia (max, all teams at the limit)"
+   },
+   "suspension": {
+    "front": "unknown",
+    "rear": "unknown",
+    "src": "not confirmed in sources found"
+   },
+   "livery": {
+    "body": "#FF8000",
+    "sidepod": "#181B20",
+    "wing": "#FF8000",
+    "halo": "#111111",
+    "src": "v11 (Argon)"
+   },
+   "physics": {
+    "cog_height_m": 0.28,
+    "front_weight_frac": 0.45,
+    "yaw_inertia_kgm2": 1000,
+    "track_front_mm": 1620,
+    "track_rear_mm": 1525,
+    "aero_Z": {
+     "ClA_m2": 3.6,
+     "CdA_m2": 1.05,
+     "front_frac": 0.42
+    },
+    "aero_X": {
+     "ClA_m2": 1.6,
+     "CdA_m2": 0.62,
+     "front_frac": 0.45
+    },
+    "src": "estimate - to be fitted per team in M2 from speed traps and corner minimum speeds"
+   },
+   "barcelona_2026_q": {
+    "best_driver": "NOR",
+    "lap": 75.001,
+    "s1": 21.992,
+    "s2": 30.237,
+    "s3": 22.772,
+    "st": 329,
+    "vmax": 338,
+    "min_T1": 145,
+    "min_T3": 189,
+    "min_T5": 103,
+    "min_T9": 247,
+    "min_T10": 109,
+    "min_T12": 119,
+    "min_T14": 253,
+    "src": "openf1"
+   }
+  },
+  "redbull": {
+   "car": "Red Bull RB22",
+   "entrant": "Oracle Red Bull Racing",
+   "code3": "RBR",
+   "pu": "Red Bull Ford",
+   "gearbox": "Red Bull",
+   "mass_kg": {
+    "v": 770,
+    "src": "team/wiki (incl. driver, coolant, oil)"
+   },
+   "wheelbase_mm": {
+    "v": 3400,
+    "src": "estimate"
+   },
+   "length_mm": {
+    "v": 5480,
+    "src": "estimate"
+   },
+   "width_mm": {
+    "v": 1900,
+    "src": "fia (max, all teams at the limit)"
+   },
+   "suspension": {
+    "front": "pullrod (wiki) / pushrod (press) - conflict",
+    "rear": "pushrod",
+    "src": "team/wiki vs press"
+   },
+   "livery": {
+    "body": "#121F45",
+    "sidepod": "#0B132B",
+    "wing": "#CC1E4A",
+    "halo": "#121F45",
+    "noseTip": "#FFCC00",
+    "src": "v11 (Argon)"
+   },
+   "physics": {
+    "cog_height_m": 0.28,
+    "front_weight_frac": 0.45,
+    "yaw_inertia_kgm2": 1000,
+    "track_front_mm": 1620,
+    "track_rear_mm": 1525,
+    "aero_Z": {
+     "ClA_m2": 3.6,
+     "CdA_m2": 1.05,
+     "front_frac": 0.42
+    },
+    "aero_X": {
+     "ClA_m2": 1.6,
+     "CdA_m2": 0.62,
+     "front_frac": 0.45
+    },
+    "src": "estimate - to be fitted per team in M2 from speed traps and corner minimum speeds"
+   },
+   "barcelona_2026_q": {
+    "best_driver": "VER",
+    "lap": 75.021,
+    "s1": 21.828,
+    "s2": 30.184,
+    "s3": 23.009,
+    "st": 333,
+    "vmax": 341,
+    "min_T1": 148,
+    "min_T3": 192,
+    "min_T5": 95,
+    "min_T9": 241,
+    "min_T10": 110,
+    "min_T12": 115,
+    "min_T14": 253,
+    "src": "openf1"
+   }
+  },
+  "williams": {
+   "car": "Williams FW48",
+   "entrant": "Atlassian Williams Racing",
+   "code3": "WIL",
+   "pu": "Mercedes",
+   "gearbox": "Mercedes",
+   "mass_kg": {
+    "v": 772.4,
+    "src": "team/wiki (incl. driver, no fuel)"
+   },
+   "wheelbase_mm": {
+    "v": 3400,
+    "src": "estimate"
+   },
+   "length_mm": {
+    "v": 5480,
+    "src": "estimate"
+   },
+   "width_mm": {
+    "v": 1900,
+    "src": "fia (max, all teams at the limit)"
+   },
+   "suspension": {
+    "front": "pullrod",
+    "rear": "pushrod",
+    "src": "team/wiki + press"
+   },
+   "livery": {
+    "body": "#005AFF",
+    "sidepod": "#041E42",
+    "wing": "#00A3E0",
+    "halo": "#005AFF",
+    "src": "v11 (Argon)"
+   },
+   "physics": {
+    "cog_height_m": 0.28,
+    "front_weight_frac": 0.45,
+    "yaw_inertia_kgm2": 1000,
+    "track_front_mm": 1620,
+    "track_rear_mm": 1525,
+    "aero_Z": {
+     "ClA_m2": 3.6,
+     "CdA_m2": 1.05,
+     "front_frac": 0.42
+    },
+    "aero_X": {
+     "ClA_m2": 1.6,
+     "CdA_m2": 0.62,
+     "front_frac": 0.45
+    },
+    "src": "estimate - to be fitted per team in M2 from speed traps and corner minimum speeds"
+   },
+   "barcelona_2026_q": {
+    "best_driver": "SAI",
+    "lap": 76.881,
+    "s1": 22.325,
+    "s2": 31.184,
+    "s3": 23.372,
+    "st": 326,
+    "vmax": 336,
+    "min_T1": 140,
+    "min_T3": 181,
+    "min_T5": 98,
+    "min_T9": 232,
+    "min_T10": 111,
+    "min_T12": 123,
+    "min_T14": 244,
+    "src": "openf1"
+   }
+  },
+  "vcarb": {
+   "car": "Racing Bulls VCARB 03",
+   "entrant": "Visa Cash App Racing Bulls",
+   "code3": "VRB",
+   "pu": "Red Bull Ford",
+   "gearbox": "Red Bull Technology",
+   "mass_kg": {
+    "v": 770,
+    "src": "team/wiki (incl. driver, no fuel)"
+   },
+   "wheelbase_mm": {
+    "v": 3400,
+    "src": "team/wiki"
+   },
+   "length_mm": {
+    "v": 5480,
+    "src": "estimate"
+   },
+   "width_mm": {
+    "v": 1900,
+    "src": "fia (max, all teams at the limit)"
+   },
+   "suspension": {
+    "front": "pushrod",
+    "rear": "pushrod",
+    "src": "press"
+   },
+   "livery": {
+    "body": "#1634CB",
+    "sidepod": "#FFFFFF",
+    "wing": "#E10600",
+    "halo": "#FFFFFF",
+    "src": "v11 (Argon)"
+   },
+   "physics": {
+    "cog_height_m": 0.28,
+    "front_weight_frac": 0.45,
+    "yaw_inertia_kgm2": 1000,
+    "track_front_mm": 1620,
+    "track_rear_mm": 1525,
+    "aero_Z": {
+     "ClA_m2": 3.6,
+     "CdA_m2": 1.05,
+     "front_frac": 0.42
+    },
+    "aero_X": {
+     "ClA_m2": 1.6,
+     "CdA_m2": 0.62,
+     "front_frac": 0.45
+    },
+    "src": "estimate - to be fitted per team in M2 from speed traps and corner minimum speeds"
+   },
+   "barcelona_2026_q": {
+    "best_driver": "LAW",
+    "lap": 75.585,
+    "s1": 22.038,
+    "s2": 30.61,
+    "s3": 22.937,
+    "st": 330,
+    "vmax": 339,
+    "min_T1": 144,
+    "min_T3": 188,
+    "min_T5": 100,
+    "min_T9": 240,
+    "min_T10": 104,
+    "min_T12": 123,
+    "min_T14": 253,
+    "src": "openf1"
+   }
+  },
+  "aston": {
+   "car": "Aston Martin AMR26",
+   "entrant": "Aston Martin Aramco F1 Team",
+   "code3": "AST",
+   "pu": "Honda",
+   "gearbox": "Aston Martin",
+   "mass_kg": {
+    "v": 770,
+    "src": "team/wiki (incl. driver, no fuel)"
+   },
+   "wheelbase_mm": {
+    "v": 3400,
+    "src": "estimate"
+   },
+   "length_mm": {
+    "v": 5480,
+    "src": "estimate"
+   },
+   "width_mm": {
+    "v": 1900,
+    "src": "fia (max, all teams at the limit)"
+   },
+   "suspension": {
+    "front": "pushrod",
+    "rear": "pushrod",
+    "src": "press"
+   },
+   "livery": {
+    "body": "#00665E",
+    "sidepod": "#004B45",
+    "wing": "#CEDC00",
+    "halo": "#111111",
+    "src": "v11 (Argon)"
+   },
+   "physics": {
+    "cog_height_m": 0.28,
+    "front_weight_frac": 0.45,
+    "yaw_inertia_kgm2": 1000,
+    "track_front_mm": 1620,
+    "track_rear_mm": 1525,
+    "aero_Z": {
+     "ClA_m2": 3.6,
+     "CdA_m2": 1.05,
+     "front_frac": 0.42
+    },
+    "aero_X": {
+     "ClA_m2": 1.6,
+     "CdA_m2": 0.62,
+     "front_frac": 0.45
+    },
+    "src": "estimate - to be fitted per team in M2 from speed traps and corner minimum speeds"
+   },
+   "barcelona_2026_q": {
+    "best_driver": "STR",
+    "lap": 78.758,
+    "s1": 22.935,
+    "s2": 31.922,
+    "s3": 23.901,
+    "st": 323,
+    "vmax": 331,
+    "min_T1": 134,
+    "min_T3": 181,
+    "min_T5": 97,
+    "min_T9": 217,
+    "min_T10": 106,
+    "min_T12": 119,
+    "min_T14": 234,
+    "src": "openf1"
+   }
+  },
+  "haas": {
+   "car": "Haas VF-26",
+   "entrant": "TGR Haas F1 Team",
+   "code3": "HAA",
+   "pu": "Ferrari",
+   "gearbox": "Ferrari",
+   "mass_kg": {
+    "v": 770,
+    "src": "team/wiki (incl. driver, no fuel)"
+   },
+   "wheelbase_mm": {
+    "v": 3400,
+    "src": "team/wiki"
+   },
+   "length_mm": {
+    "v": 5480,
+    "src": "estimate"
+   },
+   "width_mm": {
+    "v": 1900,
+    "src": "fia (max, all teams at the limit)"
+   },
+   "suspension": {
+    "front": "pushrod",
+    "rear": "pushrod",
+    "src": "press"
+   },
+   "livery": {
+    "body": "#1A1D24",
+    "sidepod": "#FFFFFF",
+    "wing": "#E6002B",
+    "halo": "#111111",
+    "src": "v11 (Argon)"
+   },
+   "physics": {
+    "cog_height_m": 0.28,
+    "front_weight_frac": 0.45,
+    "yaw_inertia_kgm2": 1000,
+    "track_front_mm": 1620,
+    "track_rear_mm": 1525,
+    "aero_Z": {
+     "ClA_m2": 3.6,
+     "CdA_m2": 1.05,
+     "front_frac": 0.42
+    },
+    "aero_X": {
+     "ClA_m2": 1.6,
+     "CdA_m2": 0.62,
+     "front_frac": 0.45
+    },
+    "src": "estimate - to be fitted per team in M2 from speed traps and corner minimum speeds"
+   },
+   "barcelona_2026_q": {
+    "best_driver": "BEA",
+    "lap": 76.389,
+    "s1": 22.176,
+    "s2": 31.004,
+    "s3": 23.209,
+    "st": 334,
+    "vmax": 340,
+    "min_T1": 142,
+    "min_T3": 184,
+    "min_T5": 99,
+    "min_T9": 233,
+    "min_T10": 108,
+    "min_T12": 125,
+    "min_T14": 244,
+    "src": "openf1"
+   }
+  },
+  "audi": {
+   "car": "Audi R26",
+   "entrant": "Audi F1 Team",
+   "code3": "AUD",
+   "pu": "Audi",
+   "gearbox": "Audi",
+   "mass_kg": {
+    "v": 770,
+    "src": "team/wiki"
+   },
+   "wheelbase_mm": {
+    "v": 3400,
+    "src": "team/wiki"
+   },
+   "length_mm": {
+    "v": 5440,
+    "src": "team/wiki"
+   },
+   "width_mm": {
+    "v": 1900,
+    "src": "fia (max, all teams at the limit)"
+   },
+   "suspension": {
+    "front": "pushrod",
+    "rear": "pushrod",
+    "src": "team/wiki + press"
+   },
+   "livery": {
+    "body": "#C0C6CC",
+    "sidepod": "#141619",
+    "wing": "#F50537",
+    "halo": "#111111",
+    "src": "v11 (Argon)"
+   },
+   "physics": {
+    "cog_height_m": 0.28,
+    "front_weight_frac": 0.45,
+    "yaw_inertia_kgm2": 1000,
+    "track_front_mm": 1620,
+    "track_rear_mm": 1525,
+    "aero_Z": {
+     "ClA_m2": 3.6,
+     "CdA_m2": 1.05,
+     "front_frac": 0.42
+    },
+    "aero_X": {
+     "ClA_m2": 1.6,
+     "CdA_m2": 0.62,
+     "front_frac": 0.45
+    },
+    "src": "estimate - to be fitted per team in M2 from speed traps and corner minimum speeds"
+   },
+   "barcelona_2026_q": {
+    "best_driver": "HUL",
+    "lap": 75.768,
+    "s1": 22.191,
+    "s2": 30.655,
+    "s3": 22.922,
+    "st": 330,
+    "vmax": 340,
+    "min_T1": 150,
+    "min_T3": 182,
+    "min_T5": 96,
+    "min_T9": 241,
+    "min_T10": 109,
+    "min_T12": 122,
+    "min_T14": 255,
+    "src": "openf1"
+   }
+  },
+  "alpine": {
+   "car": "Alpine A526",
+   "entrant": "BWT Alpine F1 Team",
+   "code3": "ALP",
+   "pu": "Mercedes",
+   "gearbox": "Mercedes",
+   "mass_kg": {
+    "v": 770,
+    "src": "team/wiki (incl. driver, coolant, oil)"
+   },
+   "wheelbase_mm": {
+    "v": 3400,
+    "src": "estimate"
+   },
+   "length_mm": {
+    "v": 5480,
+    "src": "estimate"
+   },
+   "width_mm": {
+    "v": 1900,
+    "src": "fia (max, all teams at the limit)"
+   },
+   "suspension": {
+    "front": "pullrod",
+    "rear": "pushrod (wiki) / pullrod (press) - conflict",
+    "src": "team/wiki vs press"
+   },
+   "livery": {
+    "body": "#0078FF",
+    "sidepod": "#FF5CA8",
+    "wing": "#181B20",
+    "halo": "#111111",
+    "src": "v11 (Argon)"
+   },
+   "physics": {
+    "cog_height_m": 0.28,
+    "front_weight_frac": 0.45,
+    "yaw_inertia_kgm2": 1000,
+    "track_front_mm": 1620,
+    "track_rear_mm": 1525,
+    "aero_Z": {
+     "ClA_m2": 3.6,
+     "CdA_m2": 1.05,
+     "front_frac": 0.42
+    },
+    "aero_X": {
+     "ClA_m2": 1.6,
+     "CdA_m2": 0.62,
+     "front_frac": 0.45
+    },
+    "src": "estimate - to be fitted per team in M2 from speed traps and corner minimum speeds"
+   },
+   "barcelona_2026_q": {
+    "best_driver": "COL",
+    "lap": 76.191,
+    "s1": 22.156,
+    "s2": 30.92,
+    "s3": 23.115,
+    "st": 335,
+    "vmax": 342,
+    "min_T1": 143,
+    "min_T3": 188,
+    "min_T5": 97,
+    "min_T9": 239,
+    "min_T10": 108,
+    "min_T12": 119,
+    "min_T14": 250,
+    "src": "openf1"
+   }
+  },
+  "cadillac": {
+   "car": "Cadillac MAC-26",
+   "entrant": "Cadillac Formula 1 Team",
+   "code3": "CAD",
+   "pu": "Ferrari",
+   "gearbox": "Ferrari",
+   "mass_kg": {
+    "v": 770,
+    "src": "estimate (not published)"
+   },
+   "wheelbase_mm": {
+    "v": 3400,
+    "src": "estimate"
+   },
+   "length_mm": {
+    "v": 5480,
+    "src": "estimate"
+   },
+   "width_mm": {
+    "v": 1900,
+    "src": "fia (max, all teams at the limit)"
+   },
+   "suspension": {
+    "front": "pullrod",
+    "rear": "pullrod",
+    "src": "press"
+   },
+   "livery": {
+    "body": "#141824",
+    "sidepod": "#D4AF37",
+    "wing": "#0046AD",
+    "halo": "#D4AF37",
+    "src": "v11 (Argon)"
+   },
+   "physics": {
+    "cog_height_m": 0.28,
+    "front_weight_frac": 0.45,
+    "yaw_inertia_kgm2": 1000,
+    "track_front_mm": 1620,
+    "track_rear_mm": 1525,
+    "aero_Z": {
+     "ClA_m2": 3.6,
+     "CdA_m2": 1.05,
+     "front_frac": 0.42
+    },
+    "aero_X": {
+     "ClA_m2": 1.6,
+     "CdA_m2": 0.62,
+     "front_frac": 0.45
+    },
+    "src": "estimate - to be fitted per team in M2 from speed traps and corner minimum speeds"
+   },
+   "barcelona_2026_q": {
+    "best_driver": "PER",
+    "lap": 77.545,
+    "s1": 22.568,
+    "s2": 31.243,
+    "s3": 23.734,
+    "st": 334,
+    "vmax": 342,
+    "min_T1": 142,
+    "min_T3": 183,
+    "min_T5": 97,
+    "min_T9": 218,
+    "min_T10": 105,
+    "min_T12": 116,
+    "min_T14": 230,
+    "src": "openf1"
+   }
+  }
+ },
+ "drivers": [
+  {
+   "code": "NOR",
+   "name": "Lando Norris",
+   "num": 1,
+   "team": "mclaren",
+   "helmet": "#CCFF00",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "VER",
+   "name": "Max Verstappen",
+   "num": 3,
+   "team": "redbull",
+   "helmet": "#FF6B00",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "BOR",
+   "name": "Gabriel Bortoleto",
+   "num": 5,
+   "team": "audi",
+   "helmet": "#22C55E",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "HAD",
+   "name": "Isack Hadjar",
+   "num": 6,
+   "team": "redbull",
+   "helmet": "#FACC15",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "GAS",
+   "name": "Pierre Gasly",
+   "num": 10,
+   "team": "alpine",
+   "helmet": "#60A5FA",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "PER",
+   "name": "Sergio Perez",
+   "num": 11,
+   "team": "cadillac",
+   "helmet": "#FACC15",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "ANT",
+   "name": "Kimi Antonelli",
+   "num": 12,
+   "team": "mercedes",
+   "helmet": "#10B981",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "ALO",
+   "name": "Fernando Alonso",
+   "num": 14,
+   "team": "aston",
+   "helmet": "#38BDF8",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "LEC",
+   "name": "Charles Leclerc",
+   "num": 16,
+   "team": "ferrari",
+   "helmet": "#FF1801",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "STR",
+   "name": "Lance Stroll",
+   "num": 18,
+   "team": "aston",
+   "helmet": "#065F46",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "ALB",
+   "name": "Alexander Albon",
+   "num": 23,
+   "team": "williams",
+   "helmet": "#F472B6",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "HUL",
+   "name": "Nico Hulkenberg",
+   "num": 27,
+   "team": "audi",
+   "helmet": "#A3E635",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "LAW",
+   "name": "Liam Lawson",
+   "num": 30,
+   "team": "vcarb",
+   "helmet": "#F87171",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "OCO",
+   "name": "Esteban Ocon",
+   "num": 31,
+   "team": "haas",
+   "helmet": "#EF4444",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "LIN",
+   "name": "Arvid Lindblad",
+   "num": 41,
+   "team": "vcarb",
+   "helmet": "#FACC15",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "COL",
+   "name": "Franco Colapinto",
+   "num": 43,
+   "team": "alpine",
+   "helmet": "#38BDF8",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "HAM",
+   "name": "Lewis Hamilton",
+   "num": 44,
+   "team": "ferrari",
+   "helmet": "#FACC15",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "SAI",
+   "name": "Carlos Sainz",
+   "num": 55,
+   "team": "williams",
+   "helmet": "#EF4444",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "RUS",
+   "name": "George Russell",
+   "num": 63,
+   "team": "mercedes",
+   "helmet": "#00F0FF",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "BOT",
+   "name": "Valtteri Bottas",
+   "num": 77,
+   "team": "cadillac",
+   "helmet": "#38BDF8",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "PIA",
+   "name": "Oscar Piastri",
+   "num": 81,
+   "team": "mclaren",
+   "helmet": "#38BDF8",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  },
+  {
+   "code": "BEA",
+   "name": "Oliver Bearman",
+   "num": 87,
+   "team": "haas",
+   "helmet": "#34D399",
+   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+  }
+ ],
+ "sources": {
+  "openf1": "api.openf1.org (2026 Barcelona GP, session 11303)",
+  "team/wiki": "team spec sheets as cited on Wikipedia car pages (Oct 2026)",
+  "press": "PlanetF1 / Red Bull Racing / Autosport technical articles on 2026 cars",
+  "fia": "FIA 2026 regulations and Barcelona documents"
+ }
+}

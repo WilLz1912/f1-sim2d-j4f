@@ -1,0 +1,54 @@
+Mercedes W17
+{{Short description|2026 Formula One car}}
+{{Use dmy dates|date=May 2026}}
+{{Infobox racing car
+| Name = Mercedes-AMG F1 W17 E Performance
+| image = FIA F1 Austria 2026 Nr. 12 Antonelli (1).jpg
+| caption = [[Andrea Kimi Antonelli]] driving the Mercedes W17 at the [[2026 Austrian Grand Prix]]
+| category = [[Formula One]]
+| Designer = {{ubl
+  | [[James Allison (motorsport)|James Allison]] {{small|(Technical Director)}}
+  | [[Simone Resta]] {{small|(Deputy Technical Director)}}
+  | [[John Owen (Formula One)|John Owen]] {{small|(Car Design Director)}}
+  | [[Jarrod Murphy]] {{small|(Aerodynamics Director)}}
+  | [[David Nelson (engineer)|David Nelson]] {{small|(Performance Director)}}
+  | [[Giacomo Tortora]] {{small|(Engineering Director)}}
+  | Ashley Way {{small|(Chief Engineer - Car Design)}}
+  | Richard Pattinson {{small|(Chief Engineer - Car Design)}}
+  | [[Hywel Thomas]] {{smaller|(Managing Director - Power Unit)}}
+  | [[Lorenzo Sassi]] {{smaller|(Engineering Director - Power Unit)}}  
+  }}
+| Predecessor = [[Mercedes W16]]
+| successor = 
+| Front suspension = Carbon fibre wishbone and pushrod-activated springs and dampers
+| Rear suspension = Carbon fibre wishbone and pushrod-activated springs and dampers
+| Length = {{convert|5505|mm|in|1|abbr=on}}
+| Width = {{convert|1900|mm|in|0|abbr=on}}
+| Height = {{convert|950|mm|in|1|abbr=on}}
+| track = {{convert|NNNN|mm|in|1|abbr=on}}
+| wheelbase = {{convert|3400|mm|in|1|abbr=on}}
+| engine name = [[Mercedes AMG High Performance Powertrains|Mercedes-AMG]] [[Mercedes V6 hybrid Formula One power unit|F1 M17 E Performance]]
+| capacity = {{convert|NNNN|cc|cuin|1|abbr=on}}
+| power = {{convert|NNN|hp|kW PS|0|abbr=on}}
+| Weight = 772 kg (including driver, coolant and oil)
+| Fuel = [[Petronas]] Primax
+| lubricants = [[Petronas]] Tutela
+| Tyres = {{ubl|[[Pirelli]] P Zero (Dry/Slick)|[[Pirelli]] Cinturato (Wet/Treaded)}}
+| Image_size = 270px
+| Electric motor = 
+| Transmission type = [[Mercedes-AMG High Performance Powertrains|Mercedes]] 8-speed hydraulic actuated [[semi-automatic transmission|semi automatic]] [[sequential manual transmission|sequential gearbox]], + 1 reverse gear
+| Team = [[Mercedes-Benz in Formula One|Mercedes-AMG Petronas F1 Team]]
+| Drivers = {{ubl|12. {{flagicon|ITA}} [[Kimi Antonelli]]|63. {{flagicon|GBR}} [[George Russell (racing driver)|George Russell]]}}
+| Debut = [[2026 Australian Grand Prix]]
+| First_win = 2026 Australian Grand Prix
+| Last_win = [[2026 Spanish Grand Prix]]
+| Last_event = {{Latest F1GP}}
+| Races = {{sum|{{F1cstat|MRC|entries}}|-341}}
+| Wins = {{sum|{{F1cstat|MRC|wins}}|-131}}
+| Podiums = {{sum|{{F1cstat|MRC|podiums}}|-310}}
+| Poles = {{sum|{{F1cstat|MRC|poles}}|-143}}
+| Fastest laps = {{sum|{{F1cstat|MRC|fastestlaps}}|-115}}
+}}
+The '''Mercedes-AMG F1 W17 E Performance''', commonly known as the '''Mercedes W17''',<ref>{{Cite web |last=Mee |first=Lydia |date=5 January 2026 |title=Mercedes announces W17 livery reveal date and 2026 F1 season launch event |url=https://www.motorsport.com/f1/news/mercedes-announces-w17-livery-reveal-date-and-2026-f1-season-launch-event/10788127/ |access-date=24 January 2026 |website=www.motorsport.com |language=en}}</ref> is a [[Formula One racing car]] designed and built by the [[Mercedes-Benz in Formula One#Mercedes-AMG Petronas Formula One Team (2010–present)|Mercedes-AMG Petronas F1 Team]] to compete in the [[2026 Formula One World Championship]]. It is currently being driven by [[George Russell (racing driver)|George Russell]] and [[Kimi Antonelli]] in their fifth and second seasons with the team, respectively. Antonelli achieved his maiden win with the car at the [[2026 Chinese Grand Prix]].
+
+As of the [[2026 Singapore Grand Prix]], the W17 has scored 11 wins (plus four sprint wins), 22 podiums (plus five sprint podiums), 11 pole positions (plus three sprint pole positions) and nine fastest laps (plus two sprint fastest laps).

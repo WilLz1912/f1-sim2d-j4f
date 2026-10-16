@@ -1,0 +1,50 @@
+McLaren MCL40
+{{short description|2026 Formula One car}}
+{{Use dmy dates|date=March 2026}}
+{{use British English|date=December 2025}}
+{{Infobox racing car
+| car_name = McLaren MCL40
+| image = FIA F1 Austria 2026 Nr. 1 Norris (1).jpg
+| caption = [[Lando Norris]] drives the MCL40 at the [[2026 Austrian Grand Prix]]
+| image_size = 270px
+| category = [[Formula One]]
+| predecessor = [[McLaren MCL39]]
+| successor = 
+| team = [[McLaren|McLaren Mastercard F1 Team]]
+| designer = [[Rob Marshall (motorsport)|Rob Marshall]] {{small|(Chief Designer)}}
+| cons champ = 
+| front suspension = 
+| rear suspension = 
+| length = {{convert|NNNN|mm|in|1|abbr=on}}
+| width = {{convert|NNNN|mm|in|1|abbr=on}}
+| chassis = Carbon fibre composite
+| height = {{convert|NNNN|mm|in|1|abbr=on}}
+| track = {{convert|NNNN|mm|in|1|abbr=on}}
+| wheelbase = {{convert|NNNN|mm|in|1|abbr=on}}
+| engine name = [[Mercedes AMG High Performance Powertrains|Mercedes-AMG]] F1 M17 E Performance<hr>{{convert|1.6|L|cuin|0|abbr=on}} direct injection [[V6 engine|V6]] [[turbocharger|turbocharged]] engine limited to 15,000 [[Revolutions per minute|RPM]] in a [[Rear mid-engine, rear-wheel-drive layout|mid-mounted, rear-wheel drive layout]]
+| capacity = {{convert|NNNN|cc|cuin|1|abbr=on}}
+| Electric motor = Mercedes-AMG<hr>[[Kinetic energy recovery system]]
+| Battery = Lithium-ion battery
+| Gearbox name = McLaren
+| Gears = 8-speed + 1 reverse
+| Type = sequential seamless [[semi-automatic transmission|semi-automatic]] transmission operated via paddle shifters.
+| power = {{convert|NNN|hp|kW PS|0|abbr=on}}
+| Weight = {{convert|NNN|kg|lb|0|abbr=on}}
+| Fuel = [[Petronas]]<ref>{{Cite web |title=PETRONAS Trackside Fluid Engineers Fuelling Formula One's Innovation |url=https://www.petronas.com/flow/technology/petronas-trackside-fluid-engineers-fuelling-formula-ones-innovation |access-date=10 February 2025 |website=Petronas |language=en-US}}</ref>
+| lubricants = [[Motul (company)|Motul]]<ref>{{Cite web |title=McLaren Racing announces Motul as an Official Supplier of the McLaren Formula 1 Team |url=https://www.motul.com/corporate/newsroom/presse-release/McLaren-Racing-Motul |access-date=28 May 2026 |website=Motul |language=en-US}}</ref>
+| brakes = 
+| tyres = {{ubl|[[Pirelli]] P Zero (Dry/Slick)|[[Pirelli]] Cinturato (Wet/Treaded)}}
+| clutch = 
+| technical ref = <ref name="design"/>
+| Drivers = {{ubl|{{0}}1. {{flagicon|GBR}} [[Lando Norris]]|81. {{flagicon|AUS}} [[Oscar Piastri]]}}
+| Debut = [[2026 Australian Grand Prix]]
+| First_win = [[2026 Hungarian Grand Prix]]
+| Last_win = [[2026 Dutch Grand Prix]]
+| Last_event = {{Latest F1GP}}
+| Races = {{sum|{{F1cstat|MCL|entries}}|-998}}
+| Wins = {{sum|{{F1cstat|MCL|wins}}|-203}}
+| Podiums = {{sum|{{F1cstat|MCL|podiums}}|-558}}
+| Poles = {{sum|{{F1cstat|MCL|poles}}|-177}}
+| Fastest_laps = {{sum|{{F1cstat|MCL|fastestlaps}}|-183}}
+}}
+The '''McLaren MCL40''' is a [[Formula One car]] designed and built by [[McLaren]] under the direction of [[Rob Marshall (motorsport)|Rob Marshall]] to compete in the [[2026 Formula One World Championship]]. It is driven by [[2025 Formula One World Championship|reigning world champion]] [[Lando Norris]] and [[Oscar Piastri]] in their eighth and fourth seasons with the team respectively.<ref>{{Cite web |date=2 December 2025 |title=The 2026 F1 grid: Every confirmed driver |url=https://www.the-race.com/formula-1/who-will-drive-in-f1-2026-drivers-teams/ |access-date=31 December 2025 |website=The Race |language=en}}</ref> As of the [[2026 Singapore Grand Prix]], it has achieved two Grand Prix victories, three Grand Prix pole positions, seven Grand Prix podiums, two Grand Prix fastest laps, one [[Formula One racing#Sprint|sprint]] pole position, one sprint win, five sprint podiums and two sprint fastest laps.

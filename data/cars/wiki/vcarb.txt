@@ -1,0 +1,57 @@
+Racing Bulls VCARB 03
+{{Short description|2026 Formula One car}}
+{{infobox racing car
+| Car_name = Racing Bulls VCARB 03
+| image = FIA F1 Austria 2026 Nr. 41 Lindblad (1).jpg
+| caption = [[Arvid Lindblad]] driving the Racing Bulls VCARB 03 at the [[2026 Austrian Grand Prix]]
+| Image_size = 
+| Team = [[Racing Bulls|Visa Cash App Racing Bulls F1 Team]]
+| Category = [[Formula One]]
+| Constructor = [[Racing Bulls]]
+| Predecessor = [[Racing Bulls VCARB 02]]
+| successor = 
+| Designer = {{ubl
+  |[[Tim Goss]] {{small|(Chief Technical Officer)}}
+  |[[Guillaume Cattelani]] {{small|(Deputy Technical Director - Performance)}}
+  |[[Andrea Landi]] {{small|(Deputy Technical Director - Car Design)}}
+  |[[Paolo Marabini]] {{small|(Chief Designer)}}
+  |[[Guillaume Dezoteux]] {{small|(Head of Vehicle Performance)}}
+  |[[Guru Johl]] {{small|(Head of Aerodynamics)}}
+  |Tom Coughlan {{small|(Chief Aerodynamicist)}}
+  |[[Ben Hodgkinson]] {{small|(Technical Director, Power Unit - Red Bull)}}
+  }}
+| Gears = 8 plus 1 reverse
+| Clutch = Hydraulically-activated carbon multiplate
+| Brakes = [[Brembo]] 6-piston aluminium-lithium calipers, Brembo carbon discs and carbon pads
+| Length = {{convert|NNNN|mm|in|1|abbr=on}}
+| Width = {{convert|1900|mm|in|1|abbr=on}}
+| Height = {{convert|NNNN|mm|in|1|abbr=on}}
+| track = {{convert|NNNN|mm|in|1|abbr=on}}
+| Wheelbase = {{convert|3400|mm|in|1|abbr=on}}
+| Fuel = [[Esso]] / [[Mobil]] Synergy
+| Lubricants = [[Mobil 1]]
+| Gearbox name = Red Bull Technology
+| Steering = 
+| Chassis = Carbon-fibre monocoque and [[Halo (safety device)|Halo safety cockpit protection device]]
+| engine name = [[Red Bull Ford DM01]]
+| capacity = {{convert|NNNN|cc|cuin|1|abbr=on}}
+| configuration = <hr>{{convert|1.6|L|cuin|0|abbr=on|lk=on}}
+| electric motor = Ford<hr>[[Kinetic energy recovery system|Kinetic]] and [[Waste heat recovery unit|thermal energy recovery systems]]{{cn|date=February 2024}}
+| front suspension = 
+| rear suspension = 
+| battery = Ford-Lithium-ion-battery
+| power = {{convert|NNN|hp|kW PS|0|abbr=on}}
+| Weight = 770 kg (including driver, excluding fuel)
+| tyres = [[Pirelli]] P Zero (Dry)<br />[[Pirelli]] Cinturato (Wet)
+| Drivers = {{ubl|30. {{flagicon|NZL}} [[Liam Lawson]]|41. {{flagicon|GBR}}  [[Arvid Lindblad]]|22. {{flagicon|JPN}} [[Yuki Tsunoda]]}}
+| Debut = [[2026 Australian Grand Prix]]
+| Last_event = {{Latest F1GP}}
+| Races = {{sum|{{F1cstat|RBT|entries}}|-48}}
+| Wins = {{sum|{{F1cstat|RBT|wins}}|-0}}
+| Podiums = {{sum|{{F1cstat|RBT|podiums}}|-1}}
+| Poles = {{sum|{{F1cstat|RBT|poles}}|-0}}
+| Fastest_laps = {{sum|{{F1cstat|RBT|fastestlaps}}|-1}}
+}}
+The '''Racing Bulls VCARB 03''' is a [[Formula One car]] designed and built by [[Racing Bulls]] to compete in the [[2026 Formula One World Championship]]. It is being driven by [[Liam Lawson]] and [[Arvid Lindblad]], the latter in his first [[Formula One]] season.
+
+The VCARB 03 is the first Faenza-built [[Formula One car]] not to use a [[Honda V6 hybrid Formula One power unit|Honda power unit]] since the [[Toro Rosso STR12]] in {{F1|2017}}, as well as the first car to use a Ford-branded engine since the [[Minardi PS04B]] in {{F1|2004}}.

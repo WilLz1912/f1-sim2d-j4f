@@ -1,0 +1,61 @@
+Aston Martin AMR26
+{{Short description|2026 Formula One car}}
+{{Use dmy dates|date=February 2026}}
+{{Infobox racing car
+| name = Aston Martin AMR26
+| category = [[Formula One]]
+| predecessor = [[Aston Martin AMR25]]
+| designer = {{ubl
+  | [[Adrian Newey]] {{small|(Team Principal)}}
+  | [[Enrico Cardile]] {{small|(Chief Technical Officer)}}
+  | [[Bob Bell (motorsport)|Bob Bell]] {{small|(Executive Director, Technical)}}
+  | [[Luca Furbatto]] {{small|(Engineering Director)}}
+  | [[Marco Fainello]] {{small|(Performance Director)}}
+  | [[Tim Wright (motorsport)|Tim Wright]] {{small|(Deputy Performance Director)}}
+  | [[Eric Blandin]] {{small|(Aerodynamics Director)}}
+  | [[Giles Wood]] {{small|(Simulation and Vehicle Modelling Director)}}
+  | Duncan Elliott {{small|(Chief Designer)}}
+  | [[Andy Cowell]] {{small|(Chief Strategy Officer)}}
+  | Tetsushi Kakuda {{small|(Large Project Leader - Honda)}}
+}}
+| drivers = {{ubl|14. {{flagicon|ESP}} [[Fernando Alonso]]|18. {{flagicon|CAN}} [[Lance Stroll]]}}
+| team = [[Aston Martin in Formula One|Aston Martin Aramco F1 Team]]
+| chassis = [[Carbon fibre]] composite with survival cell and honeycomb structure
+| front suspension = 
+| rear suspension = 
+| length = {{convert|NNNN|mm|in|1|abbr=on}}
+| width = {{convert|NNNN|mm|in|1|abbr=on}}
+| height = {{convert|NNNN|mm|in|1|abbr=on}}
+| track = {{convert|NNNN|mm|in|1|abbr=on}}
+| wheelbase = {{convert|NNNN|mm|in|1|abbr=on}}
+| engine name = [[Honda in Formula One|Honda]] RA626H<hr>
+| capacity = {{convert|1.6|L|cuin|abbr=on}}
+| electric motor = Honda<hr>[[Kinetic energy recovery system]]
+| configuration = 
+| Turbo/NA = Turbo
+| engine position = Rear-mid mounted
+| gearbox name = [[Aston Martin F1|Aston Martin]]
+| gears = 8-speed + 1 reverse
+| Type = sequential seamless [[semi-automatic transmission|semi-automatic]] transmission operated via paddle shifters
+| battery = [[Honda F1|Honda]] lithium-ion battery
+| brakes = 
+| power = {{convert|NNN|hp|kW PS|0|abbr=on}}
+| weight = 770 kg (including driver, excluding fuel)
+| fuel = [[Saudi Aramco|Aramco]] ProForce+
+| lubricants = [[Valvoline]] SynPower
+| Tyres = {{ubl|[[Pirelli]] P Zero (Dry/Slick)|[[Pirelli]] Cinturato (Wet/Treaded)}} with
+[[Fondmetal]] [[Magnesium wheels#Forged magnesium wheels|forged magnesium wheels]]: 18"
+| debut = [[2026 Australian Grand Prix]]
+| last_event = {{Latest F1GP}}
+| races = {{sum|{{F1cstat|AST|entries}}|-120}}
+| wins = {{sum|{{F1cstat|AST|wins}}|-0}}
+| podiums = {{sum|{{F1cstat|AST|podiums}}|-9}}
+| poles = {{sum|{{F1cstat|AST|poles}}|-0}}
+| Fastest_laps = {{sum|{{F1cstat|AST|fastestlaps}}|-3}}
+| image = FIA F1 Austria 2026 Nr. 14 Alonso (1).jpg
+| caption = [[Fernando Alonso]] driving the Aston Martin AMR26 at the [[2026 Austrian Grand Prix]]
+| image_size = 270px
+| successor = 
+}}
+
+The '''Aston Martin AMR26''' is a [[Formula One car]] designed and built by [[Aston Martin in Formula One|Aston Martin]] to compete in the [[2026 Formula One World Championship]]. It is the sixth Formula One car entered by Aston Martin since rejoining the sport in {{F1|2021}} and the first designed by [[Adrian Newey]]. It is currently being driven by two-time world champion [[Fernando Alonso]] and teammate [[Lance Stroll]], in their fourth and sixth season with Aston Martin, respectively.

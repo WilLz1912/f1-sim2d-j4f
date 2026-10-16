@@ -1,4 +1,6 @@
 // Track viewer: draws data/tracks/barcelona/track.json + surface.png so the geometry can be checked by eye.
+import { drawCar, type CarShape, type Livery } from "../render/car";
+
 // The surface layer is rendered once into an offscreen canvas; each frame only blits it and draws vectors.
 
 interface Track {
@@ -30,6 +32,11 @@ const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
 const view = { x: 0, y: 0, z: 0.6 };   // world point at screen centre, pixels per metre
 
 let T: Track;
+interface Cars { teams: Record<string, { code3: string; length_mm: { v: number }; wheelbase_mm: { v: number }; width_mm: { v: number }; livery: Livery; physics: { track_front_mm: number; track_rear_mm: number } }>;
+  regs: { tyre_front: { width_mm: number; diameter_mm: number }; tyre_rear: { width_mm: number; diameter_mm: number } };
+  drivers: { code: string; team: string; helmet: string }[] }
+let CARS: Cars | null = null;
+let gridOrder: string[] = [];
 let surfaceCanvas: HTMLCanvasElement | null = null;
 let photo: HTMLImageElement | null = null;
 let photoMeta: { x0: number; y1: number; res_m: number } | null = null;
@@ -39,7 +46,12 @@ async function load() {
   T = await (await fetch(base + "track.json")).json();
   const img = new Image(); img.src = base + T.surface.file; await img.decode();
   surfaceCanvas = colorize(img);
-  view.x = T.stations.x.reduce((a, b) => a + b, 0) / T.stations.count; view.y = T.stations.y.reduce((a, b) => a + b, 0) / T.stations.count;
+  const qp = new URLSearchParams(location.search);   // ?x=..&y=..&z=.. opens the view at a place
+  if (qp.has("x")) { view.x = +qp.get("x")!; view.y = +qp.get("y")!; view.z = +(qp.get("z") ?? 4); }
+  CARS = await (await fetch("/data/cars/cars_2026.json")).json();
+  const q: Record<string, { lap: number }> = await (await fetch("/data/cars/barcelona_2026_q_targets.json")).json();
+  gridOrder = Object.entries(q).sort((a, b) => a[1].lap - b[1].lap).map(e => e[0]);   // real 2026 qualifying order
+  if (!qp.has("x")) { view.x = T.stations.x.reduce((a, b) => a + b, 0) / T.stations.count; view.y = T.stations.y.reduce((a, b) => a + b, 0) / T.stations.count; }
   document.getElementById("stats")!.innerHTML =
     `Dài tâm đường: <b>${T.length_m.toFixed(0)} m</b> (FIA ${T.fia_length_m} m)<br>` +
     `Rộng mặt đường: ${median(T.stations.w_left.map((l, i) => l + T.stations.w_right[i])).toFixed(1)} m (trung vị)<br>` +
@@ -145,6 +157,7 @@ function draw() {
       if (view.z > 3) { ctx.font = "10px system-ui"; ctx.fillText(String(g.pos), sx(g.xy[0]) + 4, sy(g.xy[1])); }
     }
   }
+  if ($("lyrCars").checked && CARS) drawGridCars();
   if ($("lyrNames").checked && view.z > 0.9) {
     ctx.font = "11px system-ui"; ctx.fillStyle = "#e5e7eb";
     for (const s of T.structures) {
@@ -153,6 +166,22 @@ function draw() {
       ctx.fillText(s.name, sx(cx), sy(cy));
     }
   }
+}
+
+function drawGridCars() {
+  const C = CARS!;
+  gridOrder.forEach((code, k) => {
+    const g = T.grid[k], d = C.drivers.find(x => x.code === code); if (!g || !d) return;
+    const tm = C.teams[d.team], i = sToIndex((T.grid[k] as unknown as { s: number }).s), st = T.stations, n = st.count;
+    const hd = Math.atan2(st.y[(i + 1) % n] - st.y[(i - 1 + n) % n], st.x[(i + 1) % n] - st.x[(i - 1 + n) % n]);
+    const shape: CarShape = { length: tm.length_mm.v / 1000, width: tm.width_mm.v / 1000, wheelbase: tm.wheelbase_mm.v / 1000,
+      tyreF: { w: C.regs.tyre_front.width_mm / 1000, d: C.regs.tyre_front.diameter_mm / 1000 },
+      tyreR: { w: C.regs.tyre_rear.width_mm / 1000, d: C.regs.tyre_rear.diameter_mm / 1000 },
+      trackF: tm.physics.track_front_mm / 1000, trackR: tm.physics.track_rear_mm / 1000 };
+    ctx.save(); ctx.translate(sx(g.xy[0]), sy(g.xy[1])); ctx.scale(view.z, view.z); ctx.rotate(-hd);
+    drawCar(ctx, shape, { livery: tm.livery, helmet: d.helmet, tyreColor: "#ef4444" }); ctx.restore();
+    if (view.z > 4) { ctx.fillStyle = "#fff"; ctx.font = "11px system-ui"; ctx.fillText(`P${k + 1} ${code}`, sx(g.xy[0]) + 3 * view.z, sy(g.xy[1]) - 2 * view.z); }
+  });
 }
 
 function resize() { canvas.width = innerWidth; canvas.height = innerHeight; draw(); }
@@ -178,5 +207,5 @@ canvas.addEventListener("wheel", e => {
   const wx = view.x + mx / view.z, wy = view.y - my / view.z;
   view.z = Math.min(40, Math.max(0.2, view.z * k)); view.x = wx - mx / view.z; view.y = wy + my / view.z; draw();
 }, { passive: false });
-for (const id of ["lyrPhoto", "lyrSurface", "lyrLines", "lyrPit", "lyrBarrier", "lyrNames"]) $(id).addEventListener("change", draw);
+for (const id of ["lyrCars", "lyrPhoto", "lyrSurface", "lyrLines", "lyrPit", "lyrBarrier", "lyrNames"]) $(id).addEventListener("change", draw);
 load();

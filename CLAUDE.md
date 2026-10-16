@@ -7,6 +7,9 @@ so sánh. V12 tách V11 thành một project local thực thụ.
 Lịch sử: Argon dựng lõi V8 và V9 (giao diện, hình vẽ xe, DNA đội và tay đua). Opus làm V10 và V11
 trên nền đó. Không bỏ những gì Argon xây dựng. Tên project giữ dạng "Opus · Argon".
 
+**Cập nhật 17/10/2026: người dùng chọn dựng lại từ gốc (bản 2.0). Đọc `docs/V2_PLAN.md` trước; lộ trình
+"giai đoạn 0–5" bên dưới chỉ còn giá trị tham khảo.**
+
 Chi tiết trạng thái, số liệu hiệu chỉnh và lịch sử sửa lỗi nằm ở `docs/HANDOFF.md`. Đọc file đó
 trước khi sửa vật lý, va chạm, pit hoặc phân hạng.
 

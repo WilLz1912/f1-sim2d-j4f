@@ -1,0 +1,64 @@
+Cadillac MAC-26
+{{Short description|2026 Formula One car}}
+{{Use mdy dates|date=February 2026}}
+{{Infobox racing car
+| Name = Cadillac MAC-26
+| image = FIA F1 Austria 2026 Nr. 11 Perez (1).jpg
+| caption = [[Sergio Pérez]] driving the Cadillac MAC-26 at the [[2026 Austrian Grand Prix]]
+| Category = [[Formula One]]
+| Designer = {{Ubl
+  | [[Nick Chester]] {{smaller|(Chief Technical Officer)}}
+  | [[John McQuilliam]] {{smaller|(Chief Designer)}}
+  | Rob Stubbings {{smaller|(Deputy Chief Designer)}}
+  | James Knapton {{smaller|(Head of Performance Analytics)}}
+  | Simon Dodman {{smaller|(Chief Engineer, Aerodynamics)}}
+  | [[Jon Tomlinson]] {{smaller|(Head of Aerodynamics)}}
+  | [[Pat Symonds]] {{smaller|(Executive Engineering Consultant)}}
+  }}
+| Production = 
+| Predecessor = 
+| Chassis = 
+| Front suspension = 
+| Rear suspension = 
+| Length = {{convert|NNNN|mm|in|1|abbr=on}}
+| Width = {{convert|NNNN|mm|in|1|abbr=on}}
+| Height = {{convert|NNNN|mm|in|1|abbr=on}}
+| Track = {{convert|NNNN|mm|in|1|abbr=on}}
+| Wheelbase = {{convert|NNNN|mm|in|1|abbr=on}}
+| Engine name = [[Scuderia Ferrari|Ferrari]] 067/6<hr>{{convert|1.6|L|cuin|0|abbr=on}} direct injection [[V6 engine|V6]] [[turbocharger|turbocharged]] engine limited to 15,000 [[Revolutions per minute|RPM]] in a [[Rear mid-engine, rear-wheel-drive layout|mid-mounted, rear-wheel drive layout]]
+| Capacity = {{convert|NNNN|cc|cuin|1|abbr=on}}
+| Configuration = 
+| Turbo/NA = Turbo
+| Engine position = 
+| Gearbox name = 
+| Gears = 8 forward + 1 reverse
+| power = {{convert|NNN|hp|kW PS|0|abbr=on}}
+| Weight = {{convert|NNN|kg|lb|0|abbr=on}}
+| Fuel = [[Shell V-Power]] sustainable [[Ethanol fuel|Ethanol]]
+| Tyres = {{ubl|[[Pirelli]] P Zero (Dry)|Pirelli Cinturato (Wet)}}
+| Image_size = 
+| Constructor = Cadillac
+| Transmission type = 
+| Differential = 
+| Team = [[Cadillac in Formula One|Cadillac Formula 1 Team]]
+| Drivers = {{ubl|11. [[Sergio Pérez]]|77. [[Valtteri Bottas]]}}
+| Lubricants = [[Shell plc|Shell Helix Ultra]]
+| Brakes = 
+| Clutch = 
+| Technical ref = 
+| Teams_champ = 
+| Competition = 
+| Titles = 
+| Cons_champ = 
+| Debut = [[2026 Australian Grand Prix]]
+| First_win = 
+| Last_win = 
+| Last_event = {{Latest F1GP}}
+| Races = {{F1cstat|CAD|entries}}
+| Wins = {{F1cstat|CAD|wins}}
+| Podiums = {{F1cstat|CAD|podiums}}
+| Poles = {{F1cstat|CAD|poles}}
+| Fastest_laps = {{F1cstat|CAD|fastestlaps}}
+}}
+
+The '''Cadillac MAC-26''' is a [[Formula One car]] designed and built by the [[Cadillac in Formula One|Cadillac Formula 1 Team]] to compete in the [[2026 Formula One World Championship]]. It is currently being driven by [[Sergio Pérez]] and [[Valtteri Bottas]], marking [[Cadillac]]'s debut season in Formula One. The car made its competitive debut at the [[2026 Australian Grand Prix]] on March 8, 2026.

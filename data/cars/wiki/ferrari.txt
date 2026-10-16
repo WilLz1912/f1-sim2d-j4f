@@ -1,0 +1,64 @@
+Ferrari SF-26
+{{Short description|2026 Formula One car}}
+{{use dmy dates|date=January 2026}}
+{{Infobox racing car
+| Name = Ferrari SF-26
+| image = FIA F1 Austria 2026 Nr. 44 Hamilton (1).jpg
+| caption = [[Lewis Hamilton]] driving the SF-26 at the [[2026 Austrian Grand Prix]]
+| Category = [[Formula One]]
+| Designer = {{ubl
+  | [[Loïc Serra]] {{small|(Technical Director – Chassis)}}
+  | [[Fabio Montecchi]] {{small|(Chief Project Engineer)}}
+  | [[Corrado Onorato]] {{small|(Chief Designer - New Car)}}
+  | [[Marco Adurno]] {{small|(Head of Vehicle Performance)}}
+  | [[Diego Tondi]] {{small|(Head of Aerodynamics)}}
+  | Franck Sanchez {{small|(Head of Aerodynamic Development)}}
+  | [[Rory Byrne]] {{smaller|(Technical Consultant)}}
+  | [[Enrico Gualtieri]] {{small|(Technical Director – Power Unit)}}
+}}
+| Production = 
+| Predecessor = [[Ferrari SF-25]]
+| Chassis = [[Carbon fibre]] composite with survival cell and honeycomb structure
+| Front suspension = Double wishbone push-rod
+| Rear suspension = Double wishbone push-rod
+| Length = {{convert|NNNN|mm|in|1|abbr=on}}
+| Width = {{convert|NNNN|mm|in|1|abbr=on}}
+| Height = {{convert|NNNN|mm|in|1|abbr=on}}
+| Track = {{convert|NNNN|mm|in|1|abbr=on}}
+| Wheelbase = {{convert|NNNN|mm|in|1|abbr=on}}
+| Engine name = [[Scuderia Ferrari|Ferrari]] 067/6<hr>{{convert|1.6|L|cuin|0|abbr=on}} direct injection [[V6 engine|V6]] turbocharged engine limited to 15,000 [[Revolutions per minute|RPM]] in a [[Rear mid-engine, rear-wheel-drive layout|mid-mounted, rear-wheel drive layout]]
+| Capacity = {{convert|NNNN|cc|cuin|1|abbr=on}}
+| Configuration = 
+| Turbo/NA = [[Turbocharger|turbo]]
+| Engine position = 
+| Gearbox name = 
+| Gears = 8 forward + 1 reverse
+| power = {{convert|NNN|hp|kW PS|0|abbr=on}}
+| Weight = 770 kg (including driver, coolant and oil)
+| Fuel = [[Shell V-Power]] sustainable [[Ethanol fuel|Ethanol]]
+| Tyres = {{ubl|[[Pirelli]] P Zero (Dry/Slick)|[[Pirelli]] Cinturato (Wet/Treaded)}}
+| Image_size = 
+| Constructor = [[Scuderia Ferrari]]
+| Transmission type = 
+| Differential = 
+| Team = [[Scuderia Ferrari|Scuderia Ferrari HP]]
+| Drivers = {{ubl|16. {{flagicon|MON}} [[Charles Leclerc]]|44. {{flagicon|GBR}} [[Lewis Hamilton]]}}
+| Lubricants = [[Shell plc|Shell Helix Ultra]]
+| Brakes = 
+| Clutch = 
+| Technical ref = 
+| Teams_champ = 
+| Competition = 
+| Titles = 
+| Cons_champ = 
+| Debut = [[2026 Australian Grand Prix]]
+| First_win = [[2026 Barcelona-Catalunya Grand Prix]]
+| Last_win = [[2026 British Grand Prix]]
+| Last_event = {{Latest F1GP}}
+| Races = {{sum|{{F1cstat|FER|entries}}|-1124}}
+| Wins = {{sum|{{F1cstat|FER|wins}}|-248}}
+| Podiums = {{sum|{{F1cstat|FER|podiums}}|-836}}
+| Poles = {{sum|{{F1cstat|FER|poles}}|-254}}
+| Fastest_laps = {{sum|{{F1cstat|FER|fastestlaps}}|-265}}
+}}
+The '''Ferrari SF-26''', also known by its internal name '''Project 678''', is a [[Formula One car]] designed and built by [[Scuderia Ferrari]] to compete in the [[2026 Formula One World Championship]]. It is currently being driven by [[Charles Leclerc]] and seven-time World Drivers' Champion [[Lewis Hamilton]] in their eighth and second seasons with Ferrari, respectively. As of the [[2026 Singapore Grand Prix]], the SF-26 has achieved eleven Grand Prix podiums (plus seven sprint podiums), two Grand Prix victories (Hamilton in Barcelona and Leclerc in Great Britain), four Grand Prix fastest laps and two sprint fastest laps.

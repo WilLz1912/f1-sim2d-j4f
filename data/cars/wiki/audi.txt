@@ -1,0 +1,60 @@
+Audi R26
+{{Short description|2026 Formula One car}}
+{{Use dmy dates|date=February 2026}}
+{{For|the 2006 Renault Formula One car|Renault R26}}
+{{Infobox racing car
+| name = Audi R26
+| image = FIA F1 Austria 2026 Nr. 27 Hülkenberg (1).jpg
+| caption = [[Nico Hülkenberg]] driving the Audi R26 at the [[2026 Austrian Grand Prix]]
+| category = [[Formula One]]
+| designer = {{Ubl
+  | [[Mattia Binotto]] {{smaller|(Head of F1 Project)}}
+  | [[James Key (Formula One)|James Key]] {{smaller|(Technical Director)}}
+  | [[Stefano Sordo]] {{smaller|(Performance Director)}}
+  | Andrea Ferrarelli {{smaller|(Deputy Head of Vehicle Performance)}}
+  | [[Eric Gandelin]] {{smaller|(Chief Designer, Chassis)}}
+  | Stefano Sangiorgi {{smaller|(Chief Designer, Powertrain Integration)}}
+  | Iain Bomphray {{smaller|(Head of Research and Development)}}
+  | [[Alessandro Cinelli]] {{smaller|(Head of Aerodynamics)}}
+  | [[Tony Salter]] {{smaller|(Chief Aerodynamicist)}}
+  | [[Stefan Dreyer]] {{smaller|(Chief Technical Officer, Power Unit)}}
+  }}
+| predecessor = [[Kick Sauber C45]] (Sauber)
+| Team = [[Audi in Formula One|Audi Revolut F1 Team]]
+| chassis = [[Carbon fibre]] composite with survival cell and honeycomb structure
+| engine name = [[Audi in Formula One|Audi]] [[Audi V6 hybrid Formula One power unit|AFR 26 Hybrid]]
+| capacity = {{convert|1.6|L|cuin|0|abbr=on|lk=on}}
+| configuration = [[Gasoline direct injection|direct injection]] [[V6 engine|V6]] [[Turbocharger|turbocharged]] engine in a [[Rear mid-engine, rear-wheel-drive layout|rear mid-mounted, rear-wheel-drive layout]]
+| electric motor = Audi [[Kinetic energy recovery system|Kinetic Recovery System]]
+| battery = Audi lithium-ion battery
+| Power = {{convert|NNN|hp|kW PS|0|abbr=on}}
+| Brakes = [[Brembo]] carbon [[Disc brakes|discs]] with steel calipers and pads
+| Gearbox name = In-house [[Audi in Formula One|Audi]]
+| Gears = 8-speed + 1 reverse
+| Type = titanium gearbox sequential seamless [[semi-automatic transmission|semi-automatic]] paddle shift. “''Quickshift''” system in operation to maximize speed of gearshifts
+| Differential = with limited-slip differential
+| Clutch = [[ZF Friedrichshafen|ZF]] electro-hydraulically operated, carbon multi-plate
+| Weight = {{convert|770|kg|lb|0|abbr=on|lk=on}}
+| Length = {{convert|5440|mm|in|0|abbr=on|lk=on}}
+| Height = {{convert|980|mm|in|0|abbr=on|lk=on}}
+| track = {{convert|NNNN|mm|in|1|abbr=on}}
+| Wheelbase = {{convert|3400|mm|in|0|abbr=on|lk=on}}
+| Width = {{convert|1900|mm|in|0|abbr=on|lk=on}}
+| fuel = [[BP|BP Ultimate]] Sustainable 437B
+| lubricants = [[Castrol]]
+| tyres = [[Pirelli]] P Zero (Dry)<br />[[Pirelli]] Cinturato (Wet)
+| front suspension = Double wishbone push-rod
+| rear suspension = Double wishbone push-rod
+| Drivers = {{ubl|{{0}}5. {{flagicon|BRA}} [[Gabriel Bortoleto]]|27. {{flagicon|GER}} [[Nico Hülkenberg]]}}
+| Debut = [[2026 Australian Grand Prix]]
+| Last_event = {{Latest F1GP}}
+| Races = {{F1cstat|AUD|entries}}
+| Wins = {{F1cstat|AUD|wins}}
+| Podiums = {{F1cstat|AUD|podiums}}
+| Poles = {{F1cstat|AUD|poles}}
+| Fastest_laps = {{F1cstat|AUD|fastestlaps}}
+}}
+
+The '''Audi R26''' is a [[Formula One car]] designed and built by [[Audi in Formula One|Audi]] to compete in the [[2026 Formula One World Championship]]. It is currently being driven by [[Nico Hülkenberg]] and [[Gabriel Bortoleto]], both in their second season with the Hinwil-based team.
+
+The R26 is the first Formula One car built by Audi after its takeover of [[Sauber Motorsport|Sauber]] and the first Hinwil-built car to utilize non-[[Scuderia Ferrari|Ferrari]] engines since the [[BMW F1|BMW]]-powered [[BMW Sauber F1.09]] in the {{F1|2009}} season. It is also the first Hinwil-built Formula One car to utilise [[Castrol]]-branded lubricant since the [[Cosworth|Ford Cosworth]]-powered [[Sauber C14]] in the {{F1|1995}} season and also the first Formula One car to carry the [[BP plc|BP]] and [[Castrol]] logos brands since the [[Renault F1|Renault]]-powered [[Alpine A524]] in {{F1|2024}}.

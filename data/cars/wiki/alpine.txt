@@ -1,0 +1,56 @@
+Alpine A526
+{{refimprove|date=January 2026}}
+{{Short description|2026 Formula One car}}
+{{Use dmy dates|date=January 2026}}
+{{Infobox racing car
+| Name = Alpine A526
+| image = FIA F1 Austria 2026 Nr. 10 Gasly (1).jpg
+| caption = [[Pierre Gasly]] driving the Alpine A526 at the [[2026 Austrian Grand Prix]]
+| Category = [[Formula One]]
+| Constructor = [[Alpine F1 Team|Alpine]]
+| Designer = [[David Sanchez (engineer)|David Sanchez]] {{smaller|(Executive Technical Director)}} <br /> [[Joe Burnell (engineer)|Joe Burnell]] {{smaller|(Technical Director, Engineering)}} <br /> [[Ciaron Pilbeam]] {{smaller|(Technical Director, Performance)}} <br /> Simon Virrill {{smaller|(Chief Engineer - Technical)}}<br /> Steve Booth {{smaller|(Chief Engineer - Car Design)}}<br />Jacopo Fantoni {{smaller|(Deputy Chief Engineer)}} <br />Benjamin Norton {{smaller|(Head of Engineering)}}<br/>Vin Dhanani {{smaller|(Head of Vehicle Performance)}}<br/> Kristopher Midgley {{smaller|(Head of Aerodynamics)}} <br /> Michael Broadhurst {{smaller|(Chief Aerodynamicist)}}
+| Production = 
+| Predecessor = [[Alpine A525]]
+| Chassis = [[Carbon fibre]] composite with survival cell and honeycomb structure
+| Front suspension = Double wishbone pull-rod
+| Rear suspension = Double wishbone push-rod
+| Length = {{convert|NNNN|mm|in|1|abbr=on}}
+| Width = {{convert|NNNN|mm|in|1|abbr=on}}
+| Height = {{convert|NNNN|mm|in|1|abbr=on}}
+| Track = {{convert|NNNN|mm|in|1|abbr=on}}
+| Wheelbase = {{convert|NNNN|mm|in|1|abbr=on}}
+| Engine name = [[Mercedes-AMG High Performance Powertrains|Mercedes-AMG W17 E Performance]] 1.6 L [[V6 engine|V6]]
+| Capacity = {{convert|NNNN|cc|cuin|1|abbr=on}}
+| Configuration = 
+| Turbo/NA = turbo
+| Engine position = rear-mid mounted
+| Gearbox name = 
+| Gears = 8 forward + 1 reverse
+| power = {{convert|NNN|hp|kW PS|0|abbr=on}}
+| Weight = 770 kg (including driver, coolant and oil)
+| Tyres = {{ubl|[[Pirelli]] P Zero (Dry/Slick)|[[Pirelli]] Cinturato (Wet/Treaded)}}
+| Image_size = 
+| Team = [[Alpine F1 Team|BWT Alpine F1 Team]]
+| Transmission type = 
+| Differential = 
+| Drivers = {{ubl|10. {{flagicon|FRA}} [[Pierre Gasly]]|43. {{flagicon|ARG}} [[Franco Colapinto]]}}
+| Fuel = [[Petronas]]
+| Lubricants = [[Petronas]]
+| Brakes = 
+| Clutch = 
+| Technical ref = 
+| Teams_champ = 
+| Competition = 
+| Titles = 
+| Cons_champ = 
+| Debut = [[2026 Australian Grand Prix]]
+| First_win = 
+| Last_win = 
+| Last_event = {{Latest F1GP}}
+| Races = {{sum|{{F1cstat|ALP|entries}}|-114}}
+| Wins = {{sum|{{F1cstat|ALP|wins}}|-1}}
+| Podiums = {{sum|{{F1cstat|ALP|podiums}}|-6}}
+| Poles = {{sum|{{F1cstat|ALP|poles}}|0}}
+| Fastest laps = {{sum|{{F1cstat|ALP|fastestlaps}}|-1}}
+}}
+The '''Alpine A526''' is a [[Formula One car]] designed and built by the [[Alpine F1 Team]] to compete in the [[2026 Formula One World Championship]]. It is the sixth Formula One car entered by Alpine since rebranding from [[Renault in Formula One|Renault]], and the first car built by [[Team Enstone]] since the [[Lotus E23 Hybrid]] ({{f1|2015}}) to use a [[Mercedes AMG High Performance Powertrains|Mercedes power unit]]. It is currently being driven by [[Pierre Gasly]], in his fourth season with the team, and [[Franco Colapinto]], who begins his second season with the team after replacing [[Jack Doohan]] following the [[2025 Emilia Romagna Grand Prix|seventh round]] of the 2025 season.

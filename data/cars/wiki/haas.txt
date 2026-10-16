@@ -1,0 +1,56 @@
+Haas VF-26
+{{Short description|2026 Formula One car}}
+{{Use dmy dates|date=February 2026}}
+{{Racing car
+| Car_name = Haas VF-26
+| image = FIA F1 Austria 2026 Nr. 87 Bearman (1).jpg
+| caption = [[Oliver Bearman]] driving the Haas VF-26 at the [[2026 Austrian Grand Prix]]
+| Category = [[Formula One]]
+| Constructor = [[Haas F1 Team]]
+| Designer = {{ubl
+  | [[Andrea De Zordo]] {{small|(Technical Director)}}
+  | [[Damien Brayshaw]] {{small|(Performance Director)}}
+  | [[Tom Coupland]] {{small|(Chief Designer)}}
+  | Jonathan Heal {{small|(Deputy Chief Designer)}}
+  | [[Davide Paganelli]] {{small|(Head of Aerodynamics)}}
+  | Rhodri Moseley {{small|(Chief Aerodynamicist)}}
+  }}
+| Predecessor = [[Haas VF-25]]
+| Successor = 
+| Technical ref = <!-- <ref>{{Cite web |title=VF-24 |url=https://www.haasf1team.com/season/machine/vf-24 |website=Haas F1 Team}}</ref> -->
+| Chassis = [[Carbon fiber]] and honeycomb composite structure
+| Front suspension = 
+| Rear suspension = 
+| wheelbase = {{convert|3400|mm|in|1|abbr=on}}
+| Engine name = [[Scuderia Ferrari|Ferrari]] 067/6<hr>{{convert|1.6|L|cuin|0|abbr=on}} direct injection [[V6 engine|V6]] [[turbocharger|turbocharged]] engine limited to 15,000 [[Revolutions per minute|RPM]] in a [[Rear mid-engine, rear-wheel-drive layout|mid-mounted, rear-wheel drive layout]]
+| Capacity = 1.6
+| Configuration = V6
+| turbo/na = 
+| Engine position = 
+| Electric motor = [[Kinetic energy recovery system|Kinetic]]
+| Gearbox name = Ferrari
+| Gears = 8 speed + 1 reverse
+| Type = 
+| Differential = 
+| Power = {{convert|NNN|hp|kW PS|0|abbr=on}}
+| Battery = 
+| Length = {{convert|NNNN|mm|in|1|abbr=on}}
+| Width = {{convert|1900|mm|abbr=on}}
+| Height = {{convert|NNNN|mm|in|1|abbr=on}}
+| track = {{convert|NNNN|mm|in|1|abbr=on}}
+| Weight = 770 kg (including driver, excluding fuel)
+| Tyres = [[Pirelli]] P Zero (dry)<br />Pirelli Cinturato (wet)
+| Brakes = 6 piston carbon disk brakes
+| Fuel = [[Shell V-Power]] sustainable [[ethanol fuel|ethanol]]
+| Lubricants = [[Shell plc|Shell Helix Ultra]]
+| Team = [[Haas F1 Team|TGR Haas F1 Team]]
+| Drivers = {{ubl|31. {{flagicon|FRA}} [[Esteban Ocon]]}} {{ubl|87. {{flagicon|GBR}} [[Oliver Bearman]]}}
+| Debut = [[2026 Australian Grand Prix]]
+| Last_event = {{Latest F1GP}}
+| Races = {{sum|{{F1cstat|HAA|entries}}|-214}}
+| Wins = {{sum|{{F1cstat|HAA|wins}}|-0}}
+| Podiums = {{sum|{{F1cstat|HAA|podiums}}|-0}}
+| Poles = {{sum|{{F1cstat|HAA|poles}}|-1}}
+| Fastest_laps = {{sum|{{F1cstat|HAA|fastestlaps}}|-3}}
+}}
+The '''Haas VF-26''' is a [[Formula One car|Formula One racing car]] designed and built by the [[Haas F1 Team]] to compete in the [[2026 Formula One World Championship]]. It is currently being driven by [[Esteban Ocon]] and [[Oliver Bearman]], both in their second season with the team.
