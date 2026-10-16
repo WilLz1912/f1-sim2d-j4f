@@ -59,7 +59,7 @@ def pit_side(i):                                              # unit normal of p
 pit_boxes = []
 for k, team in enumerate(TEAMS):
     d = gar0 + unit * (5 + 4 * k + 2); p, i = pit_pt(d); g = pit_side(i)
-    pit_boxes.append({"team": team, "pit_s": round(d, 1), "stop_xy": loc(p + g * 6.0), "garage_xy": loc(p + g * 15.2),
+    pit_boxes.append({"team": team, "pit_s": round(d, 1), "stop_xy": loc(p + g * 5.5), "garage_xy": loc(p + g * 12.0),
                       "src": "fia (2026 Barcelona pit lane drawing: order) + osm (Boxes building: extent); lateral offsets estimate"})
 
 # ---------------- timing / control lines ----------------
@@ -130,6 +130,16 @@ for i, w in W.items():
     if kd.query(q)[0].min() > 400: continue
     structures.append({"kind": kind, "name": t.get("name", ""), "pts": [loc(p) for p in q], "osm_way": i})
 
+for i, w in W.items():
+    t = w.get("tags", {})
+    if t.get("name") in ("Paddock del Circuit", "In/Paddock"):
+        structures.append({"kind": "paddock", "name": t["name"], "pts": [loc(p) for p in way_pts(N, W, [i])], "osm_way": i})
+# Race Direction sits on the first floor of the control tower (circuit fact sheets); its exact building is not in
+# the data we have -> estimate: the pit-exit end of the pit building, next to the chequered tower by the pit exit.
+pe, pi_ = pit_pt(gar1); g = pit_side(pi_); c = pe + g * 22.0; tv = pit[min(pi_ + 1, pn)] - pit[pi_]; tv /= np.linalg.norm(tv)
+structures.append({"kind": "control_tower", "name": "Race Control (ước tính)", "pts": [loc(c + tv * a + g * b) for a, b in ((-9, -5), (9, -5), (9, 5), (-9, 5))],
+                   "src": "estimate"})
+
 track = {
     "name": "Circuit de Barcelona-Catalunya", "layout": "2023+ (F1 2026)", "length_m": round(L, 1), "fia_length_m": FIA_L,
     "laps_race": 66, "direction": "clockwise",
@@ -147,8 +157,10 @@ track = {
     "corners": corners, "lines": lines, "straight_mode": straight_mode,
     "pit": {"path": [loc(p) for p in pit], "length_m": round(PL, 1), "track_s": [round(float(v), 1) for v in pit_track_s],
             "limit_from": round(lim0, 1), "limit_to": round(lim1, 1), "limit_kmh": 80, "garages_from": round(gar0, 1), "garages_to": round(gar1, 1),
-            "fast_lane_w": 6.0, "working_lane_w": 6.0, "boxes": pit_boxes,
-            "src": "osm path; fia 368 m limit; lane widths estimate"},
+            "fast_lane_w": 5.0, "working_lane_w": 6.5, "boxes": pit_boxes,
+            # lateral offsets from the pit path, + towards the garages (measured on the orthophoto at 4 stations)
+            "wall_off": -3.0, "fast": [-2.75, 2.25], "work": [2.25, 8.75], "garage_front": 9.0,
+            "src": "osm path; fia 368 m limit + garage order; ortho cross-sections (wall, lanes, garage front)"},
     "grid": grid, "structures": structures,
     "energy_fia": {"recharge_race_mj": 8.5, "recharge_race_overtake_mj": 9.0, "recharge_quali_mj": 7.0, "power_limited_distance_m": 2440,
                    "src": "fia PU information doc"},

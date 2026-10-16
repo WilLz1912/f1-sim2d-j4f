@@ -35,11 +35,13 @@ for w in W.values():                                           # OSM polygons
 for w in W.values():
     t = w.get("tags", {}); pts = [g(N[k]) for k in w["nodes"] if k in N]
     if t.get("barrier") == "wall" and len(pts) > 1: d.line(pts, fill=SURF["barrier"], width=2)
-# pit lane: 6 m fast lane on the track side of the path + 6 m working lane on the garage side (estimate)
-pit = np.array(tr["pit"]["path"]) + ORIGIN
+# pit lane between the pit wall and the garage front (offsets measured on the orthophoto, + towards the garages)
+pit = np.array(tr["pit"]["path"]) + ORIGIN; gar = np.array(tr["pit"]["boxes"][0]["garage_xy"]) + ORIGIN
+lo_, hi_ = tr["pit"]["fast"][0], tr["pit"]["work"][1]
 for k in range(len(pit) - 1):
     a, b = pit[k], pit[k + 1]; t = (b - a) / (np.linalg.norm(b - a) + 1e-9); nn = np.array([-t[1], t[0]])
-    d.polygon([g(a + nn * 6), g(b + nn * 6), g(b - nn * 6), g(a - nn * 6)], fill=SURF["pit"])
+    if np.dot(gar - a, nn) < 0 and np.linalg.norm(gar - a) < 400: nn = -nn
+    d.polygon([g(a + nn * hi_), g(b + nn * hi_), g(b + nn * lo_), g(a + nn * lo_)], fill=SURF["pit"])
 # track and kerbs
 wl, wr, kl, kr = map(np.array, (st["w_left"], st["w_right"], st["kerb_left"], st["kerb_right"]))
 EL, ER = P + Nl * wl[:, None], P - Nl * wr[:, None]

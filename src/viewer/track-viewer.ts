@@ -86,7 +86,7 @@ function draw() {
   if ($("lyrNames").checked && view.z > 0.9) {
     ctx.font = "11px system-ui"; ctx.fillStyle = "#94a3b8"; ctx.textAlign = "center";
     for (const s of T.structures) {
-      if (!s.name || s.kind !== "grandstand") continue;
+      if (!s.name || !["grandstand", "control_tower", "paddock"].includes(s.kind)) continue;
       ctx.fillText(s.name, sx(avg(s.pts.map(p => p[0]))), sy(avg(s.pts.map(p => p[1]))));
     }
     ctx.textAlign = "left";

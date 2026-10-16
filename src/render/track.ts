@@ -8,6 +8,7 @@ export interface TrackData {
   lines: { id: string; s: number }[];
   straight_mode: { from: number; to: number }[];
   pit: { path: [number, number][]; limit_from: number; limit_to: number; fast_lane_w: number; working_lane_w: number;
+    wall_off: number; fast: [number, number]; work: [number, number]; garage_front: number;
     boxes: { team: string; pit_s: number; stop_xy: [number, number]; garage_xy: [number, number] }[] };
   grid: { pos: number; s: number; offset: number; xy: [number, number] }[];
   structures: { kind: string; name: string; pts: [number, number][] }[];
@@ -43,10 +44,11 @@ export class TrackRenderer {
     this.paths.domain = polys(R.domain);
     this.paths.infield = new Path2D(); for (const poly of R.domain) ringTo(this.paths.infield, poly[0]);   // outer rings only
     this.paths.asphalt = polys(R.asphalt); this.paths.paint = polys(R.paint); this.paths.gravel = polys(R.gravel);
-    this.paths.buildings = new Path2D(); this.paths.grandstands = new Path2D();
+    this.paths.buildings = new Path2D(); this.paths.grandstands = new Path2D(); this.paths.paddock = new Path2D(); this.paths.tower = new Path2D();
     for (const s of T.structures) {
-      if (s.kind !== "building" && s.kind !== "grandstand") continue;
-      const p = this.paths[s.kind === "grandstand" ? "grandstands" : "buildings"];
+      const key = { building: "buildings", grandstand: "grandstands", paddock: "paddock", control_tower: "tower" }[s.kind];
+      if (!key) continue;
+      const p = this.paths[key];
       s.pts.forEach(([x, y], k) => (k ? p.lineTo(x, y) : p.moveTo(x, y))); p.closePath();
     }
     // track ribbon = left edge forward + right edge backward
@@ -56,7 +58,7 @@ export class TrackRenderer {
     track.closePath(); this.paths.track = track;
     this.paths.edgeL = this.offsetPath(i => st.w_left[i], true); this.paths.edgeR = this.offsetPath(i => -st.w_right[i], true);
     // tyre/tecpro barriers; where the barrier is the pit wall the pit renderer draws it instead
-    const nearPit = (x: number, y: number) => T.pit.path.some(q => (q[0] - x) ** 2 + (q[1] - y) ** 2 < (T.pit.fast_lane_w / 2 + 7) ** 2);
+    const nearPit = (x: number, y: number) => T.pit.path.some(q => (q[0] - x) ** 2 + (q[1] - y) ** 2 < (-T.pit.wall_off + 6) ** 2);
     this.paths.barrierL = this.offsetPath(i => st.barrier_left[i], true, nearPit); this.paths.barrierR = this.offsetPath(i => -st.barrier_right[i], true, nearPit);
     // kerbs: 1 m blocks alternating red / white from the track edge outward
     for (let i = 0; i < this.n; i++) {
@@ -87,15 +89,14 @@ export class TrackRenderer {
       const a = P[Math.max(0, k - 1)], b = P[Math.min(P.length - 1, k + 1)], tx = b[0] - a[0], ty = b[1] - a[1], l = Math.hypot(tx, ty) || 1;
       return [P[k][0] - (ty / l) * d * sideSign, P[k][1] + (tx / l) * d * sideSign];
     };
-    const fw = T.pit.fast_lane_w, ww = T.pit.working_lane_w;
-    ribbon(pitFast, P.length, k => off(k, -fw / 2), k => off(k, fw / 2));
-    ribbon(pitWork, P.length, k => off(k, fw / 2), k => off(k, fw / 2 + ww), k => this.nearGarages(k));
-    for (let k = 0; k < P.length; k++) { const [x, y] = off(k, -fw / 2 - 0.4); k ? pitWall.lineTo(x, y) : pitWall.moveTo(x, y); }
+    const pf = T.pit.fast, pw = T.pit.work;
+    ribbon(pitFast, P.length, k => off(k, pf[0]), k => off(k, pf[1]));
+    ribbon(pitWork, P.length, k => off(k, pw[0]), k => off(k, pw[1]), k => this.nearGarages(k));
+    for (let k = 0; k < P.length; k++) { const [x, y] = off(k, T.pit.wall_off); k ? pitWall.lineTo(x, y) : pitWall.moveTo(x, y); }
     this.paths.pitFast = pitFast; this.paths.pitWork = pitWork; this.paths.pitWall = pitWall;
-    this.pitOff = off; this.pitW = fw + ww;
+    this.pitOff = off;
   }
   private pitOff: (k: number, d: number) => [number, number];
-  private pitW: number;
   private nearGarages(k: number) {
     const P = this.T.pit.path[k];
     return this.T.pit.boxes.some(b => Math.hypot(b.stop_xy[0] - P[0], b.stop_xy[1] - P[1]) < 40);
@@ -128,12 +129,14 @@ export class TrackRenderer {
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = COL.bg; ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     this.worldTransform(ctx, v);
     if (opt.structures !== false) {
+      ctx.fillStyle = "#151b24"; ctx.fill(this.paths.paddock);
       ctx.fillStyle = COL.building; ctx.fill(p.buildings); ctx.fillStyle = COL.grandstand; ctx.fill(p.grandstands);
       ctx.strokeStyle = COL.buildingEdge; ctx.lineWidth = px; ctx.stroke(p.buildings); ctx.stroke(p.grandstands);
     }
     ctx.fillStyle = COL.infield; ctx.fill(p.infield);            // land inside the circuit, behind the barriers
-    if (opt.structures !== false) { ctx.fillStyle = COL.building; ctx.fill(p.buildings); ctx.fillStyle = COL.grandstand; ctx.fill(p.grandstands); }
+    if (opt.structures !== false) { ctx.fillStyle = "#1a212c"; ctx.fill(p.paddock); ctx.fillStyle = COL.building; ctx.fill(p.buildings); ctx.fillStyle = COL.grandstand; ctx.fill(p.grandstands); }
     ctx.fillStyle = COL.grass; ctx.fill(p.domain, "evenodd");
+    if (opt.structures !== false) { ctx.fillStyle = "#334155"; ctx.fill(p.tower); ctx.strokeStyle = "#f8fafc"; ctx.lineWidth = Math.max(0.2, px); ctx.stroke(p.tower); }
     ctx.fillStyle = COL.asphalt; ctx.fill(p.asphalt, "evenodd");
     ctx.fillStyle = COL.paint; ctx.fill(p.paint, "evenodd");
     ctx.fillStyle = COL.gravel; ctx.fill(p.gravel, "evenodd");
@@ -159,15 +162,15 @@ export class TrackRenderer {
     ctx.fillStyle = "rgba(255,255,255,0.85)";
     for (const d of [T.pit.limit_from, T.pit.limit_to]) {
       const k = Math.max(1, Math.min(P.length - 2, Math.round(d)));
-      const a = this.pitOff(k, -T.pit.fast_lane_w / 2), b = this.pitOff(k, T.pit.fast_lane_w / 2);
+      const a = this.pitOff(k, T.pit.fast[0]), b = this.pitOff(k, T.pit.fast[1]);
       ctx.strokeStyle = "rgba(255,255,255,0.85)"; ctx.lineWidth = 0.6; ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke();
     }
     // garages and pit boxes, placed on the pit path: box in the working lane, garage behind it
-    const fw = T.pit.fast_lane_w, ww = T.pit.working_lane_w;
+    const pw = T.pit.work, gf = T.pit.garage_front;
     for (const b of T.pit.boxes) {
       const k = Math.max(2, Math.min(P.length - 3, Math.round(b.pit_s))), a = P[k - 2], c = P[k + 2];
       const ang = Math.atan2(c[1] - a[1], c[0] - a[0]);
-      const box = this.pitOff(k, fw / 2 + ww / 2), gar = this.pitOff(k, fw / 2 + ww + 3.2);
+      const box = this.pitOff(k, (pw[0] + pw[1]) / 2), gar = this.pitOff(k, gf + 3.2);
       ctx.save(); ctx.translate(box[0], box[1]); ctx.rotate(ang);
       ctx.strokeStyle = "rgba(255,255,255,0.65)"; ctx.lineWidth = 0.15; ctx.strokeRect(-3.2, -1.25, 6.4, 2.5); ctx.restore();
       const t = this.teams[b.team];
