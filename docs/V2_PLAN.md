@@ -33,11 +33,11 @@ phân tích). Người dùng chỉ đọc Python/SQL, nên thông số đặt tr
 
 - Tháp Race Control: vị trí ước tính (đầu pit building phía lối ra).
 - Màu livery/mũ là xấp xỉ từ mô tả chữ, không phải mã màu chính thức.
-
-- Vạch đích: theo OpenF1 nằm giữa lưới (ô 12–13). Có thể lệch do độ trễ dữ liệu vị trí.
+- Vạch đích nằm giữa lưới (ô 12–13): khớp FIA (vạch xuất phát cách vạch đích 126 m) và FIA lap distance
+  (đỉnh T13 lệch 15 m), nên giữ. Ô pole đọc trên ảnh (±5 m).
 - Vùng Straight Mode: FIA nêu tên 4 vùng, khoảng cách là ước tính.
 - Rào chắn: dò từ ảnh, chỗ góc trong còn vòng lạ.
-- Thứ tự garage các đội, bề rộng làn pit.
+- Vị trí ngang của ô pit trong làn làm việc, độ sâu garage.
 - Phần lớn kích thước xe không được công bố (wheelbase để 3400, dài 5480); khí động và trọng tâm là ước tính,
   sẽ khớp theo dữ liệu thật ở M2.
 - Chú ý: F1 Live Timing (FastF1) đã khoá (401) từ 2026; dùng OpenF1.
