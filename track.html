@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Barcelona Track Viewer</title>
   <style>
-    html, body { margin: 0; height: 100%; background: #0b0d10; color: #e5e7eb; font: 13px system-ui, sans-serif; overflow: hidden; }
+    html, body { margin: 0; height: 100%; background: #0a0e14; color: #e5e7eb; font: 13px system-ui, sans-serif; overflow: hidden; }
     canvas { display: block; width: 100vw; height: 100vh; cursor: grab; }
     #panel { position: fixed; top: 10px; left: 10px; background: #111827; border: 1px solid #374151; border-radius: 8px; padding: 10px 12px; max-width: 300px; }
     #panel h1 { font-size: 14px; margin: 0 0 6px; }
@@ -20,17 +20,17 @@
     <h1>Circuit de Barcelona-Catalunya · 2026</h1>
     <div id="stats"></div>
     <hr style="border-color:#374151" />
-    <label><input type="checkbox" id="lyrPhoto" /> Ảnh vệ tinh (ICGC)</label>
-    <label><input type="checkbox" id="lyrSurface" checked /> Mặt đất</label>
+    <label><input type="checkbox" id="lyrPhoto" /> Đối chiếu: ảnh vệ tinh (ICGC)</label>
+    <label><input type="checkbox" id="lyrSurface" /> Đối chiếu: bản đồ vật lý 0.5 m</label>
     <label><input type="checkbox" id="lyrLines" checked /> Vạch, góc cua, Straight Mode</label>
     <label><input type="checkbox" id="lyrPit" checked /> Pit lane, ô pit, lưới xuất phát</label>
-    <label><input type="checkbox" id="lyrBarrier" checked /> Rào chắn (ước tính)</label>
-    <label><input type="checkbox" id="lyrCars" checked /> 22 xe trên lưới (thứ tự phân hạng thật 2026)</label>
+        <label><input type="checkbox" id="lyrCars" checked /> 22 xe trên lưới (thứ tự phân hạng thật 2026)</label>
     <label><input type="checkbox" id="lyrNames" checked /> Tên khán đài, công trình</label>
     <div style="margin-top:6px;color:#9ca3af">Kéo để di chuyển, lăn chuột để phóng to.</div>
   </div>
   <div id="info">—</div>
   <div id="credits"></div>
+  <input type="checkbox" id="lyrBarrier" checked hidden />
   <script type="module" src="/src/viewer/track-viewer.ts"></script>
 </body>
 </html>

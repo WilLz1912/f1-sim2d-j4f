@@ -109,11 +109,15 @@
     "src": "team/wiki + press"
    },
    "livery": {
-    "body": "#1F242B",
-    "sidepod": "#00F5D4",
-    "wing": "#C8D0D8",
-    "halo": "#111111",
-    "src": "v11 (Argon)"
+    "body": "#16191D",
+    "sidepod": "#C9CED6",
+    "engineCover": "#16191D",
+    "wing": "#16191D",
+    "rearWing": "#16191D",
+    "accent": "#00D7B6",
+    "halo": "#0B0C0E",
+    "desc": "black and silver, striped, Petronas teal accents",
+    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -179,11 +183,16 @@
     "src": "team/wiki + press"
    },
    "livery": {
-    "body": "#E80020",
-    "sidepod": "#B80018",
-    "wing": "#FFFFFF",
+    "body": "#E8002D",
+    "sidepod": "#C4001F",
+    "engineCover": "#E8002D",
+    "cockpit": "#F5F5F5",
+    "wing": "#E8002D",
+    "rearWing": "#E8002D",
+    "accent": "#FFFFFF",
     "halo": "#111111",
-    "src": "v11 (Argon)"
+    "desc": "red with a white area around the cockpit",
+    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -250,10 +259,14 @@
    },
    "livery": {
     "body": "#FF8000",
-    "sidepod": "#181B20",
+    "sidepod": "#141619",
+    "engineCover": "#141619",
     "wing": "#FF8000",
+    "rearWing": "#141619",
+    "accent": "#FF8000",
     "halo": "#111111",
-    "src": "v11 (Argon)"
+    "desc": "papaya and black",
+    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -319,12 +332,16 @@
     "src": "team/wiki vs press"
    },
    "livery": {
-    "body": "#121F45",
-    "sidepod": "#0B132B",
-    "wing": "#CC1E4A",
-    "halo": "#121F45",
+    "body": "#2A3F8F",
+    "sidepod": "#1E2D6B",
+    "engineCover": "#2A3F8F",
+    "wing": "#E8002D",
+    "rearWing": "#2A3F8F",
+    "accent": "#E8002D",
+    "halo": "#1E2D6B",
     "noseTip": "#FFCC00",
-    "src": "v11 (Argon)"
+    "desc": "lighter shade of blue, red and yellow logos",
+    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -390,11 +407,15 @@
     "src": "team/wiki + press"
    },
    "livery": {
-    "body": "#005AFF",
-    "sidepod": "#041E42",
-    "wing": "#00A3E0",
-    "halo": "#005AFF",
-    "src": "v11 (Argon)"
+    "body": "#0B3D91",
+    "sidepod": "#4FA3E8",
+    "engineCover": "#FFFFFF",
+    "wing": "#FFFFFF",
+    "rearWing": "#FFFFFF",
+    "accent": "#00A3E0",
+    "halo": "#0B3D91",
+    "desc": "predominantly blue, white engine cover and wings, lighter blue sidepods (Barclays)",
+    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -460,11 +481,15 @@
     "src": "press"
    },
    "livery": {
-    "body": "#1634CB",
-    "sidepod": "#FFFFFF",
-    "wing": "#E10600",
-    "halo": "#FFFFFF",
-    "src": "v11 (Argon)"
+    "body": "#F2F4F7",
+    "sidepod": "#F2F4F7",
+    "engineCover": "#1A2A6C",
+    "wing": "#1A2A6C",
+    "rearWing": "#E10600",
+    "accent": "#2D6BFF",
+    "halo": "#F2F4F7",
+    "desc": "refreshed white, navy, red, extra Ford blue",
+    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -530,11 +555,15 @@
     "src": "press"
    },
    "livery": {
-    "body": "#00665E",
-    "sidepod": "#004B45",
+    "body": "#0B5F4E",
+    "sidepod": "#08493C",
+    "engineCover": "#0B5F4E",
     "wing": "#CEDC00",
+    "rearWing": "#0B5F4E",
+    "accent": "#CEDC00",
     "halo": "#111111",
-    "src": "v11 (Argon)"
+    "desc": "matte green, lime accents",
+    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -600,11 +629,15 @@
     "src": "press"
    },
    "livery": {
-    "body": "#1A1D24",
-    "sidepod": "#FFFFFF",
+    "body": "#F2F2F2",
+    "sidepod": "#141414",
+    "engineCover": "#F2F2F2",
     "wing": "#E6002B",
-    "halo": "#111111",
-    "src": "v11 (Argon)"
+    "rearWing": "#141414",
+    "accent": "#E6002B",
+    "halo": "#141414",
+    "desc": "white and black with Toyota Gazoo Racing red",
+    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -670,11 +703,15 @@
     "src": "team/wiki + press"
    },
    "livery": {
-    "body": "#C0C6CC",
-    "sidepod": "#141619",
-    "wing": "#F50537",
-    "halo": "#111111",
-    "src": "v11 (Argon)"
+    "body": "#B9BEC4",
+    "sidepod": "#B9BEC4",
+    "engineCover": "#16181B",
+    "wing": "#B9BEC4",
+    "rearWing": "#16181B",
+    "accent": "#F50537",
+    "halo": "#16181B",
+    "desc": "matte titanium silver front, red and black engine cover, red trim",
+    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -742,9 +779,13 @@
    "livery": {
     "body": "#0078FF",
     "sidepod": "#FF5CA8",
+    "engineCover": "#0078FF",
     "wing": "#181B20",
+    "rearWing": "#FF5CA8",
+    "accent": "#FF5CA8",
     "halo": "#111111",
-    "src": "v11 (Argon)"
+    "desc": "blue and pink (BWT)",
+    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -810,11 +851,17 @@
     "src": "press"
    },
    "livery": {
-    "body": "#141824",
-    "sidepod": "#D4AF37",
-    "wing": "#0046AD",
-    "halo": "#D4AF37",
-    "src": "v11 (Argon)"
+    "body": "#1A1C22",
+    "sidepodL": "#D9DADC",
+    "sidepodR": "#111215",
+    "sidepod": "#111215",
+    "engineCover": "#1A1C22",
+    "wing": "#C0C3C8",
+    "rearWing": "#111215",
+    "accent": "#C0C3C8",
+    "halo": "#D9DADC",
+    "desc": "two-sided: grayish white left flank, black right flank, chrome details",
+    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -859,176 +906,286 @@
    "name": "Lando Norris",
    "num": 1,
    "team": "mclaren",
-   "helmet": "#CCFF00",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#D7F70A",
+    "second": "#C0C4CA",
+    "accent": "#111111"
+   },
+   "tcam": "yellow",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "VER",
    "name": "Max Verstappen",
    "num": 3,
    "team": "redbull",
-   "helmet": "#FF6B00",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#1E2A78",
+    "second": "#D21034",
+    "accent": "#FFFFFF"
+   },
+   "tcam": "black",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "BOR",
    "name": "Gabriel Bortoleto",
    "num": 5,
    "team": "audi",
-   "helmet": "#22C55E",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#009C3B",
+    "second": "#FFDF00",
+    "accent": "#D4AF37"
+   },
+   "tcam": "yellow",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "HAD",
    "name": "Isack Hadjar",
    "num": 6,
    "team": "redbull",
-   "helmet": "#FACC15",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#FFD400",
+    "second": "#6A2C91",
+    "accent": "#111111"
+   },
+   "tcam": "yellow",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "GAS",
    "name": "Pierre Gasly",
    "num": 10,
    "team": "alpine",
-   "helmet": "#60A5FA",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#0047AB",
+    "second": "#FFFFFF",
+    "accent": "#E10600"
+   },
+   "tcam": "black",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "PER",
    "name": "Sergio Perez",
    "num": 11,
    "team": "cadillac",
-   "helmet": "#FACC15",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#1A1A2E",
+    "second": "#39FF14",
+    "accent": "#CE1126"
+   },
+   "tcam": "black",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "ANT",
    "name": "Kimi Antonelli",
    "num": 12,
    "team": "mercedes",
-   "helmet": "#10B981",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#F5F5F5",
+    "second": "#009246",
+    "accent": "#CE2B37"
+   },
+   "tcam": "yellow",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "ALO",
    "name": "Fernando Alonso",
    "num": 14,
    "team": "aston",
-   "helmet": "#38BDF8",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#1B3A8A",
+    "second": "#C60B1E",
+    "accent": "#FFC400"
+   },
+   "tcam": "yellow",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "LEC",
    "name": "Charles Leclerc",
    "num": 16,
    "team": "ferrari",
-   "helmet": "#FF1801",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#E8002D",
+    "second": "#FFFFFF",
+    "accent": "#8FD3FF"
+   },
+   "tcam": "black",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "STR",
    "name": "Lance Stroll",
    "num": 18,
    "team": "aston",
-   "helmet": "#065F46",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#121212",
+    "second": "#3A3D42",
+    "accent": "#CEDC00"
+   },
+   "tcam": "black",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "ALB",
    "name": "Alexander Albon",
    "num": 23,
    "team": "williams",
-   "helmet": "#F472B6",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#E6E8EB",
+    "second": "#A7ADB5",
+    "accent": "#005AFF"
+   },
+   "tcam": "black",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "HUL",
    "name": "Nico Hulkenberg",
    "num": 27,
    "team": "audi",
-   "helmet": "#A3E635",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#C9CDD2",
+    "second": "#FF7A00",
+    "accent": "#111111"
+   },
+   "tcam": "black",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "LAW",
    "name": "Liam Lawson",
    "num": 30,
    "team": "vcarb",
-   "helmet": "#F87171",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#F7F7F7",
+    "second": "#FF6FAE",
+    "accent": "#111111"
+   },
+   "tcam": "yellow",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "OCO",
    "name": "Esteban Ocon",
    "num": 31,
    "team": "haas",
-   "helmet": "#EF4444",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#D3122B",
+    "second": "#8E0B1C",
+    "accent": "#FFFFFF"
+   },
+   "tcam": "black",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "LIN",
    "name": "Arvid Lindblad",
    "num": 41,
    "team": "vcarb",
-   "helmet": "#FACC15",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#39FF14",
+    "second": "#1E5BFF",
+    "accent": "#E10600"
+   },
+   "tcam": "black",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "COL",
    "name": "Franco Colapinto",
    "num": 43,
    "team": "alpine",
-   "helmet": "#38BDF8",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#75AADB",
+    "second": "#FFFFFF",
+    "accent": "#111111"
+   },
+   "tcam": "yellow",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "HAM",
    "name": "Lewis Hamilton",
    "num": 44,
    "team": "ferrari",
-   "helmet": "#FACC15",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#FFD100",
+    "second": "#E8002D",
+    "accent": "#FFFFFF"
+   },
+   "tcam": "yellow",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "SAI",
    "name": "Carlos Sainz",
    "num": 55,
    "team": "williams",
-   "helmet": "#EF4444",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#C60B1E",
+    "second": "#FFC400",
+    "accent": "#005AFF"
+   },
+   "tcam": "yellow",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "RUS",
    "name": "George Russell",
    "num": 63,
    "team": "mercedes",
-   "helmet": "#00F0FF",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#5BC2E7",
+    "second": "#111111",
+    "accent": "#FFFFFF"
+   },
+   "tcam": "black",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "BOT",
    "name": "Valtteri Bottas",
    "num": 77,
    "team": "cadillac",
-   "helmet": "#38BDF8",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#2B4C7E",
+    "second": "#111111",
+    "accent": "#8A8F98"
+   },
+   "tcam": "yellow",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "PIA",
    "name": "Oscar Piastri",
    "num": 81,
    "team": "mclaren",
-   "helmet": "#38BDF8",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#1B2A6B",
+    "second": "#D62828",
+    "accent": "#F5C518"
+   },
+   "tcam": "black",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   },
   {
    "code": "BEA",
    "name": "Oliver Bearman",
    "num": 87,
    "team": "haas",
-   "helmet": "#34D399",
-   "src": "openf1 (2026 Barcelona GP entry list); helmet colour v11"
+   "helmet": {
+    "base": "#1E50C8",
+    "second": "#FFFFFF",
+    "accent": "#E6FF00"
+   },
+   "tcam": "yellow",
+   "src": "openf1 (entry list); helmet: 2026 season designs as described by Total Motorsport (colours approximated, PER/PIA/ANT bases estimated); T-cam: Motorsport.com 2026 spotter's guide"
   }
  ],
  "sources": {

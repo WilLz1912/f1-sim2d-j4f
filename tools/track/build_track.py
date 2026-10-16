@@ -48,18 +48,19 @@ boxes = way_pts(N, W, [33742578]); pkd = cKDTree(pit); bj = pkd.query(boxes)[1]
 gar0, gar1 = float(ps[bj.min()]), float(ps[bj.max()])
 LIMIT_LEN = 368.0                                                   # FIA: pit lane under speed-limit control
 mid = (gar0 + gar1) / 2; lim0, lim1 = mid - LIMIT_LEN / 2, mid + LIMIT_LEN / 2
-# 11 team boxes along the garage frontage. Order = 2025 constructors' standings from the pit-lane entry (estimate).
+# Garage order from the FIA F2 Barcelona 2026 pit-lane drawing (F1 garages), from the pit entry:
+# FOM, FIA x4, then 4 units per team in this order, then FOM -> 50 units along the "Boxes" building frontage.
 TEAMS = ["mclaren", "mercedes", "redbull", "ferrari", "williams", "vcarb", "aston", "haas", "audi", "alpine", "cadillac"]
-bw = (gar1 - gar0) / len(TEAMS)
+UNITS = 50; unit = (gar1 - gar0) / UNITS
 def pit_pt(d): i = int(np.clip(round(d), 0, pn)); return pit[i], i
 def pit_side(i):                                              # unit normal of pit path pointing to the garages
     t = pit[min(i + 1, pn)] - pit[max(i - 1, 0)]; t /= np.linalg.norm(t); nn = np.array([-t[1], t[0]])
     return nn if np.dot(boxes.mean(0) - pit[i], nn) > 0 else -nn
 pit_boxes = []
 for k, team in enumerate(TEAMS):
-    d = gar0 + bw * (k + 0.5); p, i = pit_pt(d); g = pit_side(i)
-    pit_boxes.append({"team": team, "pit_s": round(d, 1), "stop_xy": loc(p + g * 4.5), "garage_xy": loc(p + g * 11.0),
-                      "src": "osm (Boxes building) + estimate (team order, lateral offsets)"})
+    d = gar0 + unit * (5 + 4 * k + 2); p, i = pit_pt(d); g = pit_side(i)
+    pit_boxes.append({"team": team, "pit_s": round(d, 1), "stop_xy": loc(p + g * 6.0), "garage_xy": loc(p + g * 15.2),
+                      "src": "fia (2026 Barcelona pit lane drawing: order) + osm (Boxes building: extent); lateral offsets estimate"})
 
 # ---------------- timing / control lines ----------------
 brake = []
@@ -80,7 +81,8 @@ t1_brake = float(np.median(brake))
 # t1_brake (later, as expected from 3.7 Hz sampling and quali speeds).
 pole_s = 92.0
 lines = [
-    {"id": "control", "s": 0.0, "src": "openf1 (lap start crossings, 22 drivers)"},
+    {"id": "control", "s": 0.0, "src": "openf1 (lap start crossings, 22 drivers); = finish line"},
+    {"id": "start", "s": 126.0, "src": "fia (start/finish line offset 0.126 km, 2018/2022 FIA previews) + ortho (painted line at s~126)"},
     {"id": "sector1", "s": round(float(z["sector1"]), 1), "src": "openf1 (sector times)"},
     {"id": "sector2", "s": round(float(z["sector2"]), 1), "src": "openf1 (sector times)"},
     {"id": "speed_trap", "s": float(z["st"]), "src": "openf1 (speed matched, +-25 m)"},

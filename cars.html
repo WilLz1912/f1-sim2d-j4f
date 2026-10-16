@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>F1 2026 Cars</title>
+  <style>
+    body { margin: 0; background: #0a0e14; color: #e5e7eb; font: 13px system-ui, sans-serif; }
+    h1 { font-size: 18px; margin: 16px; }
+    #note { margin: 0 16px 12px; color: #9ca3af; max-width: 1100px; }
+    #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(520px, 1fr)); gap: 12px; padding: 0 16px 24px; }
+    .team { background: #111827; border: 1px solid #1f2937; border-radius: 10px; padding: 10px 12px; }
+    .team h2 { font-size: 14px; margin: 0 0 2px; }
+    .team .sub { color: #9ca3af; font-size: 12px; margin-bottom: 6px; }
+    .row { display: flex; gap: 10px; align-items: center; }
+    canvas { background: #2d3748; border-radius: 6px; }
+    table { border-collapse: collapse; font-size: 12px; }
+    td { padding: 1px 8px 1px 0; vertical-align: top; }
+    .est { color: #f59e0b; } .src { color: #6b7280; font-size: 11px; }
+    .tc { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: middle; border: 1px solid #555; }
+  </style>
+</head>
+<body>
+  <h1>22 xe F1 2026 · thông số, livery, mũ bảo hiểm, T-cam</h1>
+  <div id="note">Màu cam = số ước tính (đội không công bố). Hình vẽ xe giữ nguyên của Argon (V11), đặt đúng chiều dài, trục cơ sở và cỡ lốp 2026. Vòng phân hạng là dữ liệu thật Barcelona 2026 (OpenF1).</div>
+  <div id="grid"></div>
+  <script type="module" src="/src/viewer/cars-viewer.ts"></script>
+</body>
+</html>
