@@ -142,6 +142,23 @@ export class TrackRenderer {
     return [(x - v.x) * v.z + ctx.canvas.width / 2, -(y - v.y) * v.z + ctx.canvas.height / 2];
   }
 
+  private cache: { c: HTMLCanvasElement; z: number; x: number; y: number; key: string } | null = null;
+  /** Static track layer rendered once into an offscreen canvas (viewport + 30 % margin) and blitted each frame.
+   *  Rebuilt only when the zoom or the options change or the view pans past the margin. */
+  drawCached(ctx: CanvasRenderingContext2D, v: View, opt: { structures?: boolean; straightMode?: boolean; lines?: boolean; grid?: boolean } = {}) {
+    const W = ctx.canvas.width, H = ctx.canvas.height, pad = 0.3, key = JSON.stringify(opt) + W + "x" + H;
+    const c0 = this.cache;
+    if (!c0 || c0.z !== v.z || c0.key !== key || Math.abs(v.x - c0.x) * v.z > W * pad || Math.abs(v.y - c0.y) * v.z > H * pad) {
+      const c = c0?.c ?? document.createElement("canvas");
+      c.width = Math.round(W * (1 + 2 * pad)); c.height = Math.round(H * (1 + 2 * pad));
+      this.draw(c.getContext("2d")!, { ...v }, opt);
+      this.cache = { c, z: v.z, x: v.x, y: v.y, key };
+    }
+    const k = this.cache!;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.drawImage(k.c, Math.round(W / 2 + (k.x - v.x) * v.z - k.c.width / 2), Math.round(H / 2 - (k.y - v.y) * v.z - k.c.height / 2));
+  }
+
   draw(ctx: CanvasRenderingContext2D, v: View, opt: { structures?: boolean; straightMode?: boolean; lines?: boolean; grid?: boolean } = {}) {
     const p = this.paths, px = 1 / v.z;
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = COL.bg; ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);

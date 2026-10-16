@@ -34,6 +34,18 @@ T0 = Affine(sf["res_m"], 0, sf["x0"], 0, -sf["res_m"], sf["y1"])
 domain = unary_union([shape(g) for g, v in shapes(reach.astype(np.uint8), mask=reach, transform=T0) if v == 1])
 domain = domain.buffer(6).buffer(-12).buffer(6).simplify(0.2)        # rounded outlines, no wiggles under ~12 m
 domain = unary_union([g for g in getattr(domain, "geoms", [domain]) if g.area > 2000])
+from scipy.ndimage import uniform_filter1d
+def smooth_ring(ring, win=21):
+    """Resample a ring every 1 m and average positions over `win` metres along it: walls and tecpro lines are
+    built straight or as smooth arcs, so classification wiggles are removed without creating loops."""
+    c = np.array(ring.coords)[:-1]; seg = np.r_[0, np.cumsum(np.hypot(*np.diff(np.vstack([c, c[:1]]), axis=0).T))]
+    L_ = seg[-1]; t = np.arange(0, L_, 1.0); cc = np.vstack([c, c[:1]])
+    xs, ys = np.interp(t, seg, cc[:, 0]), np.interp(t, seg, cc[:, 1])
+    if len(t) < 3 * win: return np.c_[xs, ys]
+    return np.c_[uniform_filter1d(xs, win, mode="wrap"), uniform_filter1d(ys, win, mode="wrap")]
+def smooth_poly(g):
+    return Polygon(smooth_ring(g.exterior), [smooth_ring(h) for h in g.interiors if Polygon(h).area > 400]).buffer(0)
+domain = unary_union([smooth_poly(g) for g in getattr(domain, "geoms", [domain])])
 
 T = Affine(sf["res_m"], 0, sf["x0"], 0, -sf["res_m"], sf["y1"])
 def vectorize(mask, min_m2=40, smooth=0.75, clip=None):

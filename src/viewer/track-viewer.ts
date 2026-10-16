@@ -1,6 +1,6 @@
 // Track viewer: the game look (TrackRenderer, V11 palette) on the real Barcelona geometry, plus 22 cars on the
 // grid. Debug layers: the satellite photo and the physics surface map, both off by default.
-import { drawCar, type CarShape, type Livery, type Helmet } from "../render/car";
+import { drawCarCached, type CarShape, type Livery, type Helmet } from "../render/car";
 import { TrackRenderer, type TrackData, type RenderData, type View } from "../render/track";
 
 interface Track extends TrackData {
@@ -72,7 +72,7 @@ async function ensurePhysMap() {
 
 function draw() {
   if (!R) return;
-  R.draw(ctx, view, { structures: true, lines: $("lyrLines").checked, straightMode: $("lyrLines").checked, grid: $("lyrPit").checked });
+  R.drawCached(ctx, view, { structures: true, lines: $("lyrLines").checked, straightMode: $("lyrLines").checked, grid: $("lyrPit").checked });
   const sx = (x: number) => (x - view.x) * view.z + canvas.width / 2, sy = (y: number) => -(y - view.y) * view.z + canvas.height / 2;
   if ($("lyrPhoto").checked && photo && photoMeta) {
     ctx.globalAlpha = 0.85; const ox = photoMeta.x0 - T.origin_utm31n[0], oy = photoMeta.y1 - T.origin_utm31n[1];
@@ -103,7 +103,7 @@ function drawGridCars() {
       tyreR: { w: CARS.regs.tyre_rear.width_mm / 1000, d: CARS.regs.tyre_rear.diameter_mm / 1000 },
       trackF: tm.physics.track_front_mm / 1000, trackR: tm.physics.track_rear_mm / 1000 };
     ctx.save(); ctx.translate(g.xy[0], g.xy[1]); ctx.rotate(R.heading(i)); ctx.scale(1, -1);   // car art is drawn y-down
-    drawCar(ctx, shape, { team: d.team, livery: tm.livery, helmet: d.helmet, tcam: d.tcam, number: d.num, tyreColor: "#ef4444" }); ctx.restore();
+    drawCarCached(ctx, shape, { team: d.team, livery: tm.livery, helmet: d.helmet, tcam: d.tcam, number: d.num, tyreColor: "#ef4444" }, view.z); ctx.restore();
   });
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   if (view.z > 4) {

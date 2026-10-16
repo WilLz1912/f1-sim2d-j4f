@@ -166,3 +166,21 @@ export function drawCar(ctx: Ctx, s: CarShape, look: CarLook) {
   ctx.fillStyle = rwc; ctx.beginPath(); ctx.roundRect(rx - 0.32, -rw, 0.32, rw * 2, 0.05); ctx.fill(); ctx.strokeStyle = EDGE; ctx.stroke();
   both(sg => { ctx.fillStyle = c.primary; ctx.fillRect(rx - 0.38, sg > 0 ? rw - 0.04 : -rw - 0.0, 0.44, 0.05); });
 }
+
+// Sprite cache: each car is rendered once per (look, zoom bucket) into a small canvas and blitted afterwards.
+const sprites = new Map<string, HTMLCanvasElement>();
+/** Draw the car centred at the current origin of `ctx` (same frame as drawCar), using a cached bitmap at
+ *  `ppm` screen pixels per metre (bucketed to powers of 1.25 so zooming does not rebuild every frame). */
+export function drawCarCached(ctx: Ctx, s: CarShape, look: CarLook, ppm: number) {
+  const b = Math.pow(1.25, Math.ceil(Math.log(Math.max(ppm, 2)) / Math.log(1.25)));
+  const key = [look.team, look.number, look.tyreColor, look.aeroMode ?? "", look.tcam ?? "", look.selected ? 1 : 0, look.wingDamage ?? 0, look.floorDamage ?? 0, s.length, b.toFixed(2)].join("|");
+  let c = sprites.get(key);
+  const mx = s.length / 2 + 2.8, my = 1.6;                          // margin covers the MOM glow and selection ring
+  if (!c) {
+    c = document.createElement("canvas"); c.width = Math.ceil(2 * mx * b); c.height = Math.ceil(2 * my * b);
+    const g = c.getContext("2d")!; g.translate(c.width / 2, c.height / 2); g.scale(b, b); drawCar(g, s, look);
+    if (sprites.size > 600) sprites.clear();
+    sprites.set(key, c);
+  }
+  ctx.drawImage(c, -mx, -my, 2 * mx, 2 * my);
+}
