@@ -1,0 +1,11 @@
+{
+ "layer": "ortofoto_25cm_color_2025",
+ "res_m": 0.25,
+ "x0": 437400.0,
+ "y0": 4601400.0,
+ "x1": 438900.0,
+ "y1": 4603400.0,
+ "crs": "EPSG:25831",
+ "source": "ICGC orto-territorial WMS",
+ "license": "CC BY 4.0, Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya"
+}

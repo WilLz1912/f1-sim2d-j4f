@@ -5,8 +5,8 @@ import { resolve } from "node:path";
 const V11 = "v11/opus_argon_f1_2026_simulator_v11.html";
 
 export default defineConfig({
-  server: { open: "/" + V11 },
+  server: { open: "/track.html" },
   build: {
-    rollupOptions: { input: { v11: resolve(__dirname, V11) } },
+    rollupOptions: { input: { v11: resolve(__dirname, V11), track: resolve(__dirname, "track.html") } },
   },
 });
