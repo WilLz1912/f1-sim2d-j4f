@@ -1,12 +1,9 @@
-// F1 2026 car, top view. Shapes are Argon's V11 drawF1Car2026; V12 places the axles and tyres at the real
-// dimensions of each car (data/cars/cars_2026.json) and adds the 2026 livery zones, the driver's helmet colours,
-// the T-camera colour (black = first car, fluorescent yellow = second car) and the race number.
-// Units: metres, origin at the car's centre, +x forward, +y = right side of the car (canvas y-down art frame).
+// F1 2026 car, top view, drawn in metres at real proportions (length, wheelbase, track, tyre sizes from
+// data/cars/cars_2026.json). Each team has its own livery painter, designed from 2026 race photos
+// (Wikimedia Commons, Austrian GP 2026). Origin = car centre, +x forward, +y = right side (canvas y-down art frame).
+// Small on screen by design: shapes are simple, outlines crisp, liveries readable at 15-40 px per car.
 
-export interface Livery {
-  body: string; sidepod: string; wing: string; halo: string;
-  sidepodL?: string; sidepodR?: string; engineCover?: string; cockpit?: string; rearWing?: string; accent?: string; noseTip?: string;
-}
+export interface Livery { primary: string; secondary: string; tertiary?: string; wing?: string; accent?: string; desc?: string }
 export interface Helmet { base: string; second: string; accent: string }
 export interface CarShape {
   length: number; width: number; wheelbase: number;
@@ -14,86 +11,160 @@ export interface CarShape {
   trackF: number; trackR: number;
 }
 export interface CarLook {
-  livery: Livery; helmet: Helmet | string; tyreColor: string; tcam?: "black" | "yellow"; number?: number;
+  team: string; livery: Livery; helmet: Helmet; tyreColor: string; tcam?: "black" | "yellow"; number?: number;
   aeroMode?: "Z" | "X" | "MOM" | "CLIP" | "S-CLIP"; selected?: boolean;
   floorDamage?: number; wingDamage?: number; treadContam?: number;
 }
-const TCAM = { black: "#050506", yellow: "#E6FF00" };
 
-export function drawCar(ctx: CanvasRenderingContext2D, s: CarShape, look: CarLook) {
-  const L = s.length, W = s.width, t = look.livery;
-  const xF = L * 0.30, xR = xF - s.wheelbase;            // axle positions (V11 had the front axle at 0.30 L)
-  const poly = (pts: number[][]) => { ctx.beginPath(); pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.closePath(); ctx.fill(); };
+const CARBON = "#14161a", OUTLINE = "rgba(0,0,0,0.55)", TCAM = { black: "#050506", yellow: "#E6FF00" };
+type Ctx = CanvasRenderingContext2D;
+type Pt = [number, number];
 
-  if (look.selected) {
-    ctx.strokeStyle = "#00f0ff"; ctx.lineWidth = 0.08;
-    ctx.beginPath(); ctx.ellipse(0, 0, L * 0.74, W * 0.95, 0, 0, Math.PI * 2); ctx.stroke();
-  }
+function path(ctx: Ctx, pts: Pt[], close = true) { ctx.beginPath(); pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); if (close) ctx.closePath(); }
+function fill(ctx: Ctx, pts: Pt[], color: string, outline = false) { path(ctx, pts); ctx.fillStyle = color; ctx.fill(); if (outline) { ctx.strokeStyle = OUTLINE; ctx.lineWidth = 0.025; ctx.stroke(); } }
+const mirror = (pts: Pt[]): Pt[] => [...pts, ...pts.slice().reverse().map(([x, y]) => [x, -y] as Pt)];
+
+/** Body geometry in metres for a car of length L (shapes scale with L; axles from the real wheelbase). */
+function geom(s: CarShape) {
+  const L = s.length, h = L / 2, xF = h * 0.60, xR = xF - s.wheelbase;
+  return {
+    L, h, xF, xR,
+    // half outlines (y >= 0), mirrored for the full shape
+    nose: [[h - 0.05, 0], [h - 0.12, 0.07], [xF + 0.25, 0.15], [xF - 0.35, 0.24]] as Pt[],
+    tub: [[xF - 0.35, 0.24], [0.55, 0.36], [-0.05, 0.40], [-0.75, 0.34]] as Pt[],
+    pod: [[0.70, 0], [0.70, 0.30], [0.45, 0.80], [-0.30, 0.82], [-1.10, 0.62], [-1.55, 0.36], [-1.70, 0]] as Pt[],
+    floor: [[1.00, 0], [1.00, 0.55], [0.55, 0.90], [-1.45, 0.90], [xR + 0.45, 0.70], [xR + 0.20, 0.45], [xR - 0.10, 0.45], [xR - 0.10, 0]] as Pt[],
+    cover: [[-0.30, 0.30], [-1.20, 0.26], [xR + 0.10, 0.17], [xR - 0.55, 0.12]] as Pt[],
+  };
+}
+
+// Livery painters: draw over the base body. p = primary, s = secondary, t = tertiary, a = accent.
+type Painter = (ctx: Ctx, g: ReturnType<typeof geom>, c: Livery) => void;
+const band = (ctx: Ctx, x0: number, x1: number, w0: number, w1: number, color: string) => fill(ctx, [[x0, -w0], [x0, w0], [x1, w1], [x1, -w1]], color);
+const PAINT: Record<string, Painter> = {
+  mclaren: (ctx, g, c) => {     // papaya front and sidepod tops, black rear body and engine cover
+    fill(ctx, mirror([[-0.55, 0.0], [-0.55, 0.62], [-1.10, 0.62], [-1.55, 0.36], [-1.70, 0]]), c.secondary);
+    fill(ctx, mirror(g.cover), c.secondary);
+    band(ctx, -0.35, -0.70, 0.36, 0.30, c.primary);
+  },
+  mercedes: (ctx, g, c) => {    // black, silver star-stripe pattern on the sidepods, teal pinstripes
+    for (const sg of [1, -1]) for (let k = 0; k < 5; k++) {
+      const x0 = 0.25 - k * 0.28; fill(ctx, [[x0, sg * 0.45], [x0 - 0.12, sg * 0.45], [x0 - 0.40, sg * 0.76], [x0 - 0.28, sg * 0.76]], c.secondary);
+    }
+    ctx.strokeStyle = c.accent ?? "#00D7B6"; ctx.lineWidth = 0.05;
+    for (const sg of [1, -1]) { path(ctx, [[g.h - 0.2, sg * 0.05], [0.6, sg * 0.30], [-1.6, sg * 0.30]], false); ctx.stroke(); }
+  },
+  redbull: (ctx, g, c) => {     // matte navy, red bulls + yellow sun on the engine cover, red/yellow nose
+    ctx.fillStyle = c.tertiary ?? "#FFC906"; ctx.beginPath(); ctx.arc(-1.05, 0, 0.17, 0, Math.PI * 2); ctx.fill();
+    for (const sg of [1, -1]) fill(ctx, [[-0.70, sg * 0.05], [-1.25, sg * 0.28], [-1.55, sg * 0.20], [-1.0, sg * 0.03]], c.secondary);
+    fill(ctx, mirror([[g.h - 0.05, 0], [g.h - 0.12, 0.07], [g.h - 0.55, 0.11], [g.h - 0.55, 0]]), c.secondary);
+    band(ctx, g.h - 0.55, g.h - 0.70, 0.11, 0.12, c.tertiary ?? "#FFC906");
+    for (const sg of [1, -1]) fill(ctx, [[0.30, sg * 0.50], [-0.40, sg * 0.66], [-0.55, sg * 0.58], [0.20, sg * 0.44]], c.secondary);
+  },
+  ferrari: (ctx, g, c) => {     // red, white around the cockpit and airbox, black rear
+    fill(ctx, mirror([[0.55, 0.0], [0.55, 0.30], [0.10, 0.42], [-0.90, 0.30], [-1.05, 0]]), c.secondary);
+    fill(ctx, mirror([[g.xR + 0.10, 0.17], [g.xR - 0.55, 0.12], [g.xR - 0.55, 0]]), c.tertiary ?? CARBON);
+  },
+  williams: (ctx, g, c) => {    // mid blue top, navy lower/rear, white Atlassian chevron
+    fill(ctx, mirror([[-0.9, 0.0], [-0.9, 0.55], [-1.10, 0.62], [-1.55, 0.36], [-1.70, 0]]), c.secondary);
+    fill(ctx, mirror(g.cover.slice(1)), c.secondary);
+    for (const sg of [1, -1]) fill(ctx, [[0.25, sg * 0.50], [-0.10, sg * 0.70], [-0.30, sg * 0.70], [0.05, sg * 0.50]], c.accent ?? "#ffffff");
+  },
+  vcarb: (ctx, g, c) => {       // white, navy lower sidepods and rear, Red Bull logo, Visa blue
+    for (const sg of [1, -1]) fill(ctx, [[0.45, sg * 0.66], [-0.30, sg * 0.82], [-1.10, sg * 0.62], [-1.55, sg * 0.36], [-0.60, sg * 0.52]], c.secondary);
+    fill(ctx, mirror([[g.xR + 0.10, 0.17], [g.xR - 0.55, 0.12], [g.xR - 0.55, 0]]), c.secondary);
+    ctx.fillStyle = c.accent ?? "#FFC906"; ctx.beginPath(); ctx.arc(-1.00, 0, 0.14, 0, Math.PI * 2); ctx.fill();
+    for (const sg of [1, -1]) fill(ctx, [[-0.75, sg * 0.04], [-1.20, sg * 0.24], [-1.45, sg * 0.17], [-1.0, sg * 0.03]], c.tertiary ?? "#D8102C");
+  },
+  aston: (ctx, g, c) => {       // racing green, lime pinstripes and lime front-wing tips
+    ctx.strokeStyle = c.secondary; ctx.lineWidth = 0.06;
+    for (const sg of [1, -1]) { path(ctx, [[0.55, sg * 0.70], [-0.30, sg * 0.79], [-1.10, sg * 0.60]], false); ctx.stroke(); }
+    band(ctx, -0.20, -0.35, 0.33, 0.33, c.secondary);
+  },
+  haas: (ctx, g, c) => {        // white, big red GR on the engine cover, black lower edges, red nose
+    fill(ctx, mirror([[-0.45, 0.0], [-0.45, 0.26], [-1.35, 0.24], [-1.35, 0]]), c.secondary);
+    band(ctx, -0.80, -0.92, 0.26, 0.25, c.primary);
+    for (const sg of [1, -1]) fill(ctx, [[0.40, sg * 0.78], [-0.30, sg * 0.82], [-1.10, sg * 0.62], [-1.20, sg * 0.56], [-0.30, sg * 0.74]], c.tertiary ?? CARBON);
+    fill(ctx, mirror([[g.h - 0.05, 0], [g.h - 0.12, 0.07], [g.h - 0.70, 0.12], [g.h - 0.70, 0]]), c.secondary);
+  },
+  audi: (ctx, g, c) => {        // titanium silver, lava-red rear sidepods and engine cover panel, black rear
+    for (const sg of [1, -1]) fill(ctx, [[-0.35, sg * 0.82], [-1.10, sg * 0.62], [-1.55, sg * 0.36], [-0.70, sg * 0.40], [-0.35, sg * 0.55]], c.secondary);
+    fill(ctx, mirror([[-1.20, 0.26], [g.xR + 0.10, 0.17], [g.xR - 0.55, 0.12], [g.xR - 0.55, 0]]), c.tertiary ?? CARBON);
+  },
+  alpine: (ctx, g, c) => {      // pink front and sidepods, blue engine cover and rear
+    fill(ctx, mirror(g.cover), c.secondary);
+    fill(ctx, mirror([[-1.10, 0.62], [-1.55, 0.36], [-1.70, 0], [-1.10, 0]]), c.secondary);
+    band(ctx, 0.20, -0.30, 0.37, 0.40, c.accent ?? "#ffffff");
+  },
+  cadillac: (ctx, g, c) => {    // two-sided: grayish-white left flank (primary), black right flank (+y)
+    ctx.save(); ctx.beginPath(); ctx.rect(-4, 0.02, 8, 2); ctx.clip();
+    fill(ctx, mirror(g.pod), c.secondary); fill(ctx, mirror([...g.nose, ...g.tub.slice(1)]), c.secondary); fill(ctx, mirror(g.cover), c.secondary);
+    ctx.restore();
+  },
+};
+
+export function drawCar(ctx: Ctx, s: CarShape, look: CarLook) {
+  const g = geom(s), c = look.livery, W = s.width;
+  if (look.selected) { ctx.strokeStyle = "#00f0ff"; ctx.lineWidth = 0.08; ctx.beginPath(); ctx.ellipse(0, 0, g.h * 1.35, W * 0.9, 0, 0, Math.PI * 2); ctx.stroke(); }
   if (look.aeroMode === "MOM") {
-    const g = ctx.createRadialGradient(-L * 0.45, 0, 0.2, -L * 0.55, 0, L * 0.48);
-    g.addColorStop(0, "rgba(168, 85, 247, 0.85)"); g.addColorStop(1, "rgba(168, 85, 247, 0)");
-    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(-L * 0.45, 0, L * 0.48, 0, Math.PI * 2); ctx.fill();
+    const gr = ctx.createRadialGradient(g.xR - 0.6, 0, 0.2, g.xR - 0.8, 0, 2.6);
+    gr.addColorStop(0, "rgba(168, 85, 247, 0.85)"); gr.addColorStop(1, "rgba(168, 85, 247, 0)");
+    ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(g.xR - 0.6, 0, 2.6, 0, Math.PI * 2); ctx.fill();
   }
-  // 1. floor
-  ctx.fillStyle = (look.floorDamage ?? 0) > 0.15 ? "#7c2d12" : "#080b11";
-  ctx.beginPath(); ctx.roundRect(xR + 0.1, -W * 0.36, xF - xR - 0.35, W * 0.72, 0.3); ctx.fill();
-  // 2. wishbones to the wheel centres
+  // shadow
+  ctx.fillStyle = "rgba(0,0,0,0.35)"; path(ctx, mirror(g.floor).map(([x, y]) => [x - 0.08, y + 0.08] as Pt)); ctx.fill();
+  // floor (carbon) and suspension
+  fill(ctx, mirror(g.floor), (look.floorDamage ?? 0) > 0.15 ? "#7c2d12" : CARBON);
   const yF = s.trackF / 2, yR = s.trackR / 2;
-  ctx.strokeStyle = "#64748b"; ctx.lineWidth = 0.05; ctx.beginPath();
+  ctx.strokeStyle = "#2a2f38"; ctx.lineWidth = 0.05; ctx.beginPath();
   for (const sg of [1, -1]) {
-    ctx.moveTo(xF - 0.29, 0); ctx.lineTo(xF, sg * yF); ctx.moveTo(xF - 0.67, 0); ctx.lineTo(xF, sg * yF);
-    ctx.moveTo(xR + 0.29, 0); ctx.lineTo(xR, sg * yR); ctx.moveTo(xR - 0.19, 0); ctx.lineTo(xR, sg * yR);
+    ctx.moveTo(g.xF + 0.18, sg * 0.18); ctx.lineTo(g.xF, sg * yF); ctx.moveTo(g.xF - 0.35, sg * 0.22); ctx.lineTo(g.xF, sg * yF);
+    ctx.moveTo(g.xR + 0.40, sg * 0.30); ctx.lineTo(g.xR, sg * yR); ctx.moveTo(g.xR - 0.15, sg * 0.20); ctx.lineTo(g.xR, sg * yR);
   }
   ctx.stroke();
-  // 3. tyres at real size
-  const wheel = (wx: number, wy: number, d: number, w: number) => {
-    ctx.fillStyle = (look.treadContam ?? 0) > 0.25 ? "#4a3519" : "#090d14";
-    ctx.beginPath(); ctx.roundRect(wx - d / 2, wy - w / 2, d, w, 0.06); ctx.fill();
-    ctx.strokeStyle = look.tyreColor; ctx.lineWidth = 0.05;
-    ctx.strokeRect(wx - d * 0.36, wy - w * 0.35, d * 0.72, w * 0.7);
+  // tyres at real size, compound band on the sidewall (seen from above as the outer edge)
+  const tyre = (x: number, y: number, d: number, w: number) => {
+    ctx.fillStyle = (look.treadContam ?? 0) > 0.25 ? "#4a3519" : "#0b0c0f";
+    ctx.beginPath(); ctx.roundRect(x - d / 2, y - w / 2, d, w, 0.07); ctx.fill();
+    ctx.fillStyle = look.tyreColor; const ey = y + Math.sign(y) * (w / 2 - 0.035);
+    ctx.fillRect(x - d * 0.42, ey - 0.025, d * 0.84, 0.05);
   };
-  for (const sg of [1, -1]) { wheel(xF, sg * yF, s.tyreF.d, s.tyreF.w); wheel(xR, sg * yR, s.tyreR.d, s.tyreR.w); }
-  // 4. sidepods (each side can carry its own colour, e.g. Cadillac's two-sided livery)
-  const pod = (sg: number) => [[L * 0.10, 0], [L * 0.10, sg * W * 0.16], [L * 0.04, sg * W * 0.34], [-L * 0.26, sg * W * 0.28], [-L * 0.36, sg * W * 0.12], [-L * 0.36, 0]];
-  ctx.fillStyle = t.sidepodR ?? t.sidepod; poly(pod(1));
-  ctx.fillStyle = t.sidepodL ?? t.sidepod; poly(pod(-1));
-  // 5. monocoque and nose, engine cover behind the cockpit
-  ctx.fillStyle = t.body;
-  poly([[L * 0.50, 0], [L * 0.44, W * 0.06], [L * 0.14, W * 0.14], [-L * 0.12, W * 0.17], [-L * 0.44, W * 0.07],
-        [-L * 0.44, -W * 0.07], [-L * 0.12, -W * 0.17], [L * 0.14, -W * 0.14], [L * 0.44, -W * 0.06]]);
-  if (t.engineCover && t.engineCover !== t.body) {
-    ctx.fillStyle = t.engineCover; poly([[-L * 0.10, W * 0.165], [-L * 0.44, W * 0.07], [-L * 0.44, -W * 0.07], [-L * 0.10, -W * 0.165]]);
-  }
-  if (t.accent) {                                         // livery stripe along the spine
-    ctx.fillStyle = t.accent; ctx.fillRect(-L * 0.42, -0.03, L * 0.80, 0.06);
-  }
-  if (t.noseTip) { ctx.fillStyle = t.noseTip; poly([[L * 0.50, 0], [L * 0.39, W * 0.06], [L * 0.39, -W * 0.06]]); }
-  // 6. front wing (2026: 100 mm narrower than 2022, still nearly full width)
-  ctx.fillStyle = (look.wingDamage ?? 0) > 0.18 ? "#ff1801" : t.wing;
-  poly([[L * 0.47, 0], [L * 0.42, W * 0.44], [L * 0.36, W * 0.44], [L * 0.40, 0], [L * 0.36, -W * 0.44], [L * 0.42, -W * 0.44]]);
-  if (t.accent) { ctx.fillStyle = t.accent; ctx.fillRect(L * 0.355, W * 0.40, L * 0.07, W * 0.05); ctx.fillRect(L * 0.355, -W * 0.45, L * 0.07, W * 0.05); }
+  for (const sg of [1, -1]) { tyre(g.xF, sg * yF, s.tyreF.d, s.tyreF.w); tyre(g.xR, sg * yR, s.tyreR.d, s.tyreR.w); }
+  // body: sidepods, tub, nose, engine cover in the primary colour, then the team painter
+  fill(ctx, mirror(g.pod), c.primary, true);
+  fill(ctx, mirror([...g.nose, ...g.tub.slice(1)]), c.primary, true);
+  fill(ctx, mirror(g.cover), c.primary);
+  (PAINT[look.team] ?? (() => {}))(ctx, g, c);
+  // engine-cover spine (shark fin) seen from above
+  ctx.strokeStyle = "rgba(0,0,0,0.35)"; ctx.lineWidth = 0.03; path(ctx, [[-0.45, 0], [g.xR - 0.5, 0]], false); ctx.stroke();
   // race number on the nose
   if (look.number !== undefined) {
-    ctx.save(); ctx.translate(L * 0.30, 0); ctx.rotate(Math.PI / 2);
-    ctx.fillStyle = "#ffffff"; ctx.font = "bold 0.26px JetBrains Mono, monospace"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-    ctx.fillText(String(look.number), 0, 0); ctx.restore();
+    ctx.save(); ctx.translate(g.xF + 0.55, 0); ctx.rotate(Math.PI / 2);
+    ctx.fillStyle = "#ffffff"; ctx.font = "bold 0.24px JetBrains Mono, monospace"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.strokeStyle = "rgba(0,0,0,0.6)"; ctx.lineWidth = 0.03; ctx.strokeText(String(look.number), 0, 0); ctx.fillText(String(look.number), 0, 0); ctx.restore();
   }
-  // 7. cockpit, halo, helmet, T-camera
-  if (t.cockpit) { ctx.fillStyle = t.cockpit; ctx.beginPath(); ctx.ellipse(-L * 0.035, 0, L * 0.14, W * 0.16, 0, 0, Math.PI * 2); ctx.fill(); }
-  ctx.fillStyle = "#05070b"; ctx.beginPath(); ctx.ellipse(-L * 0.03, 0, L * 0.09, W * 0.09, 0, 0, Math.PI * 2); ctx.fill();
-  ctx.strokeStyle = t.halo; ctx.lineWidth = 0.05; ctx.beginPath(); ctx.moveTo(L * 0.06, 0); ctx.lineTo(L * 0.035, W * 0.075);
-  ctx.moveTo(L * 0.06, 0); ctx.lineTo(L * 0.035, -W * 0.075); ctx.stroke();
-  const h: Helmet = typeof look.helmet === "string" ? { base: look.helmet, second: look.helmet, accent: look.helmet } : look.helmet;
-  const hr = W * 0.075, hx = -L * 0.04;
-  ctx.fillStyle = h.base; ctx.beginPath(); ctx.arc(hx, 0, hr, 0, Math.PI * 2); ctx.fill();
+  // mirrors
+  for (const sg of [1, -1]) { ctx.fillStyle = c.primary; ctx.fillRect(0.30, sg * 0.50 - 0.05, 0.14, 0.10); ctx.fillStyle = CARBON; ctx.fillRect(0.36, sg * 0.36 - 0.07, 0.02, sg * 0.14); }
+  // cockpit, helmet, halo, T-cam
+  ctx.fillStyle = "#06080c"; ctx.beginPath(); ctx.ellipse(0.02, 0, 0.42, 0.24, 0, 0, Math.PI * 2); ctx.fill();
+  const hm = look.helmet, hr = 0.14, hx = -0.08;
+  ctx.fillStyle = hm.base; ctx.beginPath(); ctx.arc(hx, 0, hr, 0, Math.PI * 2); ctx.fill();
   ctx.save(); ctx.beginPath(); ctx.arc(hx, 0, hr, 0, Math.PI * 2); ctx.clip();
-  ctx.fillStyle = h.second; ctx.fillRect(hx - hr, -hr * 0.32, hr * 2, hr * 0.64);           // stripe front to back
-  ctx.fillStyle = h.accent; ctx.fillRect(hx + hr * 0.45, -hr, hr * 0.55, hr * 2);           // visor-side band
+  ctx.fillStyle = hm.second; ctx.fillRect(hx - hr, -hr * 0.30, hr * 2, hr * 0.60);
+  ctx.fillStyle = hm.accent; ctx.fillRect(hx + hr * 0.50, -hr, hr * 0.5, hr * 2);
   ctx.restore();
-  ctx.fillStyle = TCAM[look.tcam ?? "black"];                                                // T-cam on the airbox
-  ctx.fillRect(-L * 0.135, -0.07, 0.2, 0.14);
-  // 8. rear wing, coloured by aero mode
+  ctx.strokeStyle = "#20242b"; ctx.lineWidth = 0.06; ctx.beginPath();
+  ctx.moveTo(0.42, 0); ctx.lineTo(0.30, 0.22); ctx.lineTo(-0.25, 0.24); ctx.moveTo(0.30, -0.22); ctx.lineTo(0.42, 0); ctx.moveTo(0.30, -0.22); ctx.lineTo(-0.25, -0.24); ctx.stroke();
+  ctx.fillStyle = TCAM[look.tcam ?? "black"]; ctx.fillRect(-0.42, -0.07, 0.16, 0.14);
+  // front wing (2026, slightly narrower) and endplates
+  const fwx = g.h - 0.30, fwW = Math.min(0.90, W / 2 - 0.05);
+  fill(ctx, [[fwx + 0.18, -fwW], [fwx + 0.18, fwW], [fwx - 0.16, fwW], [fwx - 0.02, 0.15], [fwx - 0.02, -0.15], [fwx - 0.16, -fwW]],
+    (look.wingDamage ?? 0) > 0.18 ? "#ff1801" : (c.wing ?? CARBON), true);
+  for (const sg of [1, -1]) { ctx.fillStyle = c.accent ?? c.primary; ctx.fillRect(fwx - 0.16, sg * fwW - (sg > 0 ? 0.06 : 0), 0.34, 0.06); }
+  // rear wing, coloured by aero mode
   const isX = look.aeroMode === "X" || look.aeroMode === "MOM";
-  ctx.fillStyle = look.aeroMode === "S-CLIP" ? "#ef4444" : look.aeroMode === "CLIP" ? "#f59e0b" : isX ? "#00f0ff" : (t.rearWing ?? t.wing);
-  ctx.beginPath(); ctx.roundRect(-L * 0.49, -W * 0.38, L * 0.09, W * 0.76, 0.15); ctx.fill();
+  const rw = look.aeroMode === "S-CLIP" ? "#ef4444" : look.aeroMode === "CLIP" ? "#f59e0b" : isX ? "#00f0ff" : (c.wing ?? CARBON);
+  const rx = g.xR - 0.62, rwW = 0.52;
+  fill(ctx, [[rx, -rwW], [rx, rwW], [rx - 0.30, rwW], [rx - 0.30, -rwW]], rw, true);
+  for (const sg of [1, -1]) { ctx.fillStyle = c.primary; ctx.fillRect(rx - 0.34, sg * rwW - (sg > 0 ? 0.05 : 0), 0.40, 0.05); }
 }

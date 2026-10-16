@@ -109,15 +109,12 @@
     "src": "team/wiki + press"
    },
    "livery": {
-    "body": "#16191D",
-    "sidepod": "#C9CED6",
-    "engineCover": "#16191D",
-    "wing": "#16191D",
-    "rearWing": "#16191D",
+    "primary": "#111316",
+    "secondary": "#BFC5CC",
+    "wing": "#111316",
     "accent": "#00D7B6",
-    "halo": "#0B0C0E",
-    "desc": "black and silver, striped, Petronas teal accents",
-    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
+    "desc": "black with silver star-stripe sidepods, Petronas teal pinstripes",
+    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -183,16 +180,13 @@
     "src": "team/wiki + press"
    },
    "livery": {
-    "body": "#E8002D",
-    "sidepod": "#C4001F",
-    "engineCover": "#E8002D",
-    "cockpit": "#F5F5F5",
-    "wing": "#E8002D",
-    "rearWing": "#E8002D",
-    "accent": "#FFFFFF",
-    "halo": "#111111",
-    "desc": "red with a white area around the cockpit",
-    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
+    "primary": "#DC0000",
+    "secondary": "#F2F2F2",
+    "tertiary": "#121212",
+    "wing": "#DC0000",
+    "accent": "#F2F2F2",
+    "desc": "red, white around cockpit and airbox (HP), black rear",
+    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -258,15 +252,12 @@
     "src": "not confirmed in sources found"
    },
    "livery": {
-    "body": "#FF8000",
-    "sidepod": "#141619",
-    "engineCover": "#141619",
-    "wing": "#FF8000",
-    "rearWing": "#141619",
+    "primary": "#FF8000",
+    "secondary": "#1B1C1E",
+    "wing": "#1B1C1E",
     "accent": "#FF8000",
-    "halo": "#111111",
-    "desc": "papaya and black",
-    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
+    "desc": "papaya front and sidepod tops, anthracite rear body",
+    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -332,16 +323,13 @@
     "src": "team/wiki vs press"
    },
    "livery": {
-    "body": "#2A3F8F",
-    "sidepod": "#1E2D6B",
-    "engineCover": "#2A3F8F",
-    "wing": "#E8002D",
-    "rearWing": "#2A3F8F",
-    "accent": "#E8002D",
-    "halo": "#1E2D6B",
-    "noseTip": "#FFCC00",
-    "desc": "lighter shade of blue, red and yellow logos",
-    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
+    "primary": "#1B2550",
+    "secondary": "#D8102C",
+    "tertiary": "#FFC906",
+    "wing": "#1B2550",
+    "accent": "#D8102C",
+    "desc": "matte navy, red bulls and yellow sun, red/yellow nose",
+    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -407,15 +395,12 @@
     "src": "team/wiki + press"
    },
    "livery": {
-    "body": "#0B3D91",
-    "sidepod": "#4FA3E8",
-    "engineCover": "#FFFFFF",
-    "wing": "#FFFFFF",
-    "rearWing": "#FFFFFF",
-    "accent": "#00A3E0",
-    "halo": "#0B3D91",
-    "desc": "predominantly blue, white engine cover and wings, lighter blue sidepods (Barclays)",
-    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
+    "primary": "#2F86D6",
+    "secondary": "#0A2752",
+    "wing": "#0A2752",
+    "accent": "#FFFFFF",
+    "desc": "mid blue top, navy lower and rear, white Atlassian marks",
+    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -481,15 +466,13 @@
     "src": "press"
    },
    "livery": {
-    "body": "#F2F4F7",
-    "sidepod": "#F2F4F7",
-    "engineCover": "#1A2A6C",
-    "wing": "#1A2A6C",
-    "rearWing": "#E10600",
-    "accent": "#2D6BFF",
-    "halo": "#F2F4F7",
-    "desc": "refreshed white, navy, red, extra Ford blue",
-    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
+    "primary": "#F4F5F7",
+    "secondary": "#1B2A60",
+    "tertiary": "#D8102C",
+    "wing": "#1B2A60",
+    "accent": "#FFC906",
+    "desc": "white, navy lower sidepods and rear, Red Bull logo",
+    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -555,15 +538,12 @@
     "src": "press"
    },
    "livery": {
-    "body": "#0B5F4E",
-    "sidepod": "#08493C",
-    "engineCover": "#0B5F4E",
-    "wing": "#CEDC00",
-    "rearWing": "#0B5F4E",
-    "accent": "#CEDC00",
-    "halo": "#111111",
-    "desc": "matte green, lime accents",
-    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
+    "primary": "#0C5C4C",
+    "secondary": "#C8E000",
+    "wing": "#0C5C4C",
+    "accent": "#C8E000",
+    "desc": "racing green, lime pinstripes",
+    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -629,15 +609,13 @@
     "src": "press"
    },
    "livery": {
-    "body": "#F2F2F2",
-    "sidepod": "#141414",
-    "engineCover": "#F2F2F2",
-    "wing": "#E6002B",
-    "rearWing": "#141414",
-    "accent": "#E6002B",
-    "halo": "#141414",
-    "desc": "white and black with Toyota Gazoo Racing red",
-    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
+    "primary": "#F4F4F4",
+    "secondary": "#D9001B",
+    "tertiary": "#151515",
+    "wing": "#151515",
+    "accent": "#D9001B",
+    "desc": "white, big red GR on engine cover, black lower edges",
+    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -703,15 +681,13 @@
     "src": "team/wiki + press"
    },
    "livery": {
-    "body": "#B9BEC4",
-    "sidepod": "#B9BEC4",
-    "engineCover": "#16181B",
-    "wing": "#B9BEC4",
-    "rearWing": "#16181B",
-    "accent": "#F50537",
-    "halo": "#16181B",
-    "desc": "matte titanium silver front, red and black engine cover, red trim",
-    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
+    "primary": "#A9AEB4",
+    "secondary": "#E8261C",
+    "tertiary": "#141414",
+    "wing": "#141414",
+    "accent": "#E8261C",
+    "desc": "titanium silver, lava-red rear sidepods, black engine cover",
+    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -777,15 +753,12 @@
     "src": "team/wiki vs press"
    },
    "livery": {
-    "body": "#0078FF",
-    "sidepod": "#FF5CA8",
-    "engineCover": "#0078FF",
-    "wing": "#181B20",
-    "rearWing": "#FF5CA8",
-    "accent": "#FF5CA8",
-    "halo": "#111111",
-    "desc": "blue and pink (BWT)",
-    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
+    "primary": "#FF8CC6",
+    "secondary": "#1E5BC6",
+    "wing": "#1E5BC6",
+    "accent": "#FFFFFF",
+    "desc": "pink front and sidepods, blue engine cover and rear, white BWT",
+    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
    },
    "physics": {
     "cog_height_m": 0.28,
@@ -851,17 +824,12 @@
     "src": "press"
    },
    "livery": {
-    "body": "#1A1C22",
-    "sidepodL": "#D9DADC",
-    "sidepodR": "#111215",
-    "sidepod": "#111215",
-    "engineCover": "#1A1C22",
-    "wing": "#C0C3C8",
-    "rearWing": "#111215",
-    "accent": "#C0C3C8",
-    "halo": "#D9DADC",
-    "desc": "two-sided: grayish white left flank, black right flank, chrome details",
-    "src": "press (2026 livery descriptions: Motorsport.com spotter's guide, Motor Sport) -> colours approximated; car shapes Argon V11"
+    "primary": "#E6E7EA",
+    "secondary": "#0F1013",
+    "wing": "#0F1013",
+    "accent": "#C9CCD1",
+    "desc": "two-sided: grayish-white left flank, black right flank",
+    "src": "2026 race photos (Wikimedia Commons, FIA F1 Austria 2026) + Motorsport.com spotter's guide; colours picked from photos"
    },
    "physics": {
     "cog_height_m": 0.28,

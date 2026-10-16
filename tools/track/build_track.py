@@ -21,20 +21,27 @@ s_of = lambda xy: float(s[kd.query(xy)[1]])
 # ---------------- curvature and corners ----------------
 th = np.unwrap(np.arctan2(T[:, 1], T[:, 0])); kappa = np.gradient(th) / ds
 ks = gaussian_filter1d(kappa, 6, mode="wrap")
-# official 2023+ corner names (14 corners). Apex = local |curvature| peak inside a window known from the FIA
-# power-unit document / circuit map order; windows below are lap-distance ranges in metres (this geometry).
-CORNERS = [  # number, name, direction, search window [m]
-    (1, "Elf", "R", (700, 860)), (2, "", "L", (860, 1000)), (3, "Renault", "R", (1050, 1350)),
-    (4, "Repsol", "R", (1450, 1700)), (5, "Seat", "L", (1880, 2060)), (6, "", "L", (2090, 2240)),
-    (7, "Würth", "L", (2400, 2560)), (8, "", "R", (2560, 2700)), (9, "Campsa", "R", (2700, 2950)),
-    (10, "La Caixa", "L", (3350, 3520)), (11, "", "L", (3520, 3620)), (12, "Banc Sabadell", "R", (3620, 3850)),
-    (13, "", "R", (3950, 4120)), (14, "New Holland", "R", (4150, 4450))]
+# Corners, marshal sectors and marshal light panels: official F1 timing circuit data (MultiViewer API,
+# circuit key 15, same coordinate frame as OpenF1: decimetres) -> projected onto our centreline.
+MV = json.load(open("data/multiviewer/catalunya_2026.json"))
+def mv_xy(q): return (np.array([q["trackPosition"]["x"], q["trackPosition"]["y"] * A["flip_y"]]) * A["scale"]) @ np.array(A["R"]).T + np.array(A["t"])
+def proj(xy):
+    j = kd.query(xy)[1]; return j, float(np.dot(xy - P[j], Nl[j]))
+NAMES = {1: "Elf", 3: "Renault", 4: "Repsol", 5: "Seat", 7: "Würth", 9: "Campsa", 10: "La Caixa", 12: "Banc Sabadell", 14: "New Holland"}
 corners = []
-for num, name, dirn, (a, b) in CORNERS:
-    i0, i1 = int(a / ds), int(b / ds); seg = ks[i0:i1] * (1 if dirn == "L" else -1)
-    k = i0 + int(np.argmax(seg)); corners.append({"n": num, "name": name, "dir": dirn, "apex_s": round(float(s[k]), 1),
-        "radius_m": round(float(1 / max(abs(ks[k]), 1e-4)), 1), "xy": loc(P[k]), "src": "ortho+openf1 (apex = curvature peak)"})
-
+for q in MV["corners"]:
+    j, off = proj(mv_xy(q))
+    w = (np.arange(j - 50, j + 51) % n); turn = ks[w].sum() * ds                  # net heading change around the official point
+    wa = (np.arange(j - 40, j + 41) % n); a = wa[int(np.argmax(ks[wa] * np.sign(turn)))]   # tightest point turning the same way = apex
+    corners.append({"n": q["number"], "name": NAMES.get(q["number"], ""), "dir": "L" if turn > 0 else "R", "apex_s": round(float(s[a]), 1),
+                    "official_s": round(float(s[j]), 1), "radius_m": round(float(1 / max(abs(ks[a]), 1e-4)), 1),
+                    "turn_deg": round(float(np.degrees(turn)), 0), "xy": loc(P[a]),
+                    "src": "f1 timing circuit data (MultiViewer): position; apex/direction from our centreline curvature +-40/50 m"})
+marshal_sectors = [{"n": q["number"], "s": round(float(s[proj(mv_xy(q))[0]]), 1), "src": "f1 timing circuit data (MultiViewer)"} for q in MV["marshalSectors"]]
+marshal_lights = []
+for q in MV["marshalLights"]:
+    j, off = proj(mv_xy(q)); marshal_lights.append({"n": q["number"], "s": round(float(s[j]), 1), "offset": round(off, 1), "xy": loc(mv_xy(q)),
+                                                    "src": "f1 timing circuit data (MultiViewer)"})
 # ---------------- pit lane ----------------
 pit_raw = way_pts(N, W, [33742214, 178416729, 178416733])
 from scipy.interpolate import splprep, splev
@@ -107,6 +114,21 @@ straight_mode = [
 ]
 for z_ in straight_mode: z_["src"] = "estimate (FIA names the 4 zones; distances estimated)"
 
+# ---------------- real racing line: median lateral position of the 22 fastest 2026 Q laps ----------------
+offs = [[] for _ in range(n)]
+for v in F.values():
+    for q in v["loc"]:
+        xy = utm(q); j = kd.query(xy)[1]; offs[j].append(float(np.dot(xy - P[j], Nl[j])))
+binned = np.full(n, np.nan)
+for j in range(n):
+    w = [o for k in range(j - 6, j + 7) for o in offs[k % n]]
+    if len(w) >= 5: binned[j] = np.median(w)
+ii = np.arange(n); ok = ~np.isnan(binned)
+rl = np.interp(ii, ii[ok], binned[ok], period=n)
+rl = gaussian_filter1d(rl, 8, mode="wrap")
+rl = np.clip(rl, -np.array(z["wr"]) + 1.0, np.array(z["wl"]) - 1.0)
+racing_line = {"offset": [round(float(v), 2) for v in rl], "src": "openf1 (median of 22 fastest 2026 Q laps, position data ~3.7 Hz, smoothed 8 m)"}
+
 # ---------------- grid (22 slots, pole on the left, 8 m stagger) ----------------
 grid = []
 for k in range(22):
@@ -161,14 +183,15 @@ track = {
             # lateral offsets from the pit path, + towards the garages (measured on the orthophoto at 4 stations)
             "wall_off": -3.0, "fast": [-2.75, 2.25], "work": [2.25, 8.75], "garage_front": 9.0,
             "src": "osm path; fia 368 m limit + garage order; ortho cross-sections (wall, lanes, garage front)"},
-    "grid": grid, "structures": structures,
+    "grid": grid, "structures": structures, "racing_line": racing_line, "marshal_sectors": marshal_sectors, "marshal_lights": marshal_lights,
+    "pit_loss_s": {**{k: float(v) for k, v in MV["pitLoss"].items()}, "src": "f1 timing circuit data (MultiViewer)"},
     "energy_fia": {"recharge_race_mj": 8.5, "recharge_race_overtake_mj": 9.0, "recharge_quali_mj": 7.0, "power_limited_distance_m": 2440,
                    "src": "fia PU information doc"},
 }
 json.dump(track, open("data/tracks/barcelona/track.json", "w"), separators=(",", ":"))
 print(f"L={L:.1f}  pit {PL:.0f} m, garages {gar0:.0f}-{gar1:.0f} on pit path, limit {lim0:.0f}-{lim1:.0f}")
 print("T1 braking s=%.0f -> pole s=%.0f" % (t1_brake, pole_s))
-for c in corners: print(f"T{c['n']:<2} {c['dir']} apex {c['apex_s']:7.1f}  R={c['radius_m']}")
+for c in corners: print(f"T{c['n']:<2} {c['dir']} official {c['official_s']:7.1f} apex {c['apex_s']:7.1f}  R={c['radius_m']} turn={c['turn_deg']}")
 for l in lines: print(l["id"], l["s"])
 for z_ in straight_mode: print("SM", z_)
 print("structures", len(structures))

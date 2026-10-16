@@ -36,7 +36,7 @@ async function load() {
   CARS = await j<Cars>("/data/cars/cars_2026.json");
   const q = await j<Record<string, { lap: number }>>("/data/cars/barcelona_2026_q_targets.json");
   gridOrder = Object.entries(q).sort((a, b) => a[1].lap - b[1].lap).map(e => e[0]);     // real 2026 qualifying order
-  const teams = Object.fromEntries(Object.entries(CARS.teams).map(([k, t]) => [k, { code3: t.code3, body: t.livery.body }]));
+  const teams = Object.fromEntries(Object.entries(CARS.teams).map(([k, t]) => [k, { code3: t.code3, body: t.livery.primary }]));
   R = new TrackRenderer(T, render, teams);
   const qp = new URLSearchParams(location.search);                                        // ?x=..&y=..&z=.. opens at a place
   if (qp.has("x")) { view.x = +qp.get("x")!; view.y = +qp.get("y")!; view.z = +(qp.get("z") ?? 4); }
@@ -72,7 +72,7 @@ async function ensurePhysMap() {
 
 function draw() {
   if (!R) return;
-  R.draw(ctx, view, { structures: $("lyrNames").checked, lines: $("lyrLines").checked, straightMode: $("lyrLines").checked, grid: $("lyrPit").checked });
+  R.draw(ctx, view, { structures: true, lines: $("lyrLines").checked, straightMode: $("lyrLines").checked, grid: $("lyrPit").checked });
   const sx = (x: number) => (x - view.x) * view.z + canvas.width / 2, sy = (y: number) => -(y - view.y) * view.z + canvas.height / 2;
   if ($("lyrPhoto").checked && photo && photoMeta) {
     ctx.globalAlpha = 0.85; const ox = photoMeta.x0 - T.origin_utm31n[0], oy = photoMeta.y1 - T.origin_utm31n[1];
@@ -103,7 +103,7 @@ function drawGridCars() {
       tyreR: { w: CARS.regs.tyre_rear.width_mm / 1000, d: CARS.regs.tyre_rear.diameter_mm / 1000 },
       trackF: tm.physics.track_front_mm / 1000, trackR: tm.physics.track_rear_mm / 1000 };
     ctx.save(); ctx.translate(g.xy[0], g.xy[1]); ctx.rotate(R.heading(i)); ctx.scale(1, -1);   // car art is drawn y-down
-    drawCar(ctx, shape, { livery: tm.livery, helmet: d.helmet, tcam: d.tcam, number: d.num, tyreColor: "#ef4444" }); ctx.restore();
+    drawCar(ctx, shape, { team: d.team, livery: tm.livery, helmet: d.helmet, tcam: d.tcam, number: d.num, tyreColor: "#ef4444" }); ctx.restore();
   });
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   if (view.z > 4) {

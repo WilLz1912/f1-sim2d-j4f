@@ -35,6 +35,8 @@ for it in range(2):
     C = P + Nl * ((wl - wr) / 2)[:, None]
     P, T, Nl, s, L = resample_closed(C[::4], 1.0, smooth=0.05)
 wl, wr = scan_edges(P, Nl)
+from scipy.ndimage import gaussian_filter1d
+wl, wr = gaussian_filter1d(wl, 3.0, mode="wrap"), gaussian_filter1d(wr, 3.0, mode="wrap")   # painted edge lines are smooth curves
 print(f"centreline {L:.1f} m, width median {np.median(wl + wr):.2f} (p5 {np.percentile(wl + wr, 5):.2f}, p95 {np.percentile(wl + wr, 95):.2f})")
 
 # --- kerbs: contiguous red/white band starting at the track edge ---
@@ -67,6 +69,19 @@ def scan_kerb(sign, edge):
         if (lab == k).sum() < 6: width[lab == k] = 0
     return width
 kl, kr = scan_kerb(+1, wl), scan_kerb(-1, wr)
+def tidy_kerb(k):
+    """One constant width per kerb (its median), drop kerbs shorter than 8 m, close gaps under 4 m."""
+    on = k > 0
+    for _ in range(2):                                         # close short gaps
+        lab = np.cumsum(np.diff(np.concatenate([[0], (~on).astype(int)])) == 1) * (~on)
+        for g in range(1, lab.max() + 1):
+            if (lab == g).sum() < 4: on[lab == g] = True
+    out = np.zeros_like(k); lab = np.cumsum(np.diff(np.concatenate([[0], on.astype(int)])) == 1) * on
+    for g in range(1, lab.max() + 1):
+        m = lab == g
+        if m.sum() >= 8: out[m] = np.round(np.median(k[m][k[m] > 0]) * 4) / 4 if (k[m] > 0).any() else 0
+    return out
+kl, kr = tidy_kerb(kl), tidy_kerb(kr)
 
 # --- timing lines from OpenF1 (22 fastest laps of Q 2026) ---
 F = json.load(open("data/openf1/s11303_fastest_laps.json"))

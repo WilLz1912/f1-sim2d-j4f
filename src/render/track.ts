@@ -12,16 +12,19 @@ export interface TrackData {
     boxes: { team: string; pit_s: number; stop_xy: [number, number]; garage_xy: [number, number] }[] };
   grid: { pos: number; s: number; offset: number; xy: [number, number] }[];
   structures: { kind: string; name: string; pts: [number, number][] }[];
+  racing_line?: { offset: number[] };
 }
-export interface RenderData { domain: number[][][]; asphalt: number[][][]; paint: number[][][]; gravel: number[][][] }
+export interface RenderData { domain: number[][][]; asphalt: number[][][]; paint: number[][][]; gravel: number[][][]; trees?: number[][][]; barriers?: number[][] }
 export interface View { x: number; y: number; z: number }   // world point at screen centre, pixels per metre
 export interface TeamLook { code3: string; body: string }
 
 const COL = {
-  bg: "#0a0e14", building: "#121826", buildingEdge: "#1e293b", grandstand: "#172033",
-  grass: "#144327", grassEdge: "#195431", infield: "#0d1f16", asphalt: "#465163", paint: "#2e7d5b", gravel: "#d4a359",
-  tecpro: "#ef4444", track: "#2d3748", edge: "#f8fafc", kerbR: "#ef4444", kerbW: "#f8fafc",
-  pitFast: "#293548", pitWork: "#1e3a8a", pitWall: "#38bdf8", garage: "#0f172a", garageEdge: "#475569",
+  bg: "#0b0f14", ground: "#0f2419", building: "#1b2230", buildingEdge: "#2b3546", grandstand: "#25304a", paddock: "#1e2530",
+  grass: "#17482c", grassStripe: "#194d2f", tree: "#0e3a22", treeRim: "#14502f",
+  asphalt: "#4a525e", paint: "#2c8a62", gravel: "#d2a65e", gravelDot: "#b88c47",
+  track: "#2a2e35", groove: "rgba(10,12,16,0.35)", edge: "#f4f6f8", kerbR: "#e23a3a", kerbW: "#f4f6f8",
+  tecproW: "#f2f2f2", tecproR: "#d92f2f", barrierEdge: "rgba(0,0,0,0.55)",
+  pitFast: "#30363f", pitWork: "#203a7a", pitWall: "#c9ced6", garage: "#121826", garageEdge: "#3b475c",
   straightMode: "rgba(56,189,248,0.10)",
 };
 
@@ -43,7 +46,11 @@ export class TrackRenderer {
     const polys = (rs: number[][][]) => { const p = new Path2D(); for (const poly of rs) for (const ring of poly) ringTo(p, ring); return p; };
     this.paths.domain = polys(R.domain);
     this.paths.infield = new Path2D(); for (const poly of R.domain) ringTo(this.paths.infield, poly[0]);   // outer rings only
-    this.paths.asphalt = polys(R.asphalt); this.paths.paint = polys(R.paint); this.paths.gravel = polys(R.gravel);
+    this.paths.asphalt = polys(R.asphalt); this.paths.paint = polys(R.paint); this.paths.gravel = polys(R.gravel); this.paths.trees = polys(R.trees ?? []);
+    if (T.racing_line) this.paths.groove = this.offsetPath(i => T.racing_line!.offset[i], true);
+    this.grassPat = makePattern(32, (g, s) => { g.fillStyle = COL.grass; g.fillRect(0, 0, s, s); g.fillStyle = COL.grassStripe; g.fillRect(0, 0, s, s / 2); });
+    this.gravelPat = makePattern(32, (g, s) => { g.fillStyle = COL.gravel; g.fillRect(0, 0, s, s); g.fillStyle = COL.gravelDot;
+      for (let k = 0; k < 40; k++) { const h = Math.imul(k + 1, 2654435761) >>> 0; g.fillRect(h % s, (h >>> 8) % s, 1.5, 1.5); } });
     this.paths.buildings = new Path2D(); this.paths.grandstands = new Path2D(); this.paths.paddock = new Path2D(); this.paths.tower = new Path2D();
     for (const s of T.structures) {
       const key = { building: "buildings", grandstand: "grandstands", paddock: "paddock", control_tower: "tower" }[s.kind];
@@ -59,7 +66,17 @@ export class TrackRenderer {
     this.paths.edgeL = this.offsetPath(i => st.w_left[i], true); this.paths.edgeR = this.offsetPath(i => -st.w_right[i], true);
     // tyre/tecpro barriers; where the barrier is the pit wall the pit renderer draws it instead
     const nearPit = (x: number, y: number) => T.pit.path.some(q => (q[0] - x) ** 2 + (q[1] - y) ** 2 < (-T.pit.wall_off + 6) ** 2);
-    this.paths.barrierL = this.offsetPath(i => st.barrier_left[i], true, nearPit); this.paths.barrierR = this.offsetPath(i => -st.barrier_right[i], true, nearPit);
+    // barriers = boundary rings of the drivable area (same geometry the physics uses)
+    const bar = new Path2D();
+    for (const ring of R.barriers ?? []) {
+      let pen = false;
+      for (let k = 0; k < ring.length; k += 2) {
+        const x = ring[k], y = ring[k + 1];
+        if (nearPit(x, y)) { pen = false; continue; }
+        pen ? bar.lineTo(x, y) : bar.moveTo(x, y); pen = true;
+      }
+    }
+    this.paths.barriers = bar;
     // kerbs: 1 m blocks alternating red / white from the track edge outward
     for (let i = 0; i < this.n; i++) {
       const j = (i + 1) % this.n;
@@ -97,6 +114,7 @@ export class TrackRenderer {
     this.pitOff = off;
   }
   private pitOff: (k: number, d: number) => [number, number];
+  private grassPat: CanvasPattern | null = null; private gravelPat: CanvasPattern | null = null;
   private nearGarages(k: number) {
     const P = this.T.pit.path[k];
     return this.T.pit.boxes.some(b => Math.hypot(b.stop_xy[0] - P[0], b.stop_xy[1] - P[1]) < 40);
@@ -128,30 +146,44 @@ export class TrackRenderer {
     const p = this.paths, px = 1 / v.z;
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = COL.bg; ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     this.worldTransform(ctx, v);
+    const pat = (pt: CanvasPattern | null, metres: number, fallback: string) => {   // pattern tile = `metres` world metres
+      if (!pt) return fallback; pt.setTransform(new DOMMatrix().scale(metres / 32)); return pt;
+    };
+    // land, trees, buildings
+    ctx.fillStyle = COL.ground; ctx.fill(p.infield);
+    ctx.fillStyle = "rgba(0,0,0,0.35)"; ctx.save(); ctx.translate(0.8, -0.8); ctx.fill(p.trees, "evenodd"); ctx.restore();
+    ctx.fillStyle = COL.tree; ctx.fill(p.trees, "evenodd"); ctx.strokeStyle = COL.treeRim; ctx.lineWidth = Math.max(0.3, px); ctx.stroke(p.trees);
     if (opt.structures !== false) {
-      ctx.fillStyle = "#151b24"; ctx.fill(this.paths.paddock);
+      ctx.fillStyle = COL.paddock; ctx.fill(p.paddock);
+      ctx.fillStyle = "rgba(0,0,0,0.4)"; ctx.save(); ctx.translate(1.5, -1.5); ctx.fill(p.buildings); ctx.fill(p.grandstands); ctx.restore();
       ctx.fillStyle = COL.building; ctx.fill(p.buildings); ctx.fillStyle = COL.grandstand; ctx.fill(p.grandstands);
-      ctx.strokeStyle = COL.buildingEdge; ctx.lineWidth = px; ctx.stroke(p.buildings); ctx.stroke(p.grandstands);
+      ctx.strokeStyle = COL.buildingEdge; ctx.lineWidth = Math.max(0.3, px); ctx.stroke(p.buildings); ctx.stroke(p.grandstands);
+      ctx.fillStyle = "#3a4558"; ctx.fill(p.tower); ctx.strokeStyle = "#e5e7eb"; ctx.stroke(p.tower);
     }
-    ctx.fillStyle = COL.infield; ctx.fill(p.infield);            // land inside the circuit, behind the barriers
-    if (opt.structures !== false) { ctx.fillStyle = "#1a212c"; ctx.fill(p.paddock); ctx.fillStyle = COL.building; ctx.fill(p.buildings); ctx.fillStyle = COL.grandstand; ctx.fill(p.grandstands); }
-    ctx.fillStyle = COL.grass; ctx.fill(p.domain, "evenodd");
-    if (opt.structures !== false) { ctx.fillStyle = "#334155"; ctx.fill(p.tower); ctx.strokeStyle = "#f8fafc"; ctx.lineWidth = Math.max(0.2, px); ctx.stroke(p.tower); }
+    // run-off
+    ctx.fillStyle = pat(this.grassPat, 12, COL.grass); ctx.fill(p.domain, "evenodd");
     ctx.fillStyle = COL.asphalt; ctx.fill(p.asphalt, "evenodd");
     ctx.fillStyle = COL.paint; ctx.fill(p.paint, "evenodd");
-    ctx.fillStyle = COL.gravel; ctx.fill(p.gravel, "evenodd");
-    ctx.strokeStyle = COL.tecpro; ctx.lineWidth = Math.max(0.6, 1.2 * px); ctx.stroke(p.barrierL); ctx.stroke(p.barrierR);
+    ctx.fillStyle = pat(this.gravelPat, 6, COL.gravel); ctx.fill(p.gravel, "evenodd");
+    // barriers: tecpro blocks (white with red bands) on a dark base
+    const bw = Math.max(0.9, 1.4 * px);
+    ctx.lineCap = "butt"; ctx.lineJoin = "round";
+    { const b = p.barriers;
+      ctx.strokeStyle = COL.barrierEdge; ctx.lineWidth = bw + Math.max(0.3, px); ctx.stroke(b);
+      ctx.strokeStyle = COL.tecproW; ctx.lineWidth = bw; ctx.stroke(b);
+      if (v.z > 1.2) { ctx.setLineDash([1.0, 1.0]); ctx.strokeStyle = COL.tecproR; ctx.stroke(b); ctx.setLineDash([]); } }
     // pit lane
     ctx.fillStyle = COL.pitWork; ctx.fill(p.pitWork); ctx.fillStyle = COL.pitFast; ctx.fill(p.pitFast);
-    ctx.strokeStyle = COL.pitWall; ctx.lineWidth = Math.max(0.5, 1.5 * px); ctx.stroke(p.pitWall);
+    ctx.strokeStyle = COL.barrierEdge; ctx.lineWidth = 0.9; ctx.stroke(p.pitWall); ctx.strokeStyle = COL.pitWall; ctx.lineWidth = 0.6; ctx.stroke(p.pitWall);
     this.drawPitDetail(ctx, v);
-    // kerbs, track, edges
+    // kerbs, asphalt, racing groove, white edge lines
     ctx.fillStyle = COL.kerbR; ctx.fill(this.kerbRed); ctx.fillStyle = COL.kerbW; ctx.fill(this.kerbWhite);
     ctx.fillStyle = COL.track; ctx.fill(p.track, "evenodd");
-    if (opt.straightMode !== false) { ctx.fillStyle = COL.straightMode; ctx.fill(p.straightMode); }
-    ctx.strokeStyle = COL.edge; ctx.lineWidth = Math.max(0.15, 1 * px); ctx.stroke(p.edgeL); ctx.stroke(p.edgeR);
+    if (p.groove) { ctx.strokeStyle = COL.groove; ctx.lineWidth = 2.2; ctx.stroke(p.groove); }
+    if (opt.straightMode) { ctx.fillStyle = COL.straightMode; ctx.fill(p.straightMode); }
+    ctx.strokeStyle = COL.edge; ctx.lineWidth = Math.max(0.15, 0.9 * px); ctx.stroke(p.edgeL); ctx.stroke(p.edgeR);
     if (opt.grid !== false) this.drawGrid(ctx, v);
-    if (opt.lines !== false) this.drawLines(ctx, v);
+    this.drawLines(ctx, v, !!opt.lines);
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     this.drawCornerBadges(ctx, v);
   }
@@ -198,10 +230,11 @@ export class TrackRenderer {
     void v;
   }
 
-  private drawLines(ctx: CanvasRenderingContext2D, v: View) {
+  private drawLines(ctx: CanvasRenderingContext2D, v: View, data: boolean) {
     const st = this.T.stations;
-    const col: Record<string, string> = { control: "#ffffff", sector1: "#facc15", sector2: "#facc15", speed_trap: "#a78bfa",
-      overtake_detection: "#22d3ee", overtake_activation: "#22d3ee" };
+    const col: Record<string, string> = data
+      ? { control: "#ffffff", start: "#ffffff", sector1: "#facc15", sector2: "#facc15", speed_trap: "#a78bfa", overtake_detection: "#22d3ee", overtake_activation: "#22d3ee" }
+      : { control: "#ffffff", start: "#ffffff" };   // only the lines painted on the real track
     for (const l of this.T.lines) {
       const c = col[l.id]; if (!c) continue;
       const i = this.idx(l.s), a = this.pt(i, st.w_left[i]), b = this.pt(i, -st.w_right[i]);
@@ -230,6 +263,11 @@ export class TrackRenderer {
   }
 }
 
+function makePattern(size: number, paint: (g: CanvasRenderingContext2D, s: number) => void): CanvasPattern | null {
+  if (typeof document === "undefined") return null;
+  const c = document.createElement("canvas"); c.width = c.height = size; const g = c.getContext("2d")!; paint(g, size);
+  return g.createPattern(c, "repeat");
+}
 function ringTo(p: Path2D, ring: number[]) { for (let k = 0; k < ring.length; k += 2) (k ? p.lineTo(ring[k], ring[k + 1]) : p.moveTo(ring[k], ring[k + 1])); p.closePath(); }
 function ribbon(p: Path2D, n: number, a: (k: number) => [number, number], b: (k: number) => [number, number], keep: (k: number) => boolean = () => true) {
   let open = false, start = 0;

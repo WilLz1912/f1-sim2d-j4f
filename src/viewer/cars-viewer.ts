@@ -29,14 +29,14 @@ for (const [key, t] of order) {
     </table>`;
   const row = el.querySelector(".row")!;
   for (const d of drivers) {
-    const cv = document.createElement("canvas"); cv.width = 250; cv.height = 110; row.appendChild(cv);
-    const g = cv.getContext("2d")!, k = 40;   // 40 px per metre
+    const cv = document.createElement("canvas"); cv.width = 160; cv.height = 70; row.appendChild(cv);
+    const g = cv.getContext("2d")!, k = 25;   // 25 px per metre
     const shape: CarShape = { length: t.length_mm.v / 1000, width: t.width_mm.v / 1000, wheelbase: t.wheelbase_mm.v / 1000,
       tyreF: { w: C.regs.tyre_front.width_mm / 1000, d: C.regs.tyre_front.diameter_mm / 1000 },
       tyreR: { w: C.regs.tyre_rear.width_mm / 1000, d: C.regs.tyre_rear.diameter_mm / 1000 },
       trackF: t.physics.track_front_mm / 1000, trackR: t.physics.track_rear_mm / 1000 };
     g.translate(cv.width / 2, cv.height / 2); g.scale(k, k);
-    drawCar(g, shape, { livery: t.livery, helmet: d.helmet, tcam: d.tcam, number: d.num, tyreColor: "#ef4444" });
+    drawCar(g, shape, { team: key, livery: t.livery, helmet: d.helmet, tcam: d.tcam, number: d.num, tyreColor: "#ef4444" });
   }
   grid.appendChild(el);
 }

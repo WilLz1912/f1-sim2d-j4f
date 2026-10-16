@@ -73,6 +73,11 @@ def scan_barrier(sign, edge, kerb):
     for _ in range(2):                                                 # continuity: barrier moves <= 0.35 m per metre
         for i in range(1, 2 * len(dist)): j = i % len(dist); dist[j] = min(dist[j], dist[j - 1] + 0.35)
         for i in range(2 * len(dist) - 2, -1, -1): j = i % len(dist); dist[j] = min(dist[j], dist[(j + 1) % len(dist)] + 0.35)
+    from scipy.ndimage import gaussian_filter1d
+    dist = gaussian_filter1d(dist, 5.0, mode="wrap")                  # barriers are built as smooth runs
+    for _ in range(2):
+        for i in range(1, 2 * len(dist)): j = i % len(dist); dist[j] = min(dist[j], dist[j - 1] + 0.2)
+        for i in range(2 * len(dist) - 2, -1, -1): j = i % len(dist); dist[j] = min(dist[j], dist[(j + 1) % len(dist)] + 0.2)
     return dist                                                        # measured from the kerb's outer edge
 bl, br = scan_barrier(+1, wl, kl), scan_barrier(-1, wr, kr)
 BL, BR = P + Nl * (wl + kl + bl)[:, None], P - Nl * (wr + kr + br)[:, None]
