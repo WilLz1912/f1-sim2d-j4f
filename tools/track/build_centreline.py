@@ -35,7 +35,7 @@ for it in range(2):
     C = P + Nl * ((wl - wr) / 2)[:, None]
     P, T, Nl, s, L = resample_closed(C[::4], 1.0, smooth=0.05)
 wl, wr = scan_edges(P, Nl)
-from scipy.ndimage import gaussian_filter1d
+from scipy.ndimage import gaussian_filter1d, percentile_filter
 wl, wr = gaussian_filter1d(wl, 3.0, mode="wrap"), gaussian_filter1d(wr, 3.0, mode="wrap")   # painted edge lines are smooth curves
 print(f"centreline {L:.1f} m, width median {np.median(wl + wr):.2f} (p5 {np.percentile(wl + wr, 5):.2f}, p95 {np.percentile(wl + wr, 95):.2f})")
 
@@ -120,6 +120,58 @@ for key, fld in (("i1", "i1_speed"), ("i2", "i2_speed"), ("st", "st_speed")):
                 if ts(v["lap"]["date_start"]) <= tc <= ts(v["lap"]["date_start"]) + v["lap"]["lap_duration"]:
                     i = int(lapd(s_at(pos_at(v["loc"], tc)))) % int(L); hist[max(0, i - 25):i + 25] += 1
     sm = np.convolve(hist, np.ones(31) / 31, "same"); trap[key] = int(np.argmax(sm)); print(f"{key} speed point ~ lap {trap[key]} m (votes {sm.max():.1f}/{len(F)})")
+
+# The painted grid boxes (start straight, ~250 m behind to ~150 m past the control line) read as track edges 2-4.5 m
+# from the centre. The straight has a constant width, so inside that zone the width is taken from the clean
+# measurements just before and after it.
+def fix_grid_zone(w):
+    n = len(w); i = np.arange(n); d = (i - int(round(s_ctrl))) % n; zone = (d > n - 260) | (d < 200)
+    good = ~zone; return np.interp(i, i[good], w[good], period=n)
+wl, wr = fix_grid_zone(wl), fix_grid_zone(wr)
+# Overpasses (OSM footbridges, the VIP Rooftop building) hide the track on the orthophoto; with relief displacement
+# and shadow the hidden stretch can sit ~50 m from the bridge axis. Within 120 m of one, a dip below 80 % of the
+# local width is an occlusion and is interpolated from the measurements either side.
+from shapely.geometry import LineString
+from scipy.ndimage import percentile_filter
+cl = LineString(np.vstack([P, P[:1]])); bridge_idx = []
+for wid, w_ in W.items():
+    tg = w_.get("tags", {})
+    if not (tg.get("bridge") or tg.get("layer") in ("1", "2")): continue
+    q = way_pts(N, W, [wid])
+    if len(q) < 2: continue
+    hit = LineString(q).intersection(cl)
+    for p_ in ([hit] if hit.geom_type == "Point" else list(getattr(hit, "geoms", []))):
+        if p_.geom_type == "Point": bridge_idx.append(int(kd.query([p_.x, p_.y])[1]))
+def fix_bridges(w):
+    n = len(w); i = np.arange(n); near = np.zeros(n, bool)
+    for b in bridge_idx: near |= np.abs((i - b + n // 2) % n - n // 2) <= 120
+    bad = near & (w < 0.8 * percentile_filter(w, 80, size=301, mode="wrap"))
+    return np.interp(i, i[~bad], w[~bad], period=n), int(bad.sum())
+(wl, b1), (wr, b2) = fix_bridges(wl), fix_bridges(wr)
+print(f"bridges at s(raw) {sorted(bridge_idx)}; occluded widths fixed L {b1} m, R {b2} m")
+# Cross-check with the TUM racetrack database (independent satellite measurement, pre-2023 layout; points that do
+# not lie on our centreline, e.g. the old chicane, are ignored). Our edges include the white line: +0.425 m a side.
+Tm = np.loadtxt("data/geometry/dl_tum/Catalunya.csv", delimiter=",", comments="#"); Xt = Tm[:, :2]
+best = None
+for ang in range(0, 360, 5):
+    a_ = np.radians(ang); Rm = np.array([[np.cos(a_), -np.sin(a_)], [np.sin(a_), np.cos(a_)]]); tv = P.mean(0) - Xt.mean(0) @ Rm.T
+    for _ in range(30):
+        d_, j_ = kd.query(Xt @ Rm.T + tv); m_ = d_ < np.percentile(d_, 80); A_, B_ = Xt[m_], P[j_[m_]]
+        ca, cb = A_.mean(0), B_.mean(0); U, S_, Vt = np.linalg.svd((A_ - ca).T @ (B_ - cb))
+        Rm = Vt.T @ np.diag([1, np.sign(np.linalg.det(Vt.T @ U.T))]) @ U.T; tv = cb - ca @ Rm.T
+    d_, j_ = kd.query(Xt @ Rm.T + tv)
+    if best is None or np.median(d_) < best[0]: best = (np.median(d_), d_, j_)
+_, d_, j_ = best; n_ = len(P)
+tl, trr = np.full(n_, np.nan), np.full(n_, np.nan)
+for k_ in range(len(Xt)):
+    if d_[k_] < 2.0:
+        trr[j_[k_]], tl[j_[k_]] = Tm[k_, 2] + 0.425, Tm[k_, 3] + 0.425
+ii = np.arange(n_)
+for arr in (tl, trr):
+    ok_ = ~np.isnan(arr); arr[:] = np.where(np.abs(np.interp(ii, ii[ok_], np.arange(n_)[ok_]) - ii) < 15, np.interp(ii, ii[ok_], arr[ok_]), np.nan)
+fixL = ~np.isnan(tl) & (wl < tl - 1.0); fixR = ~np.isnan(trr) & (wr < trr - 1.0)
+wl, wr = np.where(fixL, tl, wl), np.where(fixR, trr, wr)
+print(f"TUM cross-check (median {best[0]:.2f} m): widths replaced L {int(fixL.sum())} m, R {int(fixR.sum())} m")
 
 # re-index everything so that s=0 is the control line
 k0 = int(round(s_ctrl)) % len(P)

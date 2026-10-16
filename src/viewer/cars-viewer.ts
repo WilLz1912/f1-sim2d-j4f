@@ -13,7 +13,7 @@ const C: Cars = await (await fetch("/data/cars/cars_2026.json")).json();
 const order = Object.entries(C.teams).sort((a, b) => a[1].barcelona_2026_q.lap - b[1].barcelona_2026_q.lap);
 const pole = order[0][1].barcelona_2026_q.lap;
 const grid = document.getElementById("grid")!;
-const est = (s: Spec, unit: string) => `<span class="${/estimate/.test(s.src) ? "est" : ""}" title="${s.src}">${s.v} ${unit}</span>`;
+const est = (s: Spec, unit: string) => `<span class="${/not published|fia max/.test(s.src) ? "est" : ""}" title="${s.src}">${s.v} ${unit}</span>`;
 for (const [key, t] of order) {
   const drivers = C.drivers.filter(d => d.team === key);
   const el = document.createElement("div"); el.className = "team";

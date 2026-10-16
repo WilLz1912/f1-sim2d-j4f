@@ -164,11 +164,11 @@
    },
    "wheelbase_mm": {
     "v": 3400,
-    "src": "estimate"
+    "src": "fia max; every team that publishes it (Mercedes, Haas, Audi, Racing Bulls) is at the max"
    },
    "length_mm": {
-    "v": 5480,
-    "src": "estimate"
+    "v": 5472,
+    "src": "mean of published lengths (Mercedes 5505, Audi 5440); not published by this team"
    },
    "width_mm": {
     "v": 1900,
@@ -232,15 +232,15 @@
    "gearbox": "McLaren",
    "mass_kg": {
     "v": 770,
-    "src": "estimate (not published)"
+    "src": "not published; 8 of 10 publishing teams list 770 kg"
    },
    "wheelbase_mm": {
     "v": 3400,
-    "src": "estimate"
+    "src": "fia max; every team that publishes it (Mercedes, Haas, Audi, Racing Bulls) is at the max"
    },
    "length_mm": {
-    "v": 5480,
-    "src": "estimate"
+    "v": 5472,
+    "src": "mean of published lengths (Mercedes 5505, Audi 5440); not published by this team"
    },
    "width_mm": {
     "v": 1900,
@@ -307,11 +307,11 @@
    },
    "wheelbase_mm": {
     "v": 3400,
-    "src": "estimate"
+    "src": "fia max; every team that publishes it (Mercedes, Haas, Audi, Racing Bulls) is at the max"
    },
    "length_mm": {
-    "v": 5480,
-    "src": "estimate"
+    "v": 5472,
+    "src": "mean of published lengths (Mercedes 5505, Audi 5440); not published by this team"
    },
    "width_mm": {
     "v": 1900,
@@ -379,11 +379,11 @@
    },
    "wheelbase_mm": {
     "v": 3400,
-    "src": "estimate"
+    "src": "fia max; every team that publishes it (Mercedes, Haas, Audi, Racing Bulls) is at the max"
    },
    "length_mm": {
-    "v": 5480,
-    "src": "estimate"
+    "v": 5472,
+    "src": "mean of published lengths (Mercedes 5505, Audi 5440); not published by this team"
    },
    "width_mm": {
     "v": 1900,
@@ -453,8 +453,8 @@
     "src": "team/wiki"
    },
    "length_mm": {
-    "v": 5480,
-    "src": "estimate"
+    "v": 5472,
+    "src": "mean of published lengths (Mercedes 5505, Audi 5440); not published by this team"
    },
    "width_mm": {
     "v": 1900,
@@ -522,11 +522,11 @@
    },
    "wheelbase_mm": {
     "v": 3400,
-    "src": "estimate"
+    "src": "fia max; every team that publishes it (Mercedes, Haas, Audi, Racing Bulls) is at the max"
    },
    "length_mm": {
-    "v": 5480,
-    "src": "estimate"
+    "v": 5472,
+    "src": "mean of published lengths (Mercedes 5505, Audi 5440); not published by this team"
    },
    "width_mm": {
     "v": 1900,
@@ -596,8 +596,8 @@
     "src": "team/wiki"
    },
    "length_mm": {
-    "v": 5480,
-    "src": "estimate"
+    "v": 5472,
+    "src": "mean of published lengths (Mercedes 5505, Audi 5440); not published by this team"
    },
    "width_mm": {
     "v": 1900,
@@ -737,11 +737,11 @@
    },
    "wheelbase_mm": {
     "v": 3400,
-    "src": "estimate"
+    "src": "fia max; every team that publishes it (Mercedes, Haas, Audi, Racing Bulls) is at the max"
    },
    "length_mm": {
-    "v": 5480,
-    "src": "estimate"
+    "v": 5472,
+    "src": "mean of published lengths (Mercedes 5505, Audi 5440); not published by this team"
    },
    "width_mm": {
     "v": 1900,
@@ -804,15 +804,15 @@
    "gearbox": "Ferrari",
    "mass_kg": {
     "v": 770,
-    "src": "estimate (not published)"
+    "src": "not published; 8 of 10 publishing teams list 770 kg"
    },
    "wheelbase_mm": {
     "v": 3400,
-    "src": "estimate"
+    "src": "fia max; every team that publishes it (Mercedes, Haas, Audi, Racing Bulls) is at the max"
    },
    "length_mm": {
-    "v": 5480,
-    "src": "estimate"
+    "v": 5472,
+    "src": "mean of published lengths (Mercedes 5505, Audi 5440); not published by this team"
    },
    "width_mm": {
     "v": 1900,

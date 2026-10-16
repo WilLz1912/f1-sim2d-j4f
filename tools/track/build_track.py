@@ -103,16 +103,33 @@ lines = [
     {"id": "sc2", "s": round(float(pit_track_s[-1]), 1), "src": "estimate (at pit exit merge)"},
     {"id": "t1_braking_ref", "s": round(t1_brake, 1), "src": "openf1 (first brake, median of 22 Q laps)"},
 ]
-# Straight Mode zones (FIA: pit straight, T3-T4, T5-T7, T9-T10). Exact lap distances not published in the
-# documents we have -> estimate: from 60 m after the previous corner apex to 120 m before the next apex.
-def cs(nn): return next(c["apex_s"] for c in corners if c["n"] == nn)
-straight_mode = [
-    {"from": round(cs(14) + 120, 1), "to": round(cs(1) - 170, 1), "name": "pit straight"},
-    {"from": round(cs(3) + 120, 1), "to": round(cs(4) - 120, 1), "name": "T3-T4"},
-    {"from": round(cs(5) + 60, 1), "to": round(cs(7) - 110, 1), "name": "T5-T7"},
-    {"from": round(cs(9) + 90, 1), "to": round(cs(10) - 150, 1), "name": "T9-T10"},
-]
-for z_ in straight_mode: z_["src"] = "estimate (FIA names the 4 zones; distances estimated)"
+# Straight Mode zones. FIA names them (pit straight, T3-T4, T5-T7, T9-T10) but the lap distances are not in the
+# documents we have. Straight Mode is only usable flat out, so each zone = the part of that straight where every one
+# of the 22 fastest 2026 Q laps is at full throttle (OpenF1 car data, mapped to s).
+flat = np.zeros(n); seen = np.zeros(n)
+for v in F.values():
+    lt = np.array([ts(q["date"]) for q in v["loc"]]); lxy = np.array([utm(q) for q in v["loc"]])
+    t0_, t1_ = ts(v["lap"]["date_start"]), ts(v["lap"]["date_start"]) + v["lap"]["lap_duration"]
+    car = [q for q in v["car"] if t0_ <= ts(q["date"]) <= t1_]
+    for q0, q1 in zip(car, car[1:]):
+        sa = s_of(np.array([np.interp(ts(q0["date"]), lt, lxy[:, 0]), np.interp(ts(q0["date"]), lt, lxy[:, 1])]))
+        sb = s_of(np.array([np.interp(ts(q1["date"]), lt, lxy[:, 0]), np.interp(ts(q1["date"]), lt, lxy[:, 1])]))
+        i0, i1 = int(sa / ds), int(sb / ds)
+        if (i1 - i0) % n > 200: continue
+        idx = np.arange(i0, i0 + (i1 - i0) % n + 1) % n
+        seen[idx] += 1; flat[idx] += 1 if (q0["throttle"] >= 98 and q1["throttle"] >= 98) else 0
+frac = np.where(seen > 0, flat / np.maximum(seen, 1), 0)
+def cs(nn): return next(c["official_s"] for c in corners if c["n"] == nn)
+def zone(name, a, b):
+    i = np.arange(int(a / ds), int(b / ds) + (n if b < a else 0)) % n; ok = frac[i] >= 0.95
+    best, cur, st_ = (0, 0, 0), 0, 0
+    for k, o in enumerate(ok):
+        if o: cur = cur + 1; st_ = k - cur + 1
+        else: cur = 0
+        if cur > best[0]: best = (cur, st_, k)
+    return {"name": name, "from": round(float(s[i[best[1]]]), 1), "to": round(float(s[i[best[2]]]), 1), "length_m": round(best[0] * ds),
+            "src": "fia (zone names) + openf1 (all 22 Q laps at full throttle)"}
+straight_mode = [zone("pit straight", cs(14), cs(1)), zone("T3-T4", cs(3), cs(4)), zone("T5-T7", cs(5), cs(7)), zone("T9-T10", cs(9), cs(10))]
 
 # ---------------- real racing line: median lateral position of the 22 fastest 2026 Q laps ----------------
 offs = [[] for _ in range(n)]
@@ -156,12 +173,6 @@ for i, w in W.items():
     t = w.get("tags", {})
     if t.get("name") in ("Paddock del Circuit", "In/Paddock"):
         structures.append({"kind": "paddock", "name": t["name"], "pts": [loc(p) for p in way_pts(N, W, [i])], "osm_way": i})
-# Race Direction sits on the first floor of the control tower (circuit fact sheets); its exact building is not in
-# the data we have -> estimate: the pit-exit end of the pit building, next to the chequered tower by the pit exit.
-pe, pi_ = pit_pt(gar1); g = pit_side(pi_); c = pe + g * 22.0; tv = pit[min(pi_ + 1, pn)] - pit[pi_]; tv /= np.linalg.norm(tv)
-structures.append({"kind": "control_tower", "name": "Race Control (ước tính)", "pts": [loc(c + tv * a + g * b) for a, b in ((-9, -5), (9, -5), (9, 5), (-9, 5))],
-                   "src": "estimate"})
-
 track = {
     "name": "Circuit de Barcelona-Catalunya", "layout": "2023+ (F1 2026)", "length_m": round(L, 1), "fia_length_m": FIA_L,
     "laps_race": 66, "direction": "clockwise",
