@@ -143,10 +143,12 @@ export class TrackRenderer {
   }
 
   private cache: { c: HTMLCanvasElement; z: number; x: number; y: number; key: string } | null = null;
+  /** Margin of the cached layer around the viewport (share of its size); larger = fewer rebuilds for a moving camera. */
+  cachePad = 0.3;
   /** Static track layer rendered once into an offscreen canvas (viewport + 30 % margin) and blitted each frame.
    *  Rebuilt only when the zoom or the options change or the view pans past the margin. */
   drawCached(ctx: CanvasRenderingContext2D, v: View, opt: { structures?: boolean; straightMode?: boolean; lines?: boolean; grid?: boolean } = {}) {
-    const W = ctx.canvas.width, H = ctx.canvas.height, pad = 0.3, key = JSON.stringify(opt) + W + "x" + H;
+    const W = ctx.canvas.width, H = ctx.canvas.height, pad = this.cachePad, key = JSON.stringify(opt) + W + "x" + H;
     const c0 = this.cache;
     if (!c0 || c0.z !== v.z || c0.key !== key || Math.abs(v.x - c0.x) * v.z > W * pad || Math.abs(v.y - c0.y) * v.z > H * pad) {
       const c = c0?.c ?? document.createElement("canvas");

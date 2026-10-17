@@ -1,0 +1,214 @@
+{
+ "track": "barcelona",
+ "session": "2026 Barcelona GP qualifying (OpenF1 11303)",
+ "teams": {
+  "alpine": {
+   "v_per_rpm_ms": {
+    "3": 0.003877,
+    "4": 0.004659,
+    "5": 0.005447,
+    "6": 0.006183,
+    "7": 0.007169,
+    "8": 0.008075
+   },
+   "n_samples": {
+    "3": 3,
+    "4": 15,
+    "5": 16,
+    "6": 78,
+    "7": 69,
+    "8": 57
+   },
+   "upshift_rpm": 11280,
+   "src": "openf1 car data (speed / rpm at full throttle, steady gear; median over both drivers' fastest Q laps)"
+  },
+  "aston": {
+   "v_per_rpm_ms": {
+    "3": 0.00391,
+    "4": 0.004822,
+    "5": 0.005642,
+    "6": 0.006425,
+    "7": 0.007223,
+    "8": 0.008027
+   },
+   "n_samples": {
+    "3": 10,
+    "4": 23,
+    "5": 49,
+    "6": 95,
+    "7": 53,
+    "8": 53
+   },
+   "upshift_rpm": 10897,
+   "src": "openf1 car data (speed / rpm at full throttle, steady gear; median over both drivers' fastest Q laps)"
+  },
+  "audi": {
+   "v_per_rpm_ms": {
+    "4": 0.004482,
+    "5": 0.005535,
+    "6": 0.00645,
+    "7": 0.007566,
+    "8": 0.008443
+   },
+   "n_samples": {
+    "4": 21,
+    "5": 42,
+    "6": 90,
+    "7": 73,
+    "8": 41
+   },
+   "upshift_rpm": 11476,
+   "src": "openf1 car data (speed / rpm at full throttle, steady gear; median over both drivers' fastest Q laps)"
+  },
+  "cadillac": {
+   "v_per_rpm_ms": {
+    "3": 0.003634,
+    "4": 0.004433,
+    "5": 0.005251,
+    "6": 0.006123,
+    "7": 0.007021,
+    "8": 0.007935
+   },
+   "n_samples": {
+    "3": 5,
+    "4": 20,
+    "5": 34,
+    "6": 73,
+    "7": 62,
+    "8": 59
+   },
+   "upshift_rpm": 11031,
+   "src": "openf1 car data (speed / rpm at full throttle, steady gear; median over both drivers' fastest Q laps)"
+  },
+  "ferrari": {
+   "v_per_rpm_ms": {
+    "4": 0.004451,
+    "5": 0.005271,
+    "6": 0.006127,
+    "7": 0.007034,
+    "8": 0.007953
+   },
+   "n_samples": {
+    "3": 1,
+    "4": 21,
+    "5": 28,
+    "6": 44,
+    "7": 109,
+    "8": 61
+   },
+   "upshift_rpm": 11468,
+   "src": "openf1 car data (speed / rpm at full throttle, steady gear; median over both drivers' fastest Q laps)"
+  },
+  "haas": {
+   "v_per_rpm_ms": {
+    "4": 0.004438,
+    "5": 0.00525,
+    "6": 0.00611,
+    "7": 0.007015,
+    "8": 0.007932
+   },
+   "n_samples": {
+    "3": 2,
+    "4": 12,
+    "5": 31,
+    "6": 61,
+    "7": 80,
+    "8": 62
+   },
+   "upshift_rpm": 11082,
+   "src": "openf1 car data (speed / rpm at full throttle, steady gear; median over both drivers' fastest Q laps)"
+  },
+  "mclaren": {
+   "v_per_rpm_ms": {
+    "4": 0.0042,
+    "5": 0.004882,
+    "6": 0.005702,
+    "7": 0.006574,
+    "8": 0.00762
+   },
+   "n_samples": {
+    "4": 4,
+    "5": 12,
+    "6": 29,
+    "7": 87,
+    "8": 106
+   },
+   "upshift_rpm": 11339,
+   "src": "openf1 car data (speed / rpm at full throttle, steady gear; median over both drivers' fastest Q laps)"
+  },
+  "mercedes": {
+   "v_per_rpm_ms": {
+    "3": 0.003847,
+    "4": 0.004657,
+    "5": 0.005477,
+    "6": 0.006209,
+    "7": 0.007176,
+    "8": 0.008068
+   },
+   "n_samples": {
+    "3": 5,
+    "4": 16,
+    "5": 32,
+    "6": 79,
+    "7": 90,
+    "8": 62
+   },
+   "upshift_rpm": 11419,
+   "src": "openf1 car data (speed / rpm at full throttle, steady gear; median over both drivers' fastest Q laps)"
+  },
+  "redbull": {
+   "v_per_rpm_ms": {
+    "4": 0.004322,
+    "5": 0.005178,
+    "6": 0.006057,
+    "7": 0.00693,
+    "8": 0.007772
+   },
+   "n_samples": {
+    "4": 11,
+    "5": 23,
+    "6": 50,
+    "7": 105,
+    "8": 67
+   },
+   "upshift_rpm": 11430,
+   "src": "openf1 car data (speed / rpm at full throttle, steady gear; median over both drivers' fastest Q laps)"
+  },
+  "vcarb": {
+   "v_per_rpm_ms": {
+    "4": 0.004286,
+    "5": 0.005127,
+    "6": 0.006038,
+    "7": 0.006909,
+    "8": 0.007752
+   },
+   "n_samples": {
+    "4": 6,
+    "5": 16,
+    "6": 53,
+    "7": 103,
+    "8": 62
+   },
+   "upshift_rpm": 11398,
+   "src": "openf1 car data (speed / rpm at full throttle, steady gear; median over both drivers' fastest Q laps)"
+  },
+  "williams": {
+   "v_per_rpm_ms": {
+    "4": 0.004644,
+    "5": 0.005464,
+    "6": 0.006198,
+    "7": 0.007168,
+    "8": 0.008066
+   },
+   "n_samples": {
+    "4": 13,
+    "5": 32,
+    "6": 67,
+    "7": 77,
+    "8": 55
+   },
+   "upshift_rpm": 11146,
+   "src": "openf1 car data (speed / rpm at full throttle, steady gear; median over both drivers' fastest Q laps)"
+  }
+ }
+}

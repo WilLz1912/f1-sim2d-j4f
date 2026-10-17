@@ -52,3 +52,26 @@ phân tích). Người dùng chỉ đọc Python/SQL, nên thông số đặt tr
 
 Còn lại chưa có nguồn: kích thước chi tiết khí động và trọng tâm của từng xe (khớp ở bước vật lý từ dữ liệu
 thật), vị trí tháp Race Control (đã bỏ khỏi bản đồ).
+
+## M1: vật lý (17/10/2026)
+
+Lõi `src/sim/` (TypeScript, không đụng DOM), pipeline và cách kiểm tra ở `tools/physics/README.md`. Trang xem:
+`/physics.html` (một xe, tay đua AI hoặc bàn phím, xe "bóng" là vòng thật OpenF1, đồ thị tốc độ, năng lượng,
+gia tốc g, tải và mức dùng độ bám từng lốp).
+
+- Xe động lực học 2 trục 4 bánh, 500 bước/giây, tất định (cùng đầu vào cùng kết quả, đã có test). Một vòng mất
+  khoảng 0.3 s CPU, tức 22 xe chạy thời gian thực tốn chưa tới 1 % một nhân.
+- Luật năng lượng 2026 đúng tài liệu FIA Barcelona: đường cong MGU-K theo tốc độ (đọc từ biểu đồ vector trong PDF;
+  phân hạng dùng "Base - Overtake": 350 kW tới 337.5 km/h, về 0 ở 355 km/h), sạc tối đa 7 MJ/vòng phân hạng,
+  giảm công suất tối đa 100 kW/s ngoài các cửa sổ cho phép.
+- Dữ liệu thật mới: độ cao đường đua (OpenF1 z), tỉ số truyền từng đội (tốc độ/vòng tua), bản đồ MGU-K từng đội suy
+  ra từ gia tốc thật (thấy rõ kiểu "super clipping": xả đầu đoạn thẳng, sạc ở cuối).
+- Khớp từng đội với vòng nhanh nhất của đội: thời gian vòng khớp tới 0.02 s, sector lệch 0.04–0.6 s (S2 luôn hơi
+  nhanh, S1/S3 hơi chậm), sai số tốc độ trung bình 10–16 km/h, tốc độ tối đa lệch dưới 7 km/h. Cả 11 đội chạm biên
+  trên của CdA (1.3 m²) và ICE (420 kW): dữ liệu muốn xe cản và mạnh hơn mức công bố hợp lý. Phần lệch lớn nhất: T13/T14 (xe thật nhanh hơn 15–20 km/h, bán kính đo từ cả OSM lẫn
+  vị trí OpenF1 đều ~95 m, nghĩa là xe thật chịu ~5.5 g, chưa giải thích được), và các điểm phanh (dữ liệu 3.7 Hz
+  làm điểm phanh thật trông sớm hơn).
+- Đường đua tối ưu cho mô phỏng (`racing_line_sim`), vì đường thật OpenF1 quá thô để lấy bán kính.
+
+Việc tiếp theo (M2 gộp vào M1 một phần vì đã khớp từng đội): tay đua AI if-else (M3) dựng trên `driver.ts`
+(thêm tranh chấp, phòng thủ, vượt, sai lầm theo kỹ năng).

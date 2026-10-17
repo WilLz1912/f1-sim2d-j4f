@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Physics Lab · Barcelona 2026</title>
+  <style>
+    :root { --bg: #0a0e14; --panel: rgba(13, 18, 27, 0.92); --line: #263042; --text: #e5e7eb; --dim: #8b95a7; --accent: #00d7b6; --warn: #f59e0b; --bad: #ef4444; --good: #22c55e; }
+    html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font: 12px/1.35 system-ui, sans-serif; overflow: hidden; }
+    canvas#c { display: block; position: fixed; inset: 0; width: 100vw; height: 100vh; }
+    .panel { position: fixed; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+    .mono { font-family: "JetBrains Mono", Consolas, monospace; font-variant-numeric: tabular-nums; }
+    h1 { font-size: 13px; margin: 0 0 6px; letter-spacing: 0.02em; }
+    h2 { font-size: 11px; margin: 8px 0 4px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+    select, button { background: #111827; color: var(--text); border: 1px solid #374151; border-radius: 6px; padding: 3px 7px; font: inherit; cursor: pointer; }
+    button:hover, select:hover { border-color: #4b5563; }
+    button.on { border-color: var(--accent); color: var(--accent); }
+    label { display: block; margin: 2px 0; cursor: pointer; }
+    #ctrl { top: 10px; left: 10px; width: 270px; }
+    #ctrl .row { display: flex; gap: 5px; align-items: center; margin: 4px 0; flex-wrap: wrap; }
+    #ctrl .note { color: var(--dim); font-size: 11px; margin-top: 6px; }
+    #hud { top: 10px; right: 10px; width: 250px; }
+    .big { font-size: 34px; font-weight: 700; line-height: 1; }
+    .unit { color: var(--dim); font-size: 11px; margin-left: 3px; }
+    .bar { height: 7px; background: #1f2937; border-radius: 4px; overflow: hidden; margin: 2px 0 5px; position: relative; }
+    .bar > i { display: block; height: 100%; border-radius: 4px; }
+    .kv { display: grid; grid-template-columns: 1fr auto; gap: 1px 8px; }
+    .kv span:nth-child(odd) { color: var(--dim); }
+    #delta { font-size: 18px; font-weight: 700; }
+    #tyres { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px; width: 120px; margin: 2px auto 0; }
+    .tyre { height: 30px; border-radius: 5px; border: 1px solid #000; display: flex; align-items: flex-end; justify-content: center; font-size: 9px; color: #0b0f14; font-weight: 700; padding-bottom: 1px; }
+    #gg { display: block; margin: 0 auto; }
+    #tele { left: 10px; right: 10px; bottom: 10px; height: 190px; padding: 6px 10px; }
+    #tele canvas { width: 100%; height: 160px; display: block; }
+    #teleHead { display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; }
+    #teleHead .lg i { display: inline-block; width: 14px; height: 3px; vertical-align: middle; margin-right: 4px; border-radius: 2px; }
+    #times { top: 10px; left: 292px; padding: 6px 10px; }
+    #times table { border-collapse: collapse; }
+    #times td, #times th { padding: 1px 7px; text-align: right; }
+    #times th { color: var(--dim); font-weight: 500; }
+    #times td:first-child, #times th:first-child { text-align: left; }
+    .faster { color: #c084fc; } .slower { color: var(--warn); }
+    #loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--dim); background: var(--bg); }
+    #keys { color: var(--dim); font-size: 11px; display: none; }
+    @media (max-width: 900px) { #times { display: none; } #hud { width: 200px; } }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <div id="ctrl" class="panel">
+    <h1>Phòng thí nghiệm vật lý · Barcelona 2026</h1>
+    <div class="row">Xe <select id="team"></select> <select id="ghostSel" title="Vòng thật để so sánh"></select></div>
+    <div class="row">Lái <button id="drvAI" class="on">AI</button><button id="drvKey">Bàn phím</button>
+      <label style="display:inline;margin-left:4px"><input type="checkbox" id="assist" checked /> hỗ trợ</label></div>
+    <div id="keys">↑/W ga · ↓/S phanh · ←→/A D lái · Space: Straight Mode (trong vùng cho phép)</div>
+    <div class="row">Tốc độ <button data-k="0.25">¼×</button><button data-k="0.5">½×</button><button data-k="1" class="on">1×</button><button data-k="2">2×</button><button data-k="4">4×</button>
+      <button id="pause">❚❚</button></div>
+    <div class="row"><button id="restart">Chạy lại</button><button id="camBtn">Toàn cảnh</button></div>
+    <label><input type="checkbox" id="lyrGhost" checked /> Xe "bóng" = vòng thật (OpenF1)</label>
+    <label><input type="checkbox" id="lyrPlan" checked /> Đường đua mô phỏng, màu theo tốc độ kế hoạch</label>
+    <label><input type="checkbox" id="lyrForces" /> Lực lốp (mũi tên)</label>
+    <div class="note" id="carNote"></div>
+  </div>
+  <div id="times" class="panel mono"></div>
+  <div id="hud" class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end">
+      <div><span class="big mono" id="spd">0</span><span class="unit">km/h</span></div>
+      <div style="text-align:right"><div class="mono" style="font-size:22px;font-weight:700" id="gear">N</div><div class="mono unit" id="rpm">0 rpm</div></div>
+    </div>
+    <div class="bar"><i id="rpmBar" style="background:#60a5fa;width:0"></i></div>
+    <div class="kv mono" style="margin-top:4px">
+      <span>Ga</span><span id="thrT">0%</span>
+    </div>
+    <div class="bar"><i id="thrBar" style="background:var(--good);width:0"></i></div>
+    <div class="kv mono"><span>Phanh</span><span id="brkT">0%</span></div>
+    <div class="bar"><i id="brkBar" style="background:var(--bad);width:0"></i></div>
+    <div class="kv mono"><span>So với vòng thật</span><span id="delta">—</span></div>
+    <h2>Năng lượng (MGU-K)</h2>
+    <div class="kv mono"><span>Pin</span><span id="socT">4.0 MJ</span></div>
+    <div class="bar"><i id="socBar" style="background:#facc15;width:100%"></i></div>
+    <div class="kv mono"><span>Đã sạc vòng này</span><span id="harvT">0.0 / 7.0 MJ</span></div>
+    <div class="bar"><i id="harvBar" style="background:#38bdf8;width:0"></i></div>
+    <div class="kv mono"><span>MGU-K</span><span id="kT">0 kW</span><span>ICE</span><span id="iceT">0 kW</span><span>Cánh</span><span id="modeT">Z</span></div>
+    <h2>Gia tốc (g)</h2>
+    <canvas id="gg" width="150" height="150"></canvas>
+    <h2>Lốp (mức dùng độ bám · tải kN)</h2>
+    <div id="tyres"><div class="tyre" id="ty0"></div><div class="tyre" id="ty1"></div><div class="tyre" id="ty2"></div><div class="tyre" id="ty3"></div></div>
+  </div>
+  <div id="tele" class="panel">
+    <div id="teleHead"><b>Tốc độ theo quãng đường</b>
+      <span class="lg"><i id="lgSim"></i>mô phỏng, vòng này</span><span class="lg"><i style="background:#64748b"></i><span id="lgReal">vòng thật</span></span>
+      <span class="lg"><i style="background:#334155"></i>vòng mô phỏng trước</span><span class="lg" style="color:var(--dim)">dải dưới: ga (xanh) / phanh (đỏ), trên = thật, dưới = mô phỏng</span></div>
+    <canvas id="chart"></canvas>
+  </div>
+  <div id="loading">Đang tải đường đua, xe và tính kế hoạch tốc độ…</div>
+  <script type="module" src="/src/viewer/physics-lab.ts"></script>
+</body>
+</html>
