@@ -161,6 +161,43 @@ export class TrackRenderer {
     ctx.drawImage(k.c, Math.round(W / 2 + (k.x - v.x) * v.z - k.c.width / 2), Math.round(H / 2 - (k.y - v.y) * v.z - k.c.height / 2));
   }
 
+  private tiles = new Map<string, { c: HTMLCanvasElement; used: number }>(); private tileFrame = 0;
+  /** Static track layer as 512 px tiles at the current zoom, for a moving camera: each frame blits the visible tiles
+   *  and renders a few new tiles ahead of time, so a follow camera never redraws the whole track at once.
+   *  Only missing tiles that are on screen are rendered immediately (start, zoom change). */
+  drawTiled(ctx: CanvasRenderingContext2D, v: View, opt: { structures?: boolean; straightMode?: boolean; lines?: boolean; grid?: boolean } = {}, ahead: [number, number] = [0, 0], prefetch = 1) {
+    const TS = 512, W = ctx.canvas.width, H = ctx.canvas.height, key0 = JSON.stringify(opt) + "|" + v.z.toFixed(4);
+    const ox = Math.round(W / 2 - v.x * v.z), oy = Math.round(H / 2 + v.y * v.z);      // screen pixel of world (0,0)
+    const ix0 = Math.floor(-ox / TS), ix1 = Math.floor((W - ox) / TS), iy0 = Math.floor(-oy / TS), iy1 = Math.floor((H - oy) / TS);
+    const frame = ++this.tileFrame;
+    const get = (ix: number, iy: number) => {
+      const k = key0 + "|" + ix + "," + iy; let t = this.tiles.get(k);
+      if (!t) {
+        const c = document.createElement("canvas"); c.width = TS; c.height = TS;
+        this.draw(c.getContext("2d")!, { x: (ix * TS + TS / 2) / v.z, y: -(iy * TS + TS / 2) / v.z, z: v.z }, opt);
+        t = { c, used: frame }; this.tiles.set(k, t);
+      }
+      t.used = frame; return t.c;
+    };
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    for (let iy = iy0; iy <= iy1; iy++) for (let ix = ix0; ix <= ix1; ix++) ctx.drawImage(get(ix, iy), ox + ix * TS, oy + iy * TS);
+    // prefetch `prefetch` tiles per frame on the ring just outside the screen, nearest to where the camera is heading
+    for (let q = 0; q < prefetch; q++) {
+    let best: [number, number] | null = null, bd = Infinity;
+    const hx = (ix0 + ix1) / 2 + ahead[0] * (ix1 - ix0 + 2), hy = (iy0 + iy1) / 2 - ahead[1] * (iy1 - iy0 + 2);
+    for (let iy = iy0 - 1; iy <= iy1 + 1; iy++) for (let ix = ix0 - 1; ix <= ix1 + 1; ix++) {
+      if (ix >= ix0 && ix <= ix1 && iy >= iy0 && iy <= iy1) continue;
+      if (this.tiles.has(key0 + "|" + ix + "," + iy)) continue;
+      const d = (ix - hx) ** 2 + (iy - hy) ** 2; if (d < bd) { bd = d; best = [ix, iy]; }
+    }
+    if (best) get(best[0], best[1]); else break;
+    }
+    if (this.tiles.size > 90) {                                   // drop the least recently used tiles (~1 MB each)
+      const old = [...this.tiles.entries()].sort((a, b) => a[1].used - b[1].used).slice(0, this.tiles.size - 70);
+      for (const [k] of old) this.tiles.delete(k);
+    }
+  }
+
   draw(ctx: CanvasRenderingContext2D, v: View, opt: { structures?: boolean; straightMode?: boolean; lines?: boolean; grid?: boolean } = {}) {
     const p = this.paths, px = 1 / v.z;
     ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = COL.bg; ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);

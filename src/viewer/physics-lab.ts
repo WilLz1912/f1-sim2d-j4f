@@ -151,13 +151,16 @@ function stepSim() {
 let crashPending = false;
 
 let acc = 0, lastTs = 0, frameN = 0;
+// ?perf: per-part CPU time per frame, read with window.__perf
+const PERF: Record<string, number[]> = { sim: [], track: [], over: [], hud: [], chart: [], gap: [] };
+const PERF_ON = new URLSearchParams(location.search).has("perf"); if (PERF_ON) (window as any).__perf = PERF;
+const T = (k: string, f: () => void) => { if (!PERF_ON) return f(); const t0 = performance.now(); f(); PERF[k].push(performance.now() - t0); };
 function frame(ts: number) {
-  const dtR = Math.min(0.1, (ts - (lastTs || ts)) / 1000); lastTs = ts;
-  if (!paused && !car.crashed) { acc += dtR * speedK; let n = 0; while (acc >= DT && n < 4000) { stepSim(); acc -= DT; n++; } }
-  else acc = 0;
+  const dtR = Math.min(0.1, (ts - (lastTs || ts)) / 1000); if (PERF_ON) PERF.gap.push(ts - (lastTs || ts)); lastTs = ts;
+  T("sim", () => { if (!paused && !car.crashed) { acc += dtR * speedK; let n = 0; while (acc >= DT && n < 4000) { stepSim(); acc -= DT; n++; } } else acc = 0; });
   draw(); frameN++;
-  if (frameN % 2 === 0) hud();
-  if (frameN % 5 === 0) drawChart();
+  T("hud", () => { if (frameN % 2 === 0) hud(); });
+  T("chart", () => { if (frameN % 5 === 0) drawChart(); });
   requestAnimationFrame(frame);
 }
 
@@ -192,7 +195,8 @@ function draw() {
   const W = canvas.width, H = canvas.height;
   if (overview) { view.z = Math.min(W / 1500, H / 1300) * 0.95; view.x = -380; view.y = -330; }
   else { const la = Math.min(12, car.vx * 0.12); view.x = car.x + Math.cos(car.psi) * la; view.y = car.y + Math.sin(car.psi) * la; }
-  R.drawCached(ctx, view, { structures: true, lines: false, straightMode: true, grid: false });
+  T("track", () => R.drawTiled(ctx, view, { structures: true, lines: false, straightMode: true, grid: false }, overview ? [0, 0] : [Math.cos(car.psi), Math.sin(car.psi)], speedK >= 4 ? 2 : 1));
+  const t0 = performance.now();
   R.worldTransform(ctx, view);
   if (skid.length) { ctx.fillStyle = "rgba(8,8,10,0.55)"; const r = 0.16; for (let i = 0; i < skid.length; i += 2) ctx.fillRect(skid[i] - r, skid[i + 1] - r, 2 * r, 2 * r); }
   if ($<HTMLInputElement>("lyrPlan").checked) { ctx.lineWidth = Math.max(0.35, 1.6 / view.z); ctx.globalAlpha = 0.85; for (const q of planPaths) { ctx.strokeStyle = q.col; ctx.stroke(q.p); } ctx.globalAlpha = 1; }
@@ -222,7 +226,7 @@ function draw() {
       ctx.strokeStyle = w.slide ? "#ef4444" : "#fde047"; ctx.beginPath(); ctx.moveTo(wx, wy); ctx.lineTo(wx + gx * sc, wy + gy * sc); ctx.stroke();
     });
   }
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.setTransform(1, 0, 0, 1, 0, 0); if (PERF_ON) PERF.over.push(performance.now() - t0);
   if (car.crashed) { ctx.fillStyle = "rgba(239,68,68,0.9)"; ctx.font = "bold 22px system-ui"; ctx.textAlign = "center"; ctx.fillText("Va chạm rào chắn · chạy lại", W / 2, H / 2 - 40); ctx.textAlign = "left"; }
 }
 
